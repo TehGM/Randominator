@@ -17,7 +17,7 @@ namespace TehGM.Randominator;
 
 public class Program
 {
-    public static Task Main(string[] args)
+    public static async Task Main(string[] args)
     {
         // add default logger for errors that happen before host runs
         Log.Logger = new LoggerConfiguration()
@@ -34,16 +34,24 @@ public class Program
             catch { }
         };
 
+
         WebAssemblyHostBuilder builder = WebAssemblyHostBuilder.CreateDefault(args);
         builder.RootComponents.Add<App>("#app");
         builder.RootComponents.Add<HeadOutlet>("head::after");
-        builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
+        // create default http client for config loading
+        HttpClient client = new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) };
+        builder.Services.AddScoped(sp => client);
+
+        // load appsettings
+        await builder.Configuration.AddJsonFileAsync(client, "appsettings.json", optional: false).ConfigureAwait(false);
+        await builder.Configuration.AddJsonFileAsync(client, $"appsettings.{builder.HostEnvironment.Environment}.json", optional: true).ConfigureAwait(false);
 
         ConfigureLogging(builder);
         ConfigureOptions(builder.Services, builder.Configuration);
         ConfigureServices(builder.Services);
 
-        return builder.Build().RunAsync();
+        await builder.Build().RunAsync();
     }
 
     private static void ConfigureOptions(IServiceCollection services, IConfiguration configuration)
