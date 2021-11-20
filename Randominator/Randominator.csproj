@@ -4,8 +4,6 @@
     <TargetFramework>net6.0</TargetFramework>
 	<Nullable>disable</Nullable>
 	<ImplicitUsings>disable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>TehGM.Randominator</RootNamespace>
 	<PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
 	<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
@@ -51,5 +49,7 @@
     <PackageReference Include="Serilog.Sinks.BrowserConsole" Version="1.0.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>
