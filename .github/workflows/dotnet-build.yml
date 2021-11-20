@@ -1,0 +1,43 @@
+name: .NET Build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+      - dev
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+    - name: Install Excubo.WebCompiler
+      run: dotnet tool install Excubo.WebCompiler --global
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Build solution
+      run: dotnet build --no-restore
+    - name: Run tests
+      run: dotnet test --no-restore --verbosity normal
+    - name: Publish solution
+      run: dotnet publish -c Release -o bin/publish
+    - name: Release to GitHub Pages
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: bin/publish/wwwroot
+        cname: randominator.tehgm.net
+        force_orphan: true
+     
