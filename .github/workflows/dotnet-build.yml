@@ -9,6 +9,11 @@ on:
       - master
       - dev
   workflow_dispatch:
+    inputs:
+      releasePage:
+        description: 'Release to GitHub Pages? (Y/N)'
+        required: false
+        default: 'N'
 
 jobs:
   build:
@@ -26,14 +31,12 @@ jobs:
       run: dotnet tool install Excubo.WebCompiler --global
     - name: Install dependencies
       run: dotnet restore
-    - name: Build solution
-      run: dotnet build --no-restore
-    - name: Run tests
-      run: dotnet test --no-restore --verbosity normal
     - name: Publish solution
-      run: dotnet publish -c Release -o bin/publish
+      run: dotnet publish --no-restore --no-logo -c Release -o bin/publish
+    - name: Run tests
+      run: dotnet test --no-restore --no-logo --verbosity normal
     - name: Release to GitHub Pages
-      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      if: (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event.inputs.releasePage == 'Y'
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
