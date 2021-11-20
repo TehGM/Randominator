@@ -7,3 +7,8 @@ This project is just a fun idea, so it may or may not be supported and extended.
 
 ## Live website
 Latest release version of Randominator can be accessed at https://randominator.tehgm.net !
+
+## License
+Copyright (c) 2021 TehGM
+
+Licensed under [GNU Affero General Public License v3.0](LICENSE) (GNU AGPL-3.0).
