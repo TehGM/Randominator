@@ -53,10 +53,13 @@ public class Program
 
     private static void ConfigureLogging(WebAssemblyHostBuilder builder)
     {
-        LoggerConfiguration config = new LoggerConfiguration()
-            .ReadFrom.Configuration(builder.Configuration, "Logging");
+        Serilog.Debugging.SelfLog.Enable(m => Console.Error.WriteLine(m));
+
+        Log.Logger = new LoggerConfiguration()
+            .ReadFrom.Configuration(builder.Configuration, "Logging")
+            .CreateLogger();
 
         builder.Logging.ClearProviders();
-        builder.Logging.AddSerilog(config.CreateLogger(), true);
+        builder.Logging.AddSerilog(Log.Logger, true);
     }
 }
