@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+	<Nullable>disable</Nullable>
+	<ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>TehGM.Randominator</RootNamespace>
+	<PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
+	<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+	<Version>0.1.0</Version>
+	<Authors>TehGM</Authors>
+	<Description>A Blazor website containing a random collection of generators (generating random or non-random stuff).</Description>
+	<Company>TehGM</Company>
+	<Product>Randominator</Product>
+	<Copyright>Copyright (c) 2021 TehGM</Copyright>
+	<PackageProjectUrl>https://github.com/TehGM/Randominator</PackageProjectUrl>
+	<RepositoryUrl>https://github.com/TehGM/Randominator</RepositoryUrl>
+	<RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+	
+  <ItemGroup>
+  	<Content Include=".dockerignore" Condition="Exists('.dockerignore')">
+  	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  	</Content>
+  	<Content Include="Dockerfile" Condition="Exists('Dockerfile')">
+  	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  	</Content>
+  </ItemGroup>
+
+
+  <!-- SASS BUILD -->
+  <!-- note: on first run, the file might not be up to date, cause MSBuild works myseterious ways -->
+  <!-- to work this around, use something like fsriev -->
+  <Target Name="CompileStaticFiles" BeforeTargets="Build">
+  	<Message Text="Compiling Static Files: /wwwroot/css" Importance="high" />
+  	<Exec Command="webcompiler -r wwwroot/css -c webcompiler.json" StandardOutputImportance="high" />
+  	<Message Text="Compiling Static Files: /UI" Importance="high" />
+  	<Exec Command="webcompiler -r UI -c webcompiler.json" StandardOutputImportance="high" />
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="4.2.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.3.0" />
+    <PackageReference Include="Serilog.Sinks.BrowserConsole" Version="1.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
+  </ItemGroup>
+
+</Project>
