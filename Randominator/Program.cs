@@ -60,6 +60,7 @@ public class Program
 
     private static void ConfigureServices(IServiceCollection services)
     {
+        services.AddMobileGameNameGenerator();
     }
 
     private static void ConfigureLogging(WebAssemblyHostBuilder builder)
