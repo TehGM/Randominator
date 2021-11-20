@@ -19,22 +19,22 @@ main {
     height: 3.5rem;
     display: flex;
     align-items: center;
-}
 
-    .top-row ::deep a, .top-row ::deep .btn-link {
+    &::deep a, &::deep .btn-link {
         white-space: nowrap;
-        margin-left: 1.5rem;
         text-decoration: none;
     }
 
-    .top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
+    &::deep a:hover, &::deep .btn-link:hover {
         text-decoration: underline;
     }
 
-    .top-row ::deep a:first-child {
+    &::deep a:first-child {
         overflow: hidden;
         text-overflow: ellipsis;
     }
+}
+
 
 @media (max-width: 640.98px) {
     .top-row:not(.auth) {
@@ -66,6 +66,7 @@ main {
         position: sticky;
         top: 0;
         z-index: 1;
+
     }
 
     .top-row.auth ::deep a:first-child {
