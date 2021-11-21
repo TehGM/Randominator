@@ -1,0 +1,11 @@
+﻿<img class="@this.CssClass" src="@this.GetFilePath()" />
+
+@code {
+    [Parameter, EditorRequired]
+    public string FileName { get; set; }
+    [Parameter]
+    public string CssClass { get; set; } = "doofenshmirtz";
+
+    public string GetFilePath()
+        => $"img/doofenshmirtz/{this.FileName.Trim()}.gif";
+}
