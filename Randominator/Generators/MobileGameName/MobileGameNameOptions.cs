@@ -123,7 +123,11 @@
             "Battleground",
             "Battlegrounds",
             "Quest",
-            "Quests"
+            "Quests",
+            "God",
+            "Gods",
+            "General",
+            "Generals"
         };
     }
 }
