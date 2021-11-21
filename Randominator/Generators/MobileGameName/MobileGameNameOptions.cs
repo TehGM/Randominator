@@ -127,7 +127,13 @@
             "God",
             "Gods",
             "General",
-            "Generals"
+            "Generals",
+            "Champion",
+            "Champions",
+            "Puzzle",
+            "Puzzles",
+            "Gem",
+            "Gems"
         };
     }
 }
