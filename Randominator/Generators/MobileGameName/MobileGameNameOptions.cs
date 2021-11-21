@@ -6,7 +6,8 @@
 
         public ICollection<string> LeadingWordSet { get; set; } = new string[] 
         { 
-            "Game"
+            "Game",
+            "Rising"
         };
         public ICollection<string> TrailingWordSet { get; set; } = new string[] { };
         public ICollection<string> SharedWordSet { get; set; } = new string[] 
@@ -113,7 +114,16 @@
             "Dawn",
             "Faction",
             "Factions",
-            "Armies"
+            "Armies",
+            "Strike",
+            "Force",
+            "Forces",
+            "Master",
+            "Masters",
+            "Battleground",
+            "Battlegrounds",
+            "Quest",
+            "Quests"
         };
     }
 }
