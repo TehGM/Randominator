@@ -27,8 +27,18 @@
   	</Content>
   </ItemGroup>
 
+
+  <!-- SASS BUILD -->
+  <!-- note: on first run, the file might not be up to date, cause MSBuild works myseterious ways -->
+  <!-- to work this around, use something like fsriev -->
+  <Target Name="CompileStaticFiles" BeforeTargets="Build">
+  	<Message Text="Compiling Static Files: /wwwroot/css" Importance="high" />
+  	<Exec Command="webcompiler -r wwwroot/css -c webcompiler.json" StandardOutputImportance="high" />
+  	<Message Text="Compiling Static Files: /UI" Importance="high" />
+  	<Exec Command="webcompiler -r UI -c webcompiler.json" StandardOutputImportance="high" />
+  </Target>
+
   <ItemGroup>
-    <PackageReference Include="Delegate.SassBuilder" Version="1.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
