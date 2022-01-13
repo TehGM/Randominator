@@ -1,0 +1,22 @@
+﻿@inherits StandardSectionComponent
+
+<div>
+    @RenderSectionHeader()
+
+    <p>
+        Local fields (aka the variables you declare inside of a method/function, in case ya didn't know!) in @LanguageName should follow <span class="naming-convention-name">@Standard.LocalFieldNamingStyle.LetterCaseStyleName</span> naming scheme.
+        @if (Standard.LocalFieldNamingStyle.HasHungarianParts)
+        {
+            <text>Also, please respect hungarian notation, where local fields are @Standard.LocalFieldNamingStyle.ListHungarianPrefixSuffixRules() - thank you very much.</text>
+        }
+        @if (Standard.LocalFieldNamingStyle.HasNormalPrefixOrSuffix)
+        {
+            <text>AOh, oh, they also need to be @Standard.LocalFieldNamingStyle.ListNormalPrefixSuffixRules(this.NamingFormatter).</text>
+        }
+    </p>
+
+    <CodeSample ID="@this.CodeSampleID">
+        @BracketsFormatter.RenderCodeHtml($"public void {this.NamingFormatter.Apply(Standard.MethodNamingStyle, new string[] { "My", "Method" }, null)}()", 
+        $"int {this.NamingFormatter.Apply(Standard.LocalFieldNamingStyle, new string[] { "First", "Member" }, HungarianPart.Integer)};<br/>    string {this.NamingFormatter.Apply(Standard.LocalFieldNamingStyle, new string[] { "Second", "Member" }, HungarianPart.String)};", Standard.MethodBracketsStyle)
+    </CodeSample>
+</div>

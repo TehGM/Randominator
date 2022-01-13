@@ -1,0 +1,71 @@
+﻿@inherits StandardSectionComponent
+
+<div>
+    @RenderSectionHeader()
+
+    @if (Standard.AllowPrivateFields == AllowMode.Forbid)
+    {
+        <text>If fields are private then no one should care, right? Right?<br/><b>W r o n g</b>. We take @LanguageName seriously, and know that private fields are not allowed.</text>
+        if (Standard.AllowPublicFields != AllowMode.Forbid)
+        {
+            <text> You have to use public ones.</text>
+            if (Standard.AllowPublicFields == AllowMode.Discourage)
+            {
+                <text> They're not recommended, but ah well. We can't watch your eyes tear out all the time.</text>
+            }
+        }
+        else if (Standard.AllowProperties != AllowMode.Forbid)
+        {
+            <text> You have to use public properties.</text>
+            if (Standard.AllowProperties == AllowMode.Discourage)
+            {
+                <text> They're not recommended, but ah well. We can't watch your eyes tear out all the time.</text>
+            }
+        }
+    }
+    else if (Standard.AllowPrivateFields == AllowMode.Discourage)
+    {
+        <text>While you can make fields private in @LanguageName, why would you?</text>
+        if (Standard.AllowPublicFields != AllowMode.Forbid)
+        {
+            <text> It's better to make them public.</text>
+            if (Standard.AllowPublicFields != AllowMode.Discourage)
+            {
+                <text> Sharing is caring!</text>
+            }
+        }
+        else if (Standard.AllowProperties != AllowMode.Forbid)
+        {
+            <text> It's better to use public fields.</text>
+            if (Standard.AllowProperties != AllowMode.Discourage)
+            {
+                <text> Sharing is caring!</text>
+            }
+        }
+        <text> But if you really want to be greedy, they should </text>
+    }
+    else 
+    {
+        <text>Private fields also have set of rules to follow (and no, we don't care about "hurr why care about private durr"), and they should </text>
+    }
+    
+    @if (Standard.AllowPrivateFields != AllowMode.Forbid)
+    {
+        <p>
+            have name respecting <span class="naming-convention-name">@Standard.PrivateFieldNamingStyle.LetterCaseStyleName</span> convention. Yes, it's serious.
+            @if (Standard.PrivateFieldNamingStyle.HasHungarianParts)
+            {
+                <text>Also, apply following hungarian notation: @Standard.PrivateFieldNamingStyle.ListHungarianPrefixSuffixRules().</text>
+            }
+            @if (Standard.PrivateFieldNamingStyle.HasNormalPrefixOrSuffix)
+            {
+                <text>And don't forget that they should be @Standard.PrivateFieldNamingStyle.ListNormalPrefixSuffixRules(this.NamingFormatter)!</text>
+            }
+        </p>
+
+        <CodeSample ID="@this.CodeSampleID">
+            @($"private int {this.NamingFormatter.Apply(Standard.PrivateFieldNamingStyle, new string[] { "First", "Member" }, HungarianPart.Integer)};")<br/>
+            @($"private string {this.NamingFormatter.Apply(Standard.PrivateFieldNamingStyle, new string[] { "Second", "Member" }, HungarianPart.String)};")
+        </CodeSample>
+    }
+</div>

@@ -1,0 +1,56 @@
+﻿@inherits StandardSectionComponent
+
+<div>
+    @RenderSectionHeader()
+
+    @if (Standard.AllowClasses == AllowMode.Forbid)
+    {
+        <text>Do not use any classes in @LanguageName! Objects bad!</text>
+        if (Standard.AllowStructs != AllowMode.Forbid)
+        {
+            <text> You're better off using Structs.</text>
+            if (Standard.AllowStructs == AllowMode.Discourage)
+            {
+                <text> (Although they're bleh, too).</text>
+            }
+        }
+    }
+    else if (Standard.AllowClasses == AllowMode.Discourage)
+    {
+        <text>Classes in @LanguageName? Eww.</text>
+        if (Standard.AllowStructs != AllowMode.Forbid)
+        {
+            <text> You're better off using Structs.</text>
+            if (Standard.AllowStructs == AllowMode.Discourage)
+            {
+                <text> (Although they're gross, too).</text>
+            }
+        }
+        <text> If you really need to use these disgusting beings, </text>
+    }
+    else 
+    {
+        <text>When using classes in @LanguageName, </text>
+    }
+    
+    @if (Standard.AllowClasses != AllowMode.Forbid)
+    {
+        @Standard.TypeBracketsStyle.RenderBracketsStyleText()
+
+        <p>
+            Classes in @LanguageName should follow <span class="naming-convention-name">@Standard.ClassNamingStyle.LetterCaseStyleName</span> convention.
+            @if (Standard.ClassNamingStyle.HasHungarianParts)
+            {
+                <text>Also, class names should follow hungarian notation - @Standard.ClassNamingStyle.ListHungarianPrefixSuffixRules().</text>
+            }
+            @if (Standard.ClassNamingStyle.HasNormalPrefixOrSuffix)
+            {
+                <text>Additionally class names should be @Standard.ClassNamingStyle.ListNormalPrefixSuffixRules(this.NamingFormatter).</text>
+            }
+        </p>
+
+        <CodeSample ID="@this.CodeSampleID">
+            @BracketsFormatter.RenderCodeHtml($"public {this.NamingFormatter.Apply(Standard.ClassNamingStyle, new string[] { "My", "Type" }, HungarianPart.Class)}", "// class members here", Standard.TypeBracketsStyle)
+        </CodeSample>
+    }
+</div>

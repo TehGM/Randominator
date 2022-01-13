@@ -1,0 +1,20 @@
+﻿@inherits StandardSectionComponent
+
+<div>
+    @RenderSectionHeader()
+
+    Method/function accept arguments, and they need to follow standards too. In @LanguageName, these arguments need to follow <span class="naming-convention-name">@Standard.MethodArgumentNamingStyle.LetterCaseStyleName</span> naming style.
+    @if (Standard.MethodArgumentNamingStyle.HasHungarianParts)
+    {
+        <text>If you don't want to be baddie, apply hungarian notation to method args - @Standard.MethodArgumentNamingStyle.ListHungarianPrefixSuffixRules().</text>
+    }
+    @if (Standard.MethodArgumentNamingStyle.HasNormalPrefixOrSuffix)
+    {
+        <text>Don't forget that args should also be @Standard.MethodArgumentNamingStyle.ListNormalPrefixSuffixRules(this.NamingFormatter).</text>
+    }
+
+    <CodeSample ID="@this.CodeSampleID">
+        @BracketsFormatter.RenderCodeHtml(
+            $"public void {this.NamingFormatter.Apply(Standard.MethodNamingStyle, new string[] { "My", "Method" }, null)}(int {this.NamingFormatter.Apply(Standard.MethodArgumentNamingStyle, new string[] { "first", "arg" }, HungarianPart.Integer)}, string {this.NamingFormatter.Apply(Standard.MethodArgumentNamingStyle, new string[] { "second", "arg" }, HungarianPart.String)})", "// logic code here", Standard.MethodBracketsStyle)
+    </CodeSample>
+</div>

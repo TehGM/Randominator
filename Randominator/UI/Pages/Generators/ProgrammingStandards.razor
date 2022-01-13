@@ -1,0 +1,76 @@
+﻿@page "/generators/programming-standards"
+@using TehGM.Randominator.Generators.ProgrammingStandards
+@using TehGM.Randominator.UI.Components.ProgrammingStandards
+@inject IProgrammingStandardsGenerator Generator
+@inject INamingStyleFormatter NamingFormatter
+@inject NavigationManager NavigationManager
+
+<AppPageTitle>@_title</AppPageTitle>
+<h2>@_title Generator</h2>
+
+<p>Programmers love-hate to argue about programming standards. Here's a generator to solve these arguments once for all!</p>
+
+<FormTextInput Placeholder="Language Name" ValueChanged="OnLanguageInput" HighlightError="_highlightPasswordError" ValidationResults="_errors" />
+<button @onclick="GenerateNew" class="btn btn-secondary">Generate!</button>
+
+@if (_result != null)
+{
+    <hr/>
+    <h3>Official Unquestionable Standards for @_result.LanguageName language!</h3>
+    <p>Our advanced AI algorithms generated this documentation for you so you can share it with your team members. Thanks to us, your code style will now always be consistent!</p>
+
+    <div>
+        <LoopsSection Standard="@_result" SectionName="Loops"/>
+        <FlowControlSection Standard="@_result" SectionName="Flow Control"/>
+        <ClassesSection Standard="@_result" SectionName="Classes"/>
+        <StructsSection Standard="@_result" SectionName="Structs"/>
+        <InterfacesSection Standard="@_result" SectionName="Interfaces"/>
+        <MethodsSection Standard="@_result" SectionName="Methods and Functions"/>
+        <MethodArgumentsSection Standard="@_result" SectionName="Method and Function Arguments"/>
+        <PropertiesSection Standard="@_result" SectionName="Properties"/>
+        <PublicFieldsSection Standard="@_result" SectionName="Public Fields"/>
+        <PrivateFieldsSection Standard="@_result" SectionName="Private Fields"/>
+        <LocalFieldsSection Standard="@_result" SectionName="Local Fields"/>
+        <ConstantsSection Standard="@_result" SectionName="Constants"/>
+    </div>
+}
+
+@code {
+    private const string _title = "Programming Standards";
+
+    [Parameter, SupplyParameterFromQuery(Name = "lang")]
+    public string LanguageName { get; set; }
+    private ProgrammingStandard _result = null;
+
+    private List<InputValidationResult> _errors = new List<InputValidationResult>();
+    private bool _highlightPasswordError = false;
+
+    protected override void OnParametersSet()
+    {
+        if (!string.IsNullOrWhiteSpace(this.LanguageName))
+            this.GenerateNew();
+    }
+
+    private void OnLanguageInput(ChangeEventArgs e)
+    {
+        this.LanguageName = e.Value?.ToString();
+        _highlightPasswordError = false;
+        _errors.Clear();
+    }
+
+    public void GenerateNew()
+    {
+        _errors.Clear();
+
+        if (string.IsNullOrWhiteSpace(this.LanguageName))
+        {
+            _errors.Add("Please give us the language name!");
+            _highlightPasswordError = true;
+            return;
+        }
+
+        this._result = this.Generator.Generate(this.LanguageName);
+        string newUrl = NavigationManager.GetUriWithQueryParameter("lang", this._result.LanguageName);
+        NavigationManager.NavigateTo(newUrl, false);
+    }
+}

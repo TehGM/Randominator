@@ -1,0 +1,44 @@
+﻿@inherits StandardSectionComponent
+
+<div>
+    @RenderSectionHeader()
+
+    @if (Standard.AllowConstants == AllowMode.Forbid)
+    {
+        <text>EVERYTHING. CHANGES. AND DIES.<br/>No constants in @LanguageName.</text>
+    }
+    else if (Standard.AllowConstants == AllowMode.Discourage)
+    {
+        <text>Why would you want to make a constant in @LanguageName? @LanguageName is like everything else, ever-changing. Except war. War never changes.<br/>
+            But if you want to make things rigid anyway, then they </text>
+    }
+    else if (Standard.AllowConstants == AllowMode.Recommend)
+    {
+        <text>Ah yes, any good programmer knows that mutability leads to bugs. And not everyone can afford to call desinfection experts, so you ought to use constants.<br/>
+            And when you do so, remember that they </text>
+    }
+    else 
+    {
+        <text>When making something unchanging in your @LanguageName code, remember that constants </text>
+    }
+    
+    @if (Standard.AllowConstants != AllowMode.Forbid)
+    {
+        <p>
+            have a constant rule that they need to be named with <span class="naming-convention-name">@Standard.ConstantNamingStyle.LetterCaseStyleName</span> letter casing.
+            @if (Standard.ConstantNamingStyle.HasHungarianParts)
+            {
+                <text> Another rule that ought not to change is constants' hungarian notation - @Standard.ConstantNamingStyle.ListHungarianPrefixSuffixRules().</text>
+            }
+            @if (Standard.ConstantNamingStyle.HasNormalPrefixOrSuffix)
+            {
+                <text> And you also cannot change the fact that they need to be @Standard.ConstantNamingStyle.ListNormalPrefixSuffixRules(this.NamingFormatter). Constant is constant.</text>
+            }
+        </p>
+
+        <CodeSample ID="@this.CodeSampleID">
+            @($"public const int {this.NamingFormatter.Apply(Standard.ConstantNamingStyle, new string[] { "First", "Member" }, HungarianPart.Integer)};")<br/>
+            @($"public const string {this.NamingFormatter.Apply(Standard.ConstantNamingStyle, new string[] { "Second", "Member" }, HungarianPart.String)};")
+        </CodeSample>
+    }
+</div>
