@@ -6,3 +6,7 @@
     font-weight: bold;
     font-style: italic;
 }
+
+::deep .code-sample {
+    margin-top: 5px;
+}

@@ -24,17 +24,15 @@
     
     @if (Standard.AllowConstants != AllowMode.Forbid)
     {
-        <p>
-            have a constant rule that they need to be named with <span class="naming-convention-name">@Standard.ConstantNamingStyle.LetterCaseStyleName</span> letter casing.
-            @if (Standard.ConstantNamingStyle.HasHungarianParts)
-            {
-                <text> Another rule that ought not to change is constants' hungarian notation - @Standard.ConstantNamingStyle.ListHungarianPrefixSuffixRules().</text>
-            }
-            @if (Standard.ConstantNamingStyle.HasNormalPrefixOrSuffix)
-            {
-                <text> And you also cannot change the fact that they need to be @Standard.ConstantNamingStyle.ListNormalPrefixSuffixRules(this.NamingFormatter). Constant is constant.</text>
-            }
-        </p>
+        <text>have a constant rule that they need to be named with <span class="naming-convention-name">@Standard.ConstantNamingStyle.LetterCaseStyleName</span> letter casing.</text>
+        @if (Standard.ConstantNamingStyle.HasHungarianParts)
+        {
+            <text> Another rule that ought not to change is constants' hungarian notation - @Standard.ConstantNamingStyle.ListHungarianPrefixSuffixRules().</text>
+        }
+        @if (Standard.ConstantNamingStyle.HasNormalPrefixOrSuffix)
+        {
+            <text> And you also cannot change the fact that they need to be @Standard.ConstantNamingStyle.ListNormalPrefixSuffixRules(this.NamingFormatter). Constant is constant.</text>
+        }
 
         <CodeSample ID="@this.CodeSampleID">
             @($"public const int {this.NamingFormatter.Apply(Standard.ConstantNamingStyle, new string[] { "First", "Member" }, HungarianPart.Integer)};")<br/>

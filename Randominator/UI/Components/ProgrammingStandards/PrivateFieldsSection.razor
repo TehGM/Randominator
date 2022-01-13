@@ -51,17 +51,15 @@
     
     @if (Standard.AllowPrivateFields != AllowMode.Forbid)
     {
-        <p>
-            have name respecting <span class="naming-convention-name">@Standard.PrivateFieldNamingStyle.LetterCaseStyleName</span> convention. Yes, it's serious.
-            @if (Standard.PrivateFieldNamingStyle.HasHungarianParts)
-            {
-                <text>Also, apply following hungarian notation: @Standard.PrivateFieldNamingStyle.ListHungarianPrefixSuffixRules().</text>
-            }
-            @if (Standard.PrivateFieldNamingStyle.HasNormalPrefixOrSuffix)
-            {
-                <text>And don't forget that they should be @Standard.PrivateFieldNamingStyle.ListNormalPrefixSuffixRules(this.NamingFormatter)!</text>
-            }
-        </p>
+        <text>have name respecting <span class="naming-convention-name">@Standard.PrivateFieldNamingStyle.LetterCaseStyleName</span> convention. Yes, it's serious.</text>
+        @if (Standard.PrivateFieldNamingStyle.HasHungarianParts)
+        {
+            <text>Also, apply following hungarian notation: @Standard.PrivateFieldNamingStyle.ListHungarianPrefixSuffixRules().</text>
+        }
+        @if (Standard.PrivateFieldNamingStyle.HasNormalPrefixOrSuffix)
+        {
+            <text>And don't forget that they should be @Standard.PrivateFieldNamingStyle.ListNormalPrefixSuffixRules(this.NamingFormatter)!</text>
+        }
 
         <CodeSample ID="@this.CodeSampleID">
             @($"private int {this.NamingFormatter.Apply(Standard.PrivateFieldNamingStyle, new string[] { "First", "Member" }, HungarianPart.Integer)};")<br/>
