@@ -11,10 +11,21 @@
         }
 
         public static double GetRandomChance(this IRandomizer randomizer)
-            => randomizer.GetRandomNumber(0.0d, 1.0d);
+            => randomizer.GetRandomNumber(0.0, 1.0);
 
         public static bool RollChance(this IRandomizer randomizer, double chance)
             => randomizer.GetRandomChance() <= chance;
+
+        public static bool GetRandomBoolean(this IRandomizer randomizer)
+            => randomizer.RollChance(0.5);
+
+        public static T GetRandomEnumValue<T>(this IRandomizer randomizer) where T : struct, Enum
+        {
+            if (!typeof(T).IsEnum)
+                throw new InvalidOperationException($"{nameof(GetRandomEnumValue)} can only be used on enums. {nameof(T)} is not an enum");
+            T[] values = Enum.GetValues<T>();
+            return randomizer.GetRandomValue(values);
+        }
 
         private static void ThrowIfNullOrEmpty<T>(IEnumerable<T> values)
         {

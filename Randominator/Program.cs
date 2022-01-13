@@ -63,6 +63,7 @@ public class Program
         services.AddRandomizer();
 
         services.AddMobileGameNameGenerator();
+        services.AddProgrammingStandardsGenerator();
     }
 
     private static void ConfigureLogging(WebAssemblyHostBuilder builder)
