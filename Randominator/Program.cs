@@ -60,6 +60,8 @@ public class Program
 
     private static void ConfigureServices(IServiceCollection services)
     {
+        services.AddRandomizer();
+
         services.AddMobileGameNameGenerator();
     }
 

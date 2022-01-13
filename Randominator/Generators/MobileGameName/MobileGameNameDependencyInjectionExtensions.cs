@@ -10,6 +10,7 @@ namespace Microsoft.Extensions.DependencyInjection
             if (configureOptions != null)
                 services.Configure(configureOptions);
 
+            services.AddRandomizer();
             services.AddTransient<IMobileGameNameGenerator, MobileGameNameGenerator>();
 
             return services;

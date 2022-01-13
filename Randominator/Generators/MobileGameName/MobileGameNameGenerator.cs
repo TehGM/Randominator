@@ -3,13 +3,13 @@
     public class MobileGameNameGenerator : IMobileGameNameGenerator
     {
         private readonly IOptionsMonitor<MobileGameNameOptions> _options;
-        private readonly Random _random;
+        private readonly IRandomizer _random;
         private readonly ILogger _log;
 
-        public MobileGameNameGenerator(IOptionsMonitor<MobileGameNameOptions> options, ILogger<MobileGameNameGenerator> log)
+        public MobileGameNameGenerator(IOptionsMonitor<MobileGameNameOptions> options, ILogger<MobileGameNameGenerator> log, IRandomizer randomizer)
         {
             this._options = options;
-            this._random = new Random();
+            this._random = randomizer;
             this._log = log;
         }
 
@@ -53,7 +53,7 @@
             if (collection?.Any() != true)
                 return default;
 
-            int index = this._random.Next(0, collection.Count());
+            int index = this._random.GetRandomNumber(0, collection.Count());
             return collection.ElementAtOrDefault(index);
         }
     }
