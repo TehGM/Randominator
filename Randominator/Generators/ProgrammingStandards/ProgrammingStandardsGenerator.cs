@@ -124,13 +124,13 @@ namespace TehGM.Randominator.Generators.ProgrammingStandards.Services
         private AllowMode GenerateAllowMode(IRandomizer randomizer)
             => randomizer.GetRandomEnumValue<AllowMode>();
 
-        private NamingStyle GenerateNamingStyle(IRandomizer randomizer, string[] prefixes, string[] suffixes, bool allowHungarian = false)
+        private NamingStyle GenerateNamingStyle(IRandomizer randomizer, IEnumerable<string> prefixes, IEnumerable<string> suffixes, bool allowHungarian = false)
         {
             // calculate prefixes and sufixes
             HungarianPartStyle hungarianPrefix = GetHungarianPrefix(this._options.HungarianPrefixChance);
             HungarianPartStyle hungarianSuffix = GetHungarianPrefix(this._options.HungarianSuffixChance);
-            string prefix = prefixes?.Any() == true? randomizer.GetRandomValue(prefixes) : null;
-            string suffix = suffixes?.Any() == true ? randomizer.GetRandomValue(suffixes) : null;
+            string prefix = GetNormalPart(prefixes, this._options.NormalPrefixChance);
+            string suffix = GetNormalPart(suffixes, this._options.NormalSuffixChance);
 
             // get case style and its name
             LetterCaseStyle letterCaseStyle = randomizer.GetRandomEnumValue<LetterCaseStyle>();
@@ -159,6 +159,15 @@ namespace TehGM.Randominator.Generators.ProgrammingStandards.Services
                 IEnumerable<HungarianPartStyle> hungarianStyles 
                     = Enum.GetValues<HungarianPartStyle>().Except(new[] { HungarianPartStyle.None });
                 return randomizer.GetRandomValue(hungarianStyles);
+            }
+
+            string GetNormalPart(IEnumerable<string> values, double chance)
+            {
+                if (values?.Any() != true)
+                    return null;
+                if (!randomizer.RollChance(chance))
+                    return null;
+                return randomizer.GetRandomValue(values);
             }
         }
     }
