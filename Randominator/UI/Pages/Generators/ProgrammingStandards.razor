@@ -18,6 +18,7 @@
     <hr/>
     <h3>Official Unquestionable Standards for @_result.LanguageName language!</h3>
     <p>Our advanced AI algorithms generated this documentation for you so you can share it with your team members. Thanks to us, your code style will now always be consistent!</p>
+    <p><a href="@this._resultURL">@this._resultURL</a></p>
 
     <div>
         <LoopsSection Standard="@_result" SectionName="Loops"/>
@@ -41,6 +42,7 @@
     [Parameter, SupplyParameterFromQuery(Name = "lang")]
     public string LanguageName { get; set; }
     private ProgrammingStandard _result = null;
+    private string _resultURL = null;
 
     private List<InputValidationResult> _errors = new List<InputValidationResult>();
     private bool _highlightPasswordError = false;
@@ -70,7 +72,7 @@
         }
 
         this._result = this.Generator.Generate(this.LanguageName);
-        string newUrl = NavigationManager.GetUriWithQueryParameter("lang", this._result.LanguageName);
-        NavigationManager.NavigateTo(newUrl, false);
+        this._resultURL = NavigationManager.GetUriWithQueryParameter("lang", this._result.LanguageName);
+        NavigationManager.NavigateTo(this._resultURL, false);
     }
 }
