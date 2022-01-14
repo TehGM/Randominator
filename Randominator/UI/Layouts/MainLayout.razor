@@ -1,17 +1,10 @@
 ﻿@inherits LayoutComponentBase
+@layout BaseLayout
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
-    <main>
-        <div class="top-row px-4">
-            @AppInfo.Name by&nbsp;<a href="@AppInfo.AuthorWebsite">@AppInfo.Author</a>
-        </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+<div class="top-row px-4">
+    @AppInfo.Name by&nbsp;<a href="@AppInfo.AuthorWebsite">@AppInfo.Author</a>
 </div>
+
+<article class="content px-4">
+    @Body
+</article>
