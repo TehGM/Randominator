@@ -1,4 +1,6 @@
-﻿<div class="page-header px-4">
+﻿@implements IDisposable
+
+<div class="page-header px-4">
     @if (LeftSide != null)
     {
         <div class="left-side">
@@ -18,24 +20,20 @@
     public RenderFragment LeftSide { get; set; }
     [Parameter]
     public RenderFragment RightSide { get; set; }
-    [Parameter]
-    public string Title { get; set; }
 
-    protected override void OnParametersSet()
+    protected override void OnInitialized()
     {
-        this.ApplyLeftSide();
+        this.PageHeaderEditor.OnTitleChanged += OnTitleChanged;
     }
 
-    private void ApplyLeftSide()
+    private void OnTitleChanged(object sender, string content)
     {
-        if (this.ApplyLeftSide != null)
-            return;
-        if (string.IsNullOrWhiteSpace(this.Title))
-            return;
+        this.LeftSide = @<h1 class="header-title">@content</h1>;
+        this.StateHasChanged();
+    }
 
-        this.LeftSide = __builder =>
-        {
-            <span class="header-title">@this.Title</span>
-        };
+    void IDisposable.Dispose()
+    {
+        this.PageHeaderEditor.OnTitleChanged -= OnTitleChanged;
     }
 }

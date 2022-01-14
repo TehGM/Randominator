@@ -5,8 +5,7 @@
 @inject INamingStyleFormatter NamingFormatter
 @inject NavigationManager NavigationManager
 
-<AppPageTitle>@_title</AppPageTitle>
-<h2>@_title Generator</h2>
+<AppPageTitle Value="Programming Standards Generator" />
 
 <p>Programmers love-hate to argue about programming standards. Here's a generator to solve these arguments once for all!</p>
 
@@ -37,8 +36,6 @@
 }
 
 @code {
-    private const string _title = "Programming Standards";
-
     [Parameter, SupplyParameterFromQuery(Name = "lang")]
     public string LanguageName { get; set; }
     private ProgrammingStandard _result = null;

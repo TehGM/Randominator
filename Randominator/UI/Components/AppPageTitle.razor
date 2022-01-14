@@ -1,6 +1,21 @@
-﻿<PageTitle>@this.ChildContent - @AppInfo.Name</PageTitle>
+﻿<PageTitle>@this.GetMetaTitle()</PageTitle>
 
 @code {
     [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    public string Value { get; set; }
+    [Parameter]
+    public bool UpdateHeader { get; set; } = true;
+
+    private string GetMetaTitle()
+    {
+        if (string.IsNullOrWhiteSpace(this.Value))
+            return AppInfo.Name;
+        return $"{this.Value} - {AppInfo.Name}";
+    }
+
+    protected override void OnParametersSet()
+    {
+        if (this.UpdateHeader && !string.IsNullOrWhiteSpace(this.Value))
+            this.PageHeaderEditor.SetTitle(this.Value);
+    }
 }

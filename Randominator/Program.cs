@@ -12,6 +12,7 @@ using Serilog;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http;
+using TehGM.Randominator.UI.Services;
 
 namespace TehGM.Randominator;
 
@@ -60,10 +61,15 @@ public class Program
 
     private static void ConfigureServices(IServiceCollection services)
     {
+        // utilities
         services.AddRandomizer();
 
+        // generators
         services.AddMobileGameNameGenerator();
         services.AddProgrammingStandardsGenerator();
+
+        // UI services
+        services.AddScoped<IPageHeaderEditor, PageHeaderEditor>();
     }
 
     private static void ConfigureLogging(WebAssemblyHostBuilder builder)

@@ -1,8 +1,7 @@
 ﻿@page "/generators/mobile-game-name"
 @inject TehGM.Randominator.Generators.MobileGameName.IMobileGameNameGenerator _generator
 
-<AppPageTitle>@_title</AppPageTitle>
-<h2>@_title Generator</h2>
+<AppPageTitle Value="Mobile Game Name Generator"/>
 
 <p>Ever wanted a solid name for your game, that will fit the champions and legends of mobile gaming? We got you covered!</p>
 <p>
@@ -13,7 +12,6 @@
 <button @onclick="GenerateNew" class="btn btn-secondary">Generate new!</button>
 
 @code {
-    private const string _title = "Mobile Game Name";
     private string _generatedName = null;
 
     protected override void OnParametersSet()
