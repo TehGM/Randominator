@@ -1,10 +1,14 @@
 ﻿@inherits LayoutComponentBase
 @layout BaseLayout
 
-<div class="top-row px-4">
-    @AppInfo.Name by&nbsp;<a href="@AppInfo.AuthorWebsite">@AppInfo.Author</a>
-</div>
+<PageHeader>
+    <RightSide>@AppInfo.Name by&nbsp;<a href="@AppInfo.AuthorWebsite">@AppInfo.Author</a></RightSide>
+</PageHeader>
 
 <article class="content px-4">
     @Body
 </article>
+
+@code {
+    private string _displayTitle;
+}
