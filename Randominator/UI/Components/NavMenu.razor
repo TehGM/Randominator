@@ -1,37 +1,47 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">@AppInfo.Name v@(AppInfo.Version)</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+﻿<div class="nav-menu">
+    <div class="top-row ps-3 navbar navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">@AppInfo.Name v@(AppInfo.Version)</a>
+            <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+    
+    <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+        <nav class="flex-column">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Home
+                </NavLink>
+            </div>
+            <hr/>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="generators/mobile-game-name">
+                    <span class="oi oi-puzzle-piece" aria-hidden="true"></span> Mobile Game Name
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="generators/programming-standards">
+                    <span class="oi oi-puzzle-piece" aria-hidden="true"></span> Programming Standards
+                </NavLink>
+            </div>
+        </nav>
+    
+    </div>
+
+    <div class="copyright">
+        <p>
+            Copyright (c) 2021 <a href="@AppInfo.AuthorWebsite">TehGM</a>
+        </p>
     </div>
 </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <hr/>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="generators/mobile-game-name">
-                <span class="oi oi-puzzle-piece" aria-hidden="true"></span> Mobile Game Name
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="generators/programming-standards">
-                <span class="oi oi-puzzle-piece" aria-hidden="true"></span> Programming Standards
-            </NavLink>
-        </div>
-    </nav>
-</div>
 
 @code {
     private bool collapseNavMenu = true;
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private string NavMenuCssClass => collapseNavMenu ? "nav-menu-items collapse" : "nav-menu-items";
 
     private void ToggleNavMenu()
     {

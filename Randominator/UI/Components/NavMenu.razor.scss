@@ -37,7 +37,6 @@
         height: 3rem;
         display: flex;
         align-items: center;
-        line-height: 3rem;
     }
 
 .nav-item ::deep a.active {
@@ -48,6 +47,37 @@
 .nav-item ::deep a:hover {
     background-color: rgba(255,255,255,0.1);
     color: white;
+}
+
+.nav-menu {
+    display: flex !important;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+
+    .nav-menu-items {
+        flex: 1 0 auto;
+    }
+
+    .copyright {
+        margin-top: 10px;
+        font-size: 15px;
+        max-height: 55px;
+        flex-shrink: 0;
+        text-align: center;
+        color: #d7d7d7;
+        padding-bottom: 5px;
+
+        p {
+            margin-top: 0;
+            margin-bottom: unset;
+            font-weight: bold;
+        }
+
+        a, a:hover, a:focus {
+            text-decoration: none;
+        }
+    }
 }
 
 @media (min-width: 641px) {
