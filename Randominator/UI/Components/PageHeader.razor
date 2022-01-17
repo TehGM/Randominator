@@ -1,25 +1,22 @@
 ﻿@implements IDisposable
 
-<div class="page-header px-4">
-    @if (LeftSide != null)
-    {
-        <div class="left-side">
-            @LeftSide
-        </div>
-    }
-    @if (RightSide != null)
-    {
-        <div class="right-side">
-            @RightSide
-        </div>
-    }
-</div>
+@if (!this.IsHidden)
+{
+    <div class="page-header px-4">
+         @ChildContent
+    </div>
+}
 
 @code {
     [Parameter]
-    public RenderFragment LeftSide { get; set; }
+    public RenderFragment ChildContent { get; set; }
     [Parameter]
-    public RenderFragment RightSide { get; set; }
+    public bool Hide { get; set; } = false;
+    [Parameter]
+    public bool HideWhenEmpty { get; set; } = true;
+
+    public bool IsHidden => this.Hide || (this.IsEmpty && this.HideWhenEmpty);
+    public bool IsEmpty => this.ChildContent == null;
 
     protected override void OnInitialized()
     {
@@ -28,7 +25,8 @@
 
     private void OnTitleChanged(object sender, string content)
     {
-        this.LeftSide = @<h1 class="header-title">@content</h1>;
+        this.ChildContent = 
+            @<h1 class="header-title">@content</h1>;
         this.StateHasChanged();
     }
 
