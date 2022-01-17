@@ -1,6 +1,4 @@
-﻿@implements IDisposable
-
-@if (!this.IsHidden)
+﻿@if (!this.IsHidden)
 {
     <div class="page-header px-4">
          @ChildContent
@@ -18,20 +16,11 @@
     public bool IsHidden => this.Hide || (this.IsEmpty && this.HideWhenEmpty);
     public bool IsEmpty => this.ChildContent == null;
 
-    protected override void OnInitialized()
+    public void SetTitle(string content)
     {
-        this.PageHeaderEditor.OnTitleChanged += OnTitleChanged;
-    }
-
-    private void OnTitleChanged(object sender, string content)
-    {
-        this.ChildContent = 
-            @<h1 class="header-title">@content</h1>;
+        this.ChildContent = !string.IsNullOrWhiteSpace(content)
+            ? @<h1 class="header-title">@content</h1>
+            : null;
         this.StateHasChanged();
-    }
-
-    void IDisposable.Dispose()
-    {
-        this.PageHeaderEditor.OnTitleChanged -= OnTitleChanged;
     }
 }

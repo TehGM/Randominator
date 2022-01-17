@@ -1,12 +1,31 @@
 ﻿@inherits LayoutComponentBase
-@layout BaseLayout
 
-<PageHeader></PageHeader>
-
-<article class="content px-4">
-    @Body
-</article>
+<CascadingValue Value=this IsFixed=true>
+    <div class="page">
+        <div class="sidebar">
+            <NavMenu />
+        </div>
+    
+        <main>
+            <PageHeader @ref="this.Header"></PageHeader>
+            <article class="content px-4 @_articleAdditionalClass">
+                @Body
+            </article>
+        </main>
+    </div>
+</CascadingValue>
 
 @code {
-    private string _displayTitle;
+    public PageHeader Header { get; private set; }
+    public string ArticleAdditionalClass 
+    {
+        get => this._articleAdditionalClass;
+        set
+        {
+            this._articleAdditionalClass = value;
+            base.StateHasChanged();
+        }
+    }
+
+    private string _articleAdditionalClass;
 }

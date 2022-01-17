@@ -1,8 +1,15 @@
 ﻿@inherits LayoutComponentBase
-@layout BaseLayout
+@layout MainLayout
 
-<PageHeader></PageHeader>
+@Body
 
-<article class="content px-4 generator">
-    @Body
-</article>
+@code {
+    [CascadingParameter]
+    public MainLayout Layout { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        this.Layout.ArticleAdditionalClass = "generator";
+    }
+}

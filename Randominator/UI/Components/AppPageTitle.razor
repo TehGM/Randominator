@@ -4,7 +4,10 @@
     [Parameter]
     public string Value { get; set; }
     [Parameter]
-    public bool UpdateHeader { get; set; } = true;
+    public string HeaderOverride { get; set; }
+
+    [CascadingParameter]
+    public MainLayout BaseLayout { get; set; }
 
     private string GetMetaTitle()
     {
@@ -15,7 +18,8 @@
 
     protected override void OnParametersSet()
     {
-        if (this.UpdateHeader && !string.IsNullOrWhiteSpace(this.Value))
-            this.PageHeaderEditor.SetTitle(this.Value);
+        string headerOverride = this.HeaderOverride ?? this.Value;
+        if (this.BaseLayout != null && headerOverride != null)
+            this.BaseLayout.Header.SetTitle(headerOverride);
     }
 }
