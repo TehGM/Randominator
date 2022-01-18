@@ -1,0 +1,13 @@
+﻿<span class="@this.CssClass">
+    Copyright (c) 2021 
+    <a href="@AppInfo.AuthorWebsite" target="@this.Target">@AppInfo.Author</a>
+</span>
+
+@code{
+    [Parameter]
+    public string CssClass { get; set; } = "copyright";
+    [Parameter]
+    public bool OpenInNewTab { get; set; } = true;
+
+    private string Target => this.OpenInNewTab ? "_blank" : "_self";
+}

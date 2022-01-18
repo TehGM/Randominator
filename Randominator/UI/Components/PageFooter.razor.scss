@@ -29,7 +29,7 @@ footer {
     }
 
 
-    .item + .item:before {
+    ::deep .item + .item:before {
         @include item-separator;
     }
 }
@@ -42,7 +42,7 @@ footer {
 }
 
 @media (min-width: 641px) {
-    footer .copyright {
+    footer ::deep .copyright {
         display: none;
     }
 }
