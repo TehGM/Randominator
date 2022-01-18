@@ -90,3 +90,9 @@
         display: block;
     }
 }
+
+@media (max-width: 641px) {
+    .nav-menu .copyright {
+        display: none;
+    }
+}

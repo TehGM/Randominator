@@ -1,0 +1,31 @@
+﻿@using System.Text
+
+<footer>
+    <div class="container">
+        @foreach (Item item in this.Items ?? Enumerable.Empty<Item>())
+        {
+            <span class="item @item.AdditionalClasses">
+                @if (!string.IsNullOrWhiteSpace(item.URL))
+                {
+                    <NavLink href="@item.URL" Match="NavLinkMatch.All">
+                        @this.GetItemText(item)
+                    </NavLink>
+                }
+                else
+                {
+                    @this.GetItemText(item)
+                }
+            </span>
+        }
+
+        <span class="item copyright">Copyright (c) 2021 <a href="@AppInfo.AuthorWebsite" target="_blank">TehGM</a></span>
+    </div>
+</footer>
+
+@code {
+    [Parameter]
+    public IEnumerable<Item> Items { get; set; }
+
+    private MarkupString GetItemText(Item item)
+        => (MarkupString)item.DisplayText;
+}

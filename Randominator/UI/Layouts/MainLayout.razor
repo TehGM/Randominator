@@ -11,12 +11,15 @@
             <article class="content px-4 @_articleAdditionalClass">
                 @Body
             </article>
+            <PageFooter @ref="this.Footer" Items="@this.FooterItems"></PageFooter>
         </main>
     </div>
 </CascadingValue>
 
 @code {
     public PageHeader Header { get; private set; }
+    public PageFooter Footer { get; private set; }
+    public ICollection<PageFooter.Item> FooterItems { get; private set; }
     public string ArticleAdditionalClass 
     {
         get => this._articleAdditionalClass;
@@ -26,6 +29,11 @@
             base.StateHasChanged();
         }
     }
-
     private string _articleAdditionalClass;
+    
+    public void OverwriteFooterItems(IEnumerable<PageFooter.Item> items)
+    {
+        this.FooterItems = new List<PageFooter.Item>(items);
+        base.StateHasChanged();
+    }
 }
