@@ -30,10 +30,10 @@
         }
     }
     private string _articleAdditionalClass;
-    
+
     public void OverwriteFooterItems(IEnumerable<PageFooter.Item> items)
     {
-        this.FooterItems = new List<PageFooter.Item>(items);
+        this.FooterItems = items != null ? new List<PageFooter.Item>(items) : null;
         base.StateHasChanged();
     }
 }
