@@ -21,6 +21,7 @@
 .nav-item {
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
+    user-select: none;
 }
 
     .nav-item:first-of-type {
@@ -31,13 +32,14 @@
         padding-bottom: 1rem;
     }
 
-    .nav-item ::deep a {
-        color: #d7d7d7;
-        border-radius: 4px;
-        height: 3rem;
-        display: flex;
-        align-items: center;
-    }
+.nav-item ::deep a {
+    color: #d7d7d7;
+    border-radius: 4px;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
 
 .nav-item ::deep a.active {
     background-color: rgba(255,255,255,0.25);
@@ -47,6 +49,14 @@
 .nav-item ::deep a:hover {
     background-color: rgba(255,255,255,0.1);
     color: white;
+}
+
+.sub-item {
+    padding-left: 2rem !important;
+}
+
+.hidden {
+    display: none;
 }
 
 .nav-menu {
