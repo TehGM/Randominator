@@ -5,15 +5,15 @@
 
     @if (Standard.AllowFlowControl == AllowMode.Forbid)
     {
-        <text>Use of any flow control (such as <code>if</code> statements) in @LanguageName is forbidden!</text>
+        <text>Use of any flow control (such as <code>if</code> statements) in @RenderLanguageName is forbidden!</text>
     }
     else if (Standard.AllowFlowControl == AllowMode.Discourage)
     {
-        <text>Use of any flow control (such as <code>if</code> statements) is discouraged in @LanguageName. However, if you need to use it, </text>
+        <text>Use of any flow control (such as <code>if</code> statements) is discouraged in @RenderLanguageName. However, if you need to use it, </text>
     }
     else 
     {
-        <text>When using any flow control (such as <code>if</code> statements) in @LanguageName, </text>
+        <text>When using any flow control (such as <code>if</code> statements) in @RenderLanguageName, </text>
     }
     
     @if (Standard.AllowFlowControl != AllowMode.Forbid)

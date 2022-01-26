@@ -22,5 +22,8 @@ namespace TehGM.Randominator.UI.Components.ProgrammingStandards
 
         protected MarkupString RenderSectionHeader()
             => (MarkupString)@$"<h4 id=""{this.SectionID}"" class=""section-header"">{this.SectionName}</h2>";
+
+        protected MarkupString RenderLanguageName
+            => (MarkupString)@$"<span class=""text-special bold"">{this.LanguageName}</span>";
     }
 }

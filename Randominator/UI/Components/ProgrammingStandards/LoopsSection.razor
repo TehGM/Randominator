@@ -5,15 +5,15 @@
 
     @if (Standard.AllowLoops == AllowMode.Forbid)
     {
-        <text>Use of any loops in @LanguageName is forbidden!</text>
+        <text>Use of any loops in @RenderLanguageName is forbidden!</text>
     }
     else if (Standard.AllowLoops == AllowMode.Discourage)
     {
-        <text>Use of any loop is discouraged in @LanguageName. However, if you need to use them, </text>
+        <text>Use of any loop is discouraged in @RenderLanguageName. However, if you need to use them, </text>
     }
     else 
     {
-        <text>When using any loop in @LanguageName, </text>
+        <text>When using any loop in @RenderLanguageName, </text>
     }
     
     @if (Standard.AllowLoops != AllowMode.Forbid)

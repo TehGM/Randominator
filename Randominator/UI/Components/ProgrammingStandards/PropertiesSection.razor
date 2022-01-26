@@ -5,7 +5,7 @@
 
     @if (Standard.AllowProperties == AllowMode.Forbid)
     {
-        <text>Properties in @LanguageName? Pffft, not on our watch!</text>
+        <text>Properties in @RenderLanguageName? Pffft, not on our watch!</text>
         if (Standard.AllowPublicFields != AllowMode.Forbid)
         {
             <text> You can use public fields instead.</text>
@@ -17,16 +17,16 @@
     }
     else if (Standard.AllowProperties == AllowMode.Discourage)
     {
-        <text>Eh, if you really want to, we guess you could use properties in @LanguageName.</text>
+        <text>Eh, if you really want to, we guess you could use properties in @RenderLanguageName.</text>
         if (Standard.AllowPublicFields != AllowMode.Forbid && Standard.AllowPublicFields != AllowMode.Discourage)
         {
-            <text> You can use public fields instead, cause your @LanguageName language isn't good enough for properties.</text>
+            <text> You can use public fields instead, cause your @RenderLanguageName language isn't good enough for properties.</text>
         }
         <text> If you're a stubborn type and still gonna use properties, </text>
     }
     else 
     {
-        <text>Properties in @LanguageName need special treatment: </text>
+        <text>Properties in @RenderLanguageName need special treatment: </text>
     }
     
     @if (Standard.AllowProperties != AllowMode.Forbid)

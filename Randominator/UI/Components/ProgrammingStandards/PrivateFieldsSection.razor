@@ -5,7 +5,7 @@
 
     @if (Standard.AllowPrivateFields == AllowMode.Forbid)
     {
-        <text>If fields are private then no one should care, right? Right?<br/><b>W r o n g</b>. We take @LanguageName seriously, and know that private fields are not allowed.</text>
+        <text>If fields are private then no one should care, right? Right?<br/><b>W r o n g</b>. We take @RenderLanguageName seriously, and know that private fields are not allowed.</text>
         if (Standard.AllowPublicFields != AllowMode.Forbid)
         {
             <text> You have to use public ones.</text>
@@ -25,7 +25,7 @@
     }
     else if (Standard.AllowPrivateFields == AllowMode.Discourage)
     {
-        <text>While you can make fields private in @LanguageName, why would you?</text>
+        <text>While you can make fields private in @RenderLanguageName, why would you?</text>
         if (Standard.AllowPublicFields != AllowMode.Forbid)
         {
             <text> It's better to make them public.</text>

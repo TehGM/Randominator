@@ -5,11 +5,11 @@
 
     @if (Standard.AllowConstants == AllowMode.Forbid)
     {
-        <text>EVERYTHING. CHANGES. AND DIES.<br/>No constants in @LanguageName.</text>
+        <text>EVERYTHING. CHANGES. AND DIES.<br/>No constants in @RenderLanguageName.</text>
     }
     else if (Standard.AllowConstants == AllowMode.Discourage)
     {
-        <text>Why would you want to make a constant in @LanguageName? @LanguageName is like everything else, ever-changing. Except war. War never changes.<br/>
+        <text>Why would you want to make a constant in @RenderLanguageName? @RenderLanguageName is like everything else, ever-changing. Except war. War never changes.<br/>
             But if you want to make things rigid anyway, then they </text>
     }
     else if (Standard.AllowConstants == AllowMode.Recommend)
@@ -19,7 +19,7 @@
     }
     else 
     {
-        <text>When making something unchanging in your @LanguageName code, remember that constants </text>
+        <text>When making something unchanging in your @RenderLanguageName code, remember that constants </text>
     }
     
     @if (Standard.AllowConstants != AllowMode.Forbid)

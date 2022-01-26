@@ -37,6 +37,14 @@ code {
     color: var(--code-color);
 }
 
+.text-special {
+    color: var(--special-text-color);
+
+    &.bold {
+        font-weight: bold;
+    }
+}
+
 .form-control {
     color: var(--input-color);
     border-color: var(--input-border-color);
