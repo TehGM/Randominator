@@ -19,6 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="UI\Pages\About.razor.scss" />
     <None Remove="UI\Pages\Generators\ProgrammingStandards.razor.scss" />
     <None Remove="UI\Pages\Index.razor.scss" />
   </ItemGroup>
@@ -31,6 +32,7 @@
   	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
   	</Content>
   	<Content Include="UI\Pages\Generators\ProgrammingStandards.razor.scss" />
+  	<Content Include="UI\Pages\About.razor.scss" />
   	<Content Include="UI\Pages\Index.razor.scss" />
   </ItemGroup>
 

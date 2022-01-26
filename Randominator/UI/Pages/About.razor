@@ -1,0 +1,79 @@
+﻿@page "/about"
+
+<AppPageTitle Value="About" HeaderOverride="" />
+
+<h1>About @AppInfo.Name</h1>
+<p>Currently all of @AppInfo.Name generators are created purely for fun. How you use them is up to you - but I do not take any responsibility if you take them <i><span class="text-special bold">too</span></i> seriously. Have fun, damn it!</p>
+<p>Generators might be updated and for this reason "saved" results might change at any time.</p>
+
+
+<h2>Author</h2>
+<p>
+    @AppInfo.Name is a small fun side project created by <a href="@AppInfo.AuthorWebsite" target="_blank">@AppInfo.Author</a>.<br/>
+    <InlineCopyright/>
+</p>
+
+<h3>Support the Project</h3>
+<p>If you want to support me, this project, or all other projects I work on, you can consider donating:</p>
+<ul>
+    <li><a href="https://github.com/sponsors/TehGM">@AppInfo.Author @@ GitHub Sponsors</a></li>
+    <li><a href="https://www.patreon.com/tehgmdev">@AppInfo.Author @@ Patreon</a></li>
+    <li><a href="https://www.buymeacoffee.com/TehGM">@AppInfo.Author @@ Buy Me a Coffee</a></li>
+</ul>
+<p>If you prefer, I also don't mind cryptocurrency donations:</p>
+<ul>
+    <li>Bitcoin: <span class="text-special click-select">38eR7a9znMQg46Cc4aJMknwi9E6ozeyBHa</span></li>
+    <li>Ethereum: <span class="text-special click-select">0x2C38760D0F240328070Ed88832F6E6F4be24210F</span></li>
+    <li>Dogecoin: <span class="text-special click-select">DCcDhfqxnZ7PAVxthL4egxmHiawqwCse1W</span></li>
+    <li>Binance Coin: <span class="text-special click-select">0xC7F4dFCa48C144b891b88A5e1FacdB298dDBa1D9</span></li>
+    <li>SafeMoon: <span class="text-special click-select">0xC7F4dFCa48C144b891b88A5e1FacdB298dDBa1D9</span></li>
+</ul>
+<p class="items-horizontal">
+    <a href="https://www.digitalocean.com/?refcode=68a5a810935e&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge">
+        <img src="https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%201.svg" alt="DigitalOcean Referral Badge" />
+    </a>
+    <span>
+        You can also use my <a href="https://m.do.co/c/68a5a810935e">DigitalOcean referral link</a>!<br/>
+        If you register using my link, you get $100 for 60 days, and I get $25 if you spend $25.<br/>
+        Win win!
+    </span>
+</p>
+<p>In any case, thank you so much for your support!</p>
+
+
+<h2>Technicalities</h2>
+<p>Version: <span class="text-special bold">@AppInfo.Version</span></p>
+<p>Tech Stack: <span class="text-special bold">Microsoft Blazor - ASP.NET Core 6.0</span></p>
+
+<h3>Beta version</h3>
+<p>@AppInfo.Name is still considered to be beta/preview version. As such, UI and page design might be imperfect and every feature is subject to change.</p>
+
+<h3>Client-side</h3>
+<p>@AppInfo.Name runs entirely in your browser. No data is stored or processed by any of my servers. Your browser might store some @AppInfo.Name data, but it's only accessible to you.</p>
+
+<h3>Source Code</h3>
+<p>
+    As of version v@(AppInfo.Version), @AppInfo.Name is entirely open source.<br/>
+    See GitHub repository here: <a href="@_repoUrl">@_repoUrl</a>
+</p>
+
+<h3>Hosting</h3>
+<p>Since @AppInfo.Name is powered by Blazor Client-side, this website is statically hosted on <a href="https://pages.github.com/">GitHub Pages</a>!</p>
+<p>
+    The build and publish is automated with <a href="https://github.com/features/actions">GitHub Actions</a>.<br/>
+    If you're silly and curious for some ridiculous reason, you can view the pipeline here: <a href="@_pipelineUrl">@_pipelineUrl</a>
+</p>
+
+@code {
+    private const string _repoUrl = "https://github.com/TehGM/Randominator";
+    private const string _pipelineUrl = "https://github.com/TehGM/Randominator/blob/master/.github/workflows/dotnet-build.yml";
+
+    [CascadingParameter]
+    public MainLayout Layout { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        this.Layout.OverwriteFooterItems(null);
+    }
+}
