@@ -2,7 +2,6 @@
     // general
     --background-color: white;
     --text-color: rgb(33, 37, 41);
-    // link
     --link-color: #0071c1;
     // button
     --button-primary-color: #fff;
@@ -19,6 +18,8 @@
     --menu-item-hover-background-color: rgba(255,255,255,0.1);
     --menu-item-hover-color: white;
     --menu-copyright-color: var(--menu-item-color);
+    --menu-border-color: unset;
+    --menu-border-width: 0;
     // header
     --header-background-color: #f7f7f7;
     --header-border-color: #d6d5d5;
@@ -26,5 +27,23 @@
     --footer-color: #6e6e6e;
 
     &[theme=sunset] {
+        // general
+        --background-color: #212F45;
+        --text-color: #faf0ca;
+        --link-color: #55a2d9;
+        // menu
+        --menu-background-image: none;
+        --menu-background-image: linear-gradient(0deg, #001233 0%, #000814 70%);
+        --menu-border-color: #CA6702;
+        --menu-border-width: 1;
+        --menu-item-color: #EE9B00;
+        --menu-item-active-color: #FFD60A;
+        --menu-item-hover-color: white;
+        --menu-copyright-color: white;
+        // header
+        --header-background-color: #000814;
+        --header-border-color: var(--menu-border-color);
+        // footer
+        --footer-color: #a1a1a1;
     }
 }

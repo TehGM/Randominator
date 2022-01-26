@@ -21,6 +21,9 @@ article {
 .sidebar {
     background-color: var(--menu-background-color);
     background-image: var(--menu-background-image);
+    border-right-width: var(--menu-border-width);
+    border-right-color: var(--menu-border-color);
+    border-right-style: groove;
 }
 
 @media (min-width: 641px) {
