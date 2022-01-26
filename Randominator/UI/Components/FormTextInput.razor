@@ -1,4 +1,4 @@
-﻿<div class="form-group input-group @(HighlightError ? "border-error" : null)">
+﻿<div class="form-group input-group @(HighlightError ? "invalid" : "valid")">
     @if (!string.IsNullOrEmpty(PrependOiIcon) || !string.IsNullOrEmpty(PrependText))
     {
         <div class="input-group-prepend">
@@ -19,7 +19,7 @@
 {
     foreach (InputValidationResult validationResult in ValidationResults)
     {
-        <div class="text-@(validationResult.IsError ? "error" : "success") form-group">
+        <div class="validation-message @(validationResult.IsError ? "error" : "success") form-group">
             <span class="oi oi-@(validationResult.IsError ? "x" : "check")"></span>
             @validationResult.Text
         </div>
