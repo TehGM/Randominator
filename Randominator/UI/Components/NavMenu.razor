@@ -53,7 +53,8 @@
     private bool collapseFunGenerators = false;
 
     private string NavMenuClass => collapseNavMenu ? "collapse" : string.Empty;
-    private string FunGeneratorsClass => collapseFunGenerators ? "sub-item hidden" : "sub-item";
+    // TODO: remove false to unlock collapsing
+    private string FunGeneratorsClass => collapseFunGenerators && false ? "sub-item hidden" : "sub-item";
 
     private void ToggleNavMenu()
     {
