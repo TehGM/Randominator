@@ -16,7 +16,7 @@ footer {
     max-height: 55px;
     flex-shrink: 0;
     text-align: center;
-    color: #6e6e6e;
+    color: var(--footer-color);
     padding-bottom: 5px;
 
     .container {
