@@ -7,7 +7,7 @@
     <RootNamespace>TehGM.Randominator</RootNamespace>
 	<PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
 	<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-	<Version>0.1.1</Version>
+	<Version>0.2.0</Version>
 	<Authors>TehGM</Authors>
 	<Description>A Blazor website containing a random collection of generators (generating random or non-random stuff).</Description>
 	<Company>TehGM</Company>
