@@ -164,6 +164,7 @@ namespace TehGM.Randominator.Generators.ProgrammingStandards.Services
 
             string GetAffix(IEnumerable<string> values, double chance)
             {
+                values = values?.Where(val => !string.IsNullOrWhiteSpace(val));
                 if (values?.Any() != true)
                     return null;
                 if (!randomizer.RollChance(chance))
