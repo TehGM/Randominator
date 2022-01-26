@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Text.RegularExpressions;
 using TehGM.Randominator.Utilities;
 
 namespace TehGM.Randominator.Generators.ProgrammingStandards.Services
@@ -8,6 +9,8 @@ namespace TehGM.Randominator.Generators.ProgrammingStandards.Services
         private readonly IRandomizerProvider _randomizerProvider;
         private readonly ProgrammingStandardsOptions _options;
         private readonly ILogger _log;
+
+        private static readonly Regex _languagePrefixRegex = new Regex(@"[A-Za-z0-9]+\b", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Singleline);
 
         public ProgrammingStandardsGenerator(IRandomizerProvider randomizerProvider, IOptions<ProgrammingStandardsOptions> options, ILogger<ProgrammingStandardsGenerator> log)
         {
@@ -84,19 +87,15 @@ namespace TehGM.Randominator.Generators.ProgrammingStandards.Services
 
         private string GetLanguagePrefix(string languageName)
         {
-            string result = languageName[0].ToString();
+            MatchCollection words = _languagePrefixRegex.Matches(languageName);
+            if (!words.Any())
+                return null;
 
-            for (int i = 1; i < languageName.Length; i++)
-            {
-                char additional = languageName[i];
-                if (char.IsUpper(additional))
-                {
-                    result += additional;
-                    break;
-                }
-            }
-
-            return result;
+            return new string(words
+                .Where(w => !string.IsNullOrWhiteSpace(w.Value))
+                .Take(2)
+                .Select(w => w.Value.First())
+                .ToArray());
         }
 
         private int GetSeed(string languageName)
