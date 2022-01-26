@@ -35,17 +35,15 @@
     
     @if (Standard.AllowPublicFields != AllowMode.Forbid)
     {
-        <p>
-            should name them according to <span class="naming-convention-name">@Standard.PublicFieldNamingStyle.LetterCaseStyleName</span> naming convention. At least have this little of dignity.
-            @if (Standard.PublicFieldNamingStyle.HasHungarianParts)
-            {
-                <text>Also, apply following hungarian notation: @Standard.PublicFieldNamingStyle.ListHungarianAffixRules().</text>
-            }
-            @if (Standard.PublicFieldNamingStyle.HasNormalPrefixOrSuffix)
-            {
-                <text>And don't forget that they should be @Standard.PublicFieldNamingStyle.ListNormalAffixRules(this.NamingFormatter)!</text>
-            }
-        </p>
+        <text>should name them according to <span class="naming-convention-name">@Standard.PublicFieldNamingStyle.LetterCaseStyleName</span> naming convention. At least have this little of dignity.</text>
+        @if (Standard.PublicFieldNamingStyle.HasHungarianParts)
+        {
+            <text>Also, apply following hungarian notation: @Standard.PublicFieldNamingStyle.ListHungarianAffixRules().</text>
+        }
+        @if (Standard.PublicFieldNamingStyle.HasNormalPrefixOrSuffix)
+        {
+            <text>And don't forget that they should be @Standard.PublicFieldNamingStyle.ListNormalAffixRules(this.NamingFormatter)!</text>
+        }
 
         <CodeSample ID="@this.CodeSampleID">
             @($"public int {this.NamingFormatter.Apply(Standard.PublicFieldNamingStyle, new string[] { "First", "Member" }, HungarianPart.Integer)};")<br/>

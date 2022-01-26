@@ -42,23 +42,23 @@
                 <text> Sharing is caring!</text>
             }
         }
-        <text> But if you really want to be greedy, they should </text>
+        <text> But if you really want to be greedy, they should</text>
     }
     else 
     {
-        <text>Private fields also have set of rules to follow (and no, we don't care about "hurr why care about private durr"), and they should </text>
+        <text>Private fields also have set of rules to follow (and no, we don't care about "hurr why care about private durr"), and they should</text>
     }
     
     @if (Standard.AllowPrivateFields != AllowMode.Forbid)
     {
-        <text>have name respecting <span class="naming-convention-name">@Standard.PrivateFieldNamingStyle.LetterCaseStyleName</span> convention. Yes, it's serious.</text>
+        <text> have name respecting <span class="naming-convention-name">@Standard.PrivateFieldNamingStyle.LetterCaseStyleName</span> convention. Yes, it's serious.</text>
         @if (Standard.PrivateFieldNamingStyle.HasHungarianParts)
         {
-            <text>Also, apply following hungarian notation: @Standard.PrivateFieldNamingStyle.ListHungarianAffixRules().</text>
+            <text> Also, apply following hungarian notation: @Standard.PrivateFieldNamingStyle.ListHungarianAffixRules().</text>
         }
         @if (Standard.PrivateFieldNamingStyle.HasNormalPrefixOrSuffix)
         {
-            <text>And don't forget that they should be @Standard.PrivateFieldNamingStyle.ListNormalAffixRules(this.NamingFormatter)!</text>
+            <text> And don't forget that they should be @Standard.PrivateFieldNamingStyle.ListNormalAffixRules(this.NamingFormatter)!</text>
         }
 
         <CodeSample ID="@this.CodeSampleID">
