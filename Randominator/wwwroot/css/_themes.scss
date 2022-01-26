@@ -34,6 +34,12 @@
     --header-border-color: #d6d5d5;
     // footer
     --footer-color: #6e6e6e;
+    // accordion
+    --accordion-background: white;
+    --accordion-header-background: #e7f1ff;
+    --accordion-header-color: #0c63e4;
+    // code
+    --code-color: #d63384;
 
     &[theme=sunset] {
         // general
@@ -63,5 +69,11 @@
         --header-border-color: var(--menu-border-color);
         // footer
         --footer-color: #a1a1a1;
+        // accordion
+        --accordion-background: #001233;
+        --accordion-header-background: #012a4a;
+        --accordion-header-color: white;
+        // code
+        --code-color: #ffc300;
     }
 }

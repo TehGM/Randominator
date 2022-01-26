@@ -36,6 +36,19 @@ a, .btn-link {
     color: red;
 }
 
+.accordion-item {
+    background-color: var(--accordion-background);
+
+    .accordion-button {
+        background-color: var(--accordion-header-background);
+        color: var(--accordion-header-color);
+    }
+}
+
+code {
+    color: var(--code-color);
+}
+
 .form-control {
     color: var(--input-color);
     border-color: var(--input-border-color);
