@@ -1,7 +1,7 @@
 .page-header {
     background-color: var(--header-background-color);
     border-bottom: 1px solid var(--header-border-color);
-    height: 3.5rem;
+    min-height: 3.5rem;
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
@@ -31,9 +31,21 @@
 }
 
 
-@media (max-width: 640.98px) {
+@media (max-width: 641px) {
     .page-header ::deep a, .page-header ::deep .btn-link {
         margin-left: 0;
+    }
+}
+
+@media (max-width: 800px) {
+    .page-header {
+        justify-content: center;
+
+        .header-title {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            text-align: center;
+        }
     }
 }
 
@@ -42,6 +54,11 @@
         position: sticky;
         top: 0;
         z-index: 1;
+    }
+}
+
+@media (min-width: 800px) {
+    .page-header .header-title {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
     }

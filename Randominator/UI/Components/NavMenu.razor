@@ -1,4 +1,7 @@
-﻿<div class="nav-menu">
+﻿@inject NavigationManager Navigation
+@implements IDisposable
+
+<div class="nav-menu">
     <div class="top-row ps-3 navbar navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="">@AppInfo.Name v@(AppInfo.Version)</a>
@@ -10,7 +13,7 @@
     
     <div class="nav-menu-items @this.NavMenuClass">
         <nav class="flex-column">
-            <div class="nav-item px-3">
+            <div class="nav-item px-3" @onclick="ToggleNavMenu">
                 <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                     <span class="oi oi-home" aria-hidden="true"></span> Home
                 </NavLink>
@@ -56,13 +59,24 @@
     // TODO: remove false to unlock collapsing
     private string FunGeneratorsClass => collapseFunGenerators && false ? "sub-item hidden" : "sub-item";
 
-    private void ToggleNavMenu()
+    protected override void OnInitialized()
     {
-        collapseNavMenu = !collapseNavMenu;
+        base.OnInitialized();
+        this.Navigation.LocationChanged += OnLocationChanged;
     }
 
+    private void ToggleNavMenu()
+        => collapseNavMenu = !collapseNavMenu;
+
     private void ToggleFunGenerators()
+        => collapseFunGenerators = !collapseFunGenerators;
+
+    private void OnLocationChanged(object sender, LocationChangedEventArgs e)
     {
-        collapseFunGenerators = !collapseFunGenerators;
+        collapseNavMenu = true;
+        base.StateHasChanged();
     }
+
+    void IDisposable.Dispose()
+        => this.Navigation.LocationChanged -= OnLocationChanged;
 }
