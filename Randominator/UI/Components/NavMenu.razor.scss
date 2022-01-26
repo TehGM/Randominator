@@ -15,9 +15,9 @@ hr {
     font-size: 1.1rem;
 }
 
-.oi {
+.oi, .bi {
     width: 2rem;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     vertical-align: text-top;
     top: -2px;
 }
@@ -58,6 +58,11 @@ hr {
 
 .sub-item {
     padding-left: 2rem !important;
+
+    .bi {
+        font-size: 0.95rem;
+        top: -4px;
+    }
 }
 
 .hidden {

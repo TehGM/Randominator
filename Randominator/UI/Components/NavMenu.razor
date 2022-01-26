@@ -17,18 +17,18 @@
             </div>
             <hr/>
             <div class="nav-item px-3">
-                <a class="nav-link" @onclick="ToggleGenerators">
-                    <span class="oi oi-expand-down" aria-hidden="true"></span> Generators
+                <a class="nav-link" @onclick="ToggleFunGenerators">
+                     <span class="bi bi-hypnotize" aria-hidden="true"></span> Fun Generators
                 </a>
             </div>
-            <div class="nav-item px-3 @this.GeneratorsClass">
+            <div class="nav-item px-3 @this.FunGeneratorsClass">
                 <NavLink class="nav-link" href="generators/mobile-game-name">
-                    <span class="oi oi-puzzle-piece" aria-hidden="true"></span> Mobile Game Name
+                     <span class="bi bi-hypnotize" aria-hidden="true"></span> Mobile Game Name
                 </NavLink>
             </div>
-            <div class="nav-item px-3 @this.GeneratorsClass">
+            <div class="nav-item px-3 @this.FunGeneratorsClass">
                 <NavLink class="nav-link" href="generators/programming-standards">
-                    <span class="oi oi-puzzle-piece" aria-hidden="true"></span> Programming Standards
+                     <span class="bi bi-hypnotize" aria-hidden="true"></span> Programming Standards
                 </NavLink>
             </div>
         </nav>
@@ -45,18 +45,18 @@
 
 @code {
     private bool collapseNavMenu = true;
-    private bool collapseGenerators = false;
+    private bool collapseFunGenerators = false;
 
     private string NavMenuClass => collapseNavMenu ? "collapse" : string.Empty;
-    private string GeneratorsClass => collapseGenerators ? "sub-item hidden" : "sub-item";
+    private string FunGeneratorsClass => collapseFunGenerators ? "sub-item hidden" : "sub-item";
 
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
     }
 
-    private void ToggleGenerators()
+    private void ToggleFunGenerators()
     {
-        collapseGenerators = !collapseGenerators;
+        collapseFunGenerators = !collapseFunGenerators;
     }
 }
