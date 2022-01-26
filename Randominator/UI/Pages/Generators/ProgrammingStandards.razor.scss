@@ -11,3 +11,10 @@
 ::deep .code-sample {
     margin-top: 5px;
 }
+
+.copy-button {
+    cursor: pointer;
+    font-size: 150%;
+    margin-left: 8px;
+    color: var(--special-text-color);
+}

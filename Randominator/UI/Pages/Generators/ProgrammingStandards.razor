@@ -3,6 +3,7 @@
 @using TehGM.Randominator.UI.Components.ProgrammingStandards
 @inject IProgrammingStandardsGenerator Generator
 @inject INamingStyleFormatter NamingFormatter
+@inject IClipboard Clipboard
 @inject NavigationManager NavigationManager
 
 <AppPageTitle Value="Programming Standards Generator" />
@@ -17,7 +18,10 @@
     <hr/>
     <h3>Official Unquestionable Standards for <span class="text-special bold">@_result.LanguageName</span> language!</h3>
     <p>Our advanced AI algorithms generated this documentation for you so you can share it with your team members. Thanks to us, your code style will now always be consistent!</p>
-    <p><a href="@this._resultURL">@this._resultURL</a></p>
+    <p>Link to this <i>(obviously 100% legit)</i> documentation page:<br/> 
+        <a href="@this._resultURL">@this._resultURL</a> 
+        <span class="copy-button @this._copyClass" @onclick="OnCopyClickAsync"></span> 
+    </p>
 
     <div>
         <LoopsSection Standard="@_result" SectionName="Loops"/>
@@ -40,9 +44,13 @@
     public string LanguageName { get; set; }
     private ProgrammingStandard _result = null;
     private string _resultURL = null;
+    private string _copyClass = _copyUnclickedClass;
 
     private List<InputValidationResult> _errors = new List<InputValidationResult>();
     private bool _highlightPasswordError = false;
+
+    private const string _copyUnclickedClass = "bi bi-clipboard";
+    private const string _copyClickedClass = "bi bi-clipboard-check";
 
     protected override void OnParametersSet()
     {
@@ -70,6 +78,13 @@
 
         this._result = this.Generator.Generate(this.LanguageName);
         this._resultURL = NavigationManager.GetUriWithQueryParameter("lang", this._result.LanguageName);
+        this._copyClass = _copyUnclickedClass;
         NavigationManager.NavigateTo(this._resultURL, false);
+    }
+
+    private async Task OnCopyClickAsync()
+    {
+        await this.Clipboard.WriteTextAsync(this._resultURL);
+        this._copyClass = _copyClickedClass;
     }
 }
