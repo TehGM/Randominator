@@ -100,6 +100,8 @@ namespace TehGM.Randominator.Generators.ProgrammingStandards.Services
 
         private int GetSeed(string languageName)
         {
+            languageName = languageName.ToLowerInvariant();
+
             unchecked
             {
                 int hash1 = (5381 << 16) + 5381;
