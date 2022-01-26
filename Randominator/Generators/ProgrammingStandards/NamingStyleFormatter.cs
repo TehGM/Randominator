@@ -1,4 +1,6 @@
-﻿namespace TehGM.Randominator.Generators.ProgrammingStandards.Services
+﻿using System.Text;
+
+namespace TehGM.Randominator.Generators.ProgrammingStandards.Services
 {
     public class NamingStyleFormatter : INamingStyleFormatter
     {
@@ -55,22 +57,40 @@
 
         public string MergeWords(LetterCaseStyle style, IEnumerable<string> words)
         {
-            string separator = string.Empty;
+            if (!words.Any())
+                return String.Empty;
+
+            char separator = default;
             switch (style)
             {
                 case LetterCaseStyle.SnakeCase:
                 case LetterCaseStyle.ScreamingSnakeCase:
                 case LetterCaseStyle.CamelSnakeCase:
                 case LetterCaseStyle.PascalSnakeCase:
-                    separator = "_";
+                    separator = '_';
                     break;
                 case LetterCaseStyle.KebabCase:
                 case LetterCaseStyle.TrainCase:
                 case LetterCaseStyle.PascalKebabCase:
-                    separator = "-";
+                    separator = '-';
                     break;
             }
-            return string.Join(separator, words);
+
+            StringBuilder builder = new StringBuilder(words.First());
+            foreach (string word in words.Skip(1))
+            {
+                // append separator only if it's between normal characters
+                if (separator != default 
+                    && CheckChar(builder[builder.Length - 1]) 
+                    && CheckChar(word.First()))
+                    builder.Append(separator);
+                builder.Append(word);
+            }
+
+            return builder.ToString();
+
+            bool CheckChar(char c)
+                => char.IsDigit(c) || char.IsLetter(c);
         }
     }
 }
