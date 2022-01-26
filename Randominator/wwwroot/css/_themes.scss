@@ -3,6 +3,13 @@
     --background-color: white;
     --text-color: rgb(33, 37, 41);
     --link-color: #0071c1;
+    // inputs
+    --input-color: #212529;
+    --input-placeholder-color: #6c757d;
+    --input-background-color: white;
+    --input-border-color: #ced4da;
+    --input-border-width: 1px;
+    --input-focus-background-color: white;
     // button
     --button-primary-color: #fff;
     --button-primary-background-color: #1b6ec2;
@@ -31,11 +38,18 @@
         --background-color: #212F45;
         --text-color: #faf0ca;
         --link-color: #55a2d9;
+        // inputs
+        --input-color: white;
+        --input-background-color: #5C677D;
+        --input-border-color: #7D8597;
+        --input-border-width: 1px;
+        --input-placeholder-color: #d9d9d9;
+        --input-focus-background-color: #7D8597;
         // menu
         --menu-background-image: none;
         --menu-background-image: linear-gradient(0deg, #001233 0%, #000814 70%);
         --menu-border-color: #CA6702;
-        --menu-border-width: 1;
+        --menu-border-width: 1px;
         --menu-item-color: #EE9B00;
         --menu-item-active-color: #FFD60A;
         --menu-item-hover-color: white;
