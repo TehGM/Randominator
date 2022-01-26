@@ -41,11 +41,11 @@
             Classes in @RenderLanguageName should follow <span class="naming-convention-name">@Standard.ClassNamingStyle.LetterCaseStyleName</span> convention.
             @if (Standard.ClassNamingStyle.HasHungarianParts)
             {
-                <text>Also, class names should follow hungarian notation - @Standard.ClassNamingStyle.ListHungarianPrefixSuffixRules().</text>
+                <text>Also, class names should follow hungarian notation - @Standard.ClassNamingStyle.ListHungarianAffixRules().</text>
             }
             @if (Standard.ClassNamingStyle.HasNormalPrefixOrSuffix)
             {
-                <text>Additionally class names should be @Standard.ClassNamingStyle.ListNormalPrefixSuffixRules(this.NamingFormatter).</text>
+                <text>Additionally class names should be @Standard.ClassNamingStyle.ListNormalAffixRules(this.NamingFormatter).</text>
             }
         </p>
 

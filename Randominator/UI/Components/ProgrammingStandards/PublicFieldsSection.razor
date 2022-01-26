@@ -39,11 +39,11 @@
             should name them according to <span class="naming-convention-name">@Standard.PublicFieldNamingStyle.LetterCaseStyleName</span> naming convention. At least have this little of dignity.
             @if (Standard.PublicFieldNamingStyle.HasHungarianParts)
             {
-                <text>Also, apply following hungarian notation: @Standard.PublicFieldNamingStyle.ListHungarianPrefixSuffixRules().</text>
+                <text>Also, apply following hungarian notation: @Standard.PublicFieldNamingStyle.ListHungarianAffixRules().</text>
             }
             @if (Standard.PublicFieldNamingStyle.HasNormalPrefixOrSuffix)
             {
-                <text>And don't forget that they should be @Standard.PublicFieldNamingStyle.ListNormalPrefixSuffixRules(this.NamingFormatter)!</text>
+                <text>And don't forget that they should be @Standard.PublicFieldNamingStyle.ListNormalAffixRules(this.NamingFormatter)!</text>
             }
         </p>
 

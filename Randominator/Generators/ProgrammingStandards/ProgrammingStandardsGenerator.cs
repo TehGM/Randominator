@@ -127,11 +127,11 @@ namespace TehGM.Randominator.Generators.ProgrammingStandards.Services
 
         private NamingStyle GenerateNamingStyle(IRandomizer randomizer, IEnumerable<string> prefixes, IEnumerable<string> suffixes, bool allowHungarian = false)
         {
-            // calculate prefixes and sufixes
+            // calculate affixes
             HungarianPartStyle hungarianPrefix = GetHungarianPrefix(this._options.HungarianPrefixChance);
             HungarianPartStyle hungarianSuffix = GetHungarianPrefix(this._options.HungarianSuffixChance);
-            string prefix = GetNormalPart(prefixes, this._options.NormalPrefixChance);
-            string suffix = GetNormalPart(suffixes, this._options.NormalSuffixChance);
+            string prefix = GetAffix(prefixes, this._options.NormalPrefixChance);
+            string suffix = GetAffix(suffixes, this._options.NormalSuffixChance);
 
             // get case style and its name
             LetterCaseStyle letterCaseStyle = randomizer.GetRandomEnumValue<LetterCaseStyle>();
@@ -162,7 +162,7 @@ namespace TehGM.Randominator.Generators.ProgrammingStandards.Services
                 return randomizer.GetRandomValue(hungarianStyles);
             }
 
-            string GetNormalPart(IEnumerable<string> values, double chance)
+            string GetAffix(IEnumerable<string> values, double chance)
             {
                 if (values?.Any() != true)
                     return null;

@@ -32,11 +32,11 @@
             Interfaces in @RenderLanguageName should follow <span class="naming-convention-name">@Standard.InterfaceNamingStyle.LetterCaseStyleName</span> letter casing.
             @if (Standard.InterfaceNamingStyle.HasHungarianParts)
             {
-                <text>Also, interface names should follow hungarian notation - @Standard.InterfaceNamingStyle.ListHungarianPrefixSuffixRules().</text>
+                <text>Also, interface names should follow hungarian notation - @Standard.InterfaceNamingStyle.ListHungarianAffixRules().</text>
             }
             @if (Standard.InterfaceNamingStyle.HasNormalPrefixOrSuffix)
             {
-                <text>Additionally interfaces names should be @Standard.InterfaceNamingStyle.ListNormalPrefixSuffixRules(this.NamingFormatter).</text>
+                <text>Additionally interfaces names should be @Standard.InterfaceNamingStyle.ListNormalAffixRules(this.NamingFormatter).</text>
             }
         </p>
 

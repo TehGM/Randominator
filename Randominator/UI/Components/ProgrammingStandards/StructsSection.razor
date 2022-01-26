@@ -41,11 +41,11 @@
             Structs in @LanguageName should follow <span class="naming-convention-name">@Standard.StructNamingStyle.LetterCaseStyleName</span> convention.
             @if (Standard.StructNamingStyle.HasHungarianParts)
             {
-                <text>Also, class names should follow hungarian notation - @Standard.StructNamingStyle.ListHungarianPrefixSuffixRules().</text>
+                <text>Also, class names should follow hungarian notation - @Standard.StructNamingStyle.ListHungarianAffixRules().</text>
             }
             @if (Standard.StructNamingStyle.HasNormalPrefixOrSuffix)
             {
-                <text>Additionally class names should be @Standard.StructNamingStyle.ListNormalPrefixSuffixRules(this.NamingFormatter).</text>
+                <text>Additionally class names should be @Standard.StructNamingStyle.ListNormalAffixRules(this.NamingFormatter).</text>
             }
         </p>
 

@@ -25,7 +25,7 @@ namespace TehGM.Randominator.UI.Components.ProgrammingStandards
             return (MarkupString)result;
         }
 
-        public static MarkupString ListNormalPrefixSuffixRules(this NamingStyle style, INamingStyleFormatter formatter)
+        public static MarkupString ListNormalAffixRules(this NamingStyle style, INamingStyleFormatter formatter)
         {
             List<string> rules = new List<string>(2);
             if (!string.IsNullOrWhiteSpace(style.NormalPrefix))
@@ -35,7 +35,7 @@ namespace TehGM.Randominator.UI.Components.ProgrammingStandards
             return (MarkupString)string.Join(" and ", rules);
         }
 
-        public static MarkupString ListHungarianPrefixSuffixRules(this NamingStyle style)
+        public static MarkupString ListHungarianAffixRules(this NamingStyle style)
         {
             List<string> rules = new List<string>(2);
             if (style.HungarianPrefix != HungarianPartStyle.None)

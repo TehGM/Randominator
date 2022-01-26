@@ -54,11 +54,11 @@
         <text>have name respecting <span class="naming-convention-name">@Standard.PrivateFieldNamingStyle.LetterCaseStyleName</span> convention. Yes, it's serious.</text>
         @if (Standard.PrivateFieldNamingStyle.HasHungarianParts)
         {
-            <text>Also, apply following hungarian notation: @Standard.PrivateFieldNamingStyle.ListHungarianPrefixSuffixRules().</text>
+            <text>Also, apply following hungarian notation: @Standard.PrivateFieldNamingStyle.ListHungarianAffixRules().</text>
         }
         @if (Standard.PrivateFieldNamingStyle.HasNormalPrefixOrSuffix)
         {
-            <text>And don't forget that they should be @Standard.PrivateFieldNamingStyle.ListNormalPrefixSuffixRules(this.NamingFormatter)!</text>
+            <text>And don't forget that they should be @Standard.PrivateFieldNamingStyle.ListNormalAffixRules(this.NamingFormatter)!</text>
         }
 
         <CodeSample ID="@this.CodeSampleID">

@@ -35,11 +35,11 @@
             - they <b>NEED</b> to follow  <span class="naming-convention-name">@Standard.PropertyNamingStyle.LetterCaseStyleName</span> naming convention. No way around it.
             @if (Standard.PropertyNamingStyle.HasHungarianParts)
             {
-                <br/><text>- should follow hungarian notation if you don't want to turn your code into garbage - @Standard.PropertyNamingStyle.ListHungarianPrefixSuffixRules().</text>
+                <br/><text>- should follow hungarian notation if you don't want to turn your code into garbage - @Standard.PropertyNamingStyle.ListHungarianAffixRules().</text>
             }
             @if (Standard.PropertyNamingStyle.HasNormalPrefixOrSuffix)
             {
-                <br/><text>- be @Standard.PropertyNamingStyle.ListNormalPrefixSuffixRules(this.NamingFormatter).</text>
+                <br/><text>- be @Standard.PropertyNamingStyle.ListNormalAffixRules(this.NamingFormatter).</text>
             }
         </p>
 
