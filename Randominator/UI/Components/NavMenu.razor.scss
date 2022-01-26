@@ -1,3 +1,7 @@
+hr {
+    border: 2px groove var(--menu-separator-color);
+}
+
 .navbar-toggler {
     background-color: var(--menu-toggler-background-color);
 }

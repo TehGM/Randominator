@@ -27,6 +27,7 @@
     --menu-copyright-color: var(--menu-item-color);
     --menu-border-color: unset;
     --menu-border-width: 0;
+    --menu-separator-color: black;
     // header
     --header-color: var(--text-color);
     --header-background-color: #f7f7f7;
@@ -55,6 +56,7 @@
         --menu-item-active-color: #FFD60A;
         --menu-item-hover-color: white;
         --menu-copyright-color: white;
+        --menu-separator-color: var(--menu-border-color);
         // header
         --header-color: #fcca46;
         --header-background-color: #000814;
