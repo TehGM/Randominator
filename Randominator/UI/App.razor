@@ -1,4 +1,6 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿@inject IRandomizer Random
+
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
@@ -6,7 +8,30 @@
     <NotFound>
         <PageTitle>Not found</PageTitle>
         <LayoutView Layout="@typeof(MainLayout)">
-            <p role="alert">Sorry, there's nothing at this address.</p>
+            <div class="d-flex flex-column justify-content-center align-items-center text-center" style="width: 100%; min-height: 100%;">
+                <h2>Well, seems nothing is here.</h2>
+                @if (_images.Any())
+                {
+                    this._imgPath = this.Random.GetRandomValue(_images);
+                    <img src="@this._imgPath" style="max-width: 80%;" alt="Route not found." />
+                }
+                <span style="margin-top:50px;">Return <a href=""><span class="oi oi-home" aria-hidden="true" />home</a>.</span>
+            </div>
         </LayoutView>
     </NotFound>
 </Router>
+
+@code {
+    private string _imgPath = null;
+
+    private static readonly IEnumerable<string> _images = new string[]
+    {
+        "img/lazy-day-1.jpg",
+        "img/lazy-day-2.gif",
+        "img/lazy-day-3.jpg",
+        "img/lazy-day-4.jpg",
+        "img/blackhole.png",
+        "img/candace-scream-1.gif",
+        ""
+    };
+}

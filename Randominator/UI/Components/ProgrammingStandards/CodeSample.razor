@@ -1,0 +1,35 @@
+﻿<div class="accordion accordion-flush code-sample" id="@this.ID">
+    <div class="accordion-item">
+        <h4 class="accordion-header" id="@this.HeaderID">
+            <button @onclick="ToggleExpanded" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#@this.ContentID" aria-expanded="@(this.Expanded ? "true" : "false")" aria-controls="@this.ContentID">
+                @Header
+            </button>
+        </h4>
+        <div id="@this.ContentID" class="accordion-collapse collapse @(this.Expanded ? "show" : string.Empty)" aria-labelledby="@this.HeaderID" data-bs-parent="@this.ID">
+            <div class="accordion-body">
+                <code>
+                    @ChildContent
+                </code>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public string Header { get; set; } = "Code Example";
+    [Parameter, EditorRequired]
+    public string ID { get; set; }
+    [Parameter]
+    public bool Expanded { get; set; } = true;
+
+    private string HeaderID => $"{this.ID}-header";
+    private string ContentID => $"{this.ID}-content";
+
+    public void ToggleExpanded()
+    {
+        this.Expanded = !this.Expanded;
+    }
+}

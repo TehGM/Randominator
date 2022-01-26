@@ -1,0 +1,23 @@
+﻿@media (min-width: 641px) {
+    .menu-location-text {
+        &.side {
+            display: inline;
+        }
+
+        &.top {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 641px) {
+    .menu-location-text {
+        &.side {
+            display: none;
+        }
+
+        &.top {
+            display: inline;
+        }
+    }
+}

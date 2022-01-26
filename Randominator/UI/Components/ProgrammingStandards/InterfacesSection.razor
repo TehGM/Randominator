@@ -1,0 +1,47 @@
+﻿@inherits StandardSectionComponent
+
+<div>
+    @RenderSectionHeader()
+
+    @if (Standard.AllowInterfaces == AllowMode.Forbid)
+    {
+        <text>Abstraction is lame, don't use it in @RenderLanguageName.</text>
+    }
+    else if (Standard.AllowInterfaces == AllowMode.Discourage)
+    {
+        <text>Abstraction is lame, but if you really want to use interfaces in @RenderLanguageName, then </text>
+    }
+    else if (Standard.AllowInterfaces == AllowMode.Recommend)
+    {
+        <text>Real chads interface almost everything. Do you want to be a real chad? Yes, you do, so you should </text>
+    }
+    else if (Standard.AllowInterfaces == AllowMode.Force)
+    {
+        <text>If you don't use interfaces for absolutely everything (and their dog) in @RenderLanguageName, you should just drop this language. But if you do use interfaces, </text>
+    }
+    else 
+    {
+        <text>When using interfaces, </text>
+    }
+    
+    @if (Standard.AllowInterfaces != AllowMode.Forbid)
+    {
+        @Standard.TypeBracketsStyle.RenderBracketsStyleText()
+
+        <p>
+            Interfaces in @RenderLanguageName should follow <span class="naming-convention-name">@Standard.InterfaceNamingStyle.LetterCaseStyleName</span> letter casing.
+            @if (Standard.InterfaceNamingStyle.HasHungarianParts)
+            {
+                <text>Also, interface names should follow hungarian notation - @Standard.InterfaceNamingStyle.ListHungarianAffixRules().</text>
+            }
+            @if (Standard.InterfaceNamingStyle.HasNormalPrefixOrSuffix)
+            {
+                <text>Additionally interfaces names should be @Standard.InterfaceNamingStyle.ListNormalAffixRules(this.NamingFormatter).</text>
+            }
+        </p>
+
+        <CodeSample ID="@this.CodeSampleID">
+            @BracketsFormatter.RenderCodeHtml($"public {this.NamingFormatter.Apply(Standard.InterfaceNamingStyle, new string[] { "My", "Type" }, HungarianPart.Interface)}", "// interface members here", Standard.TypeBracketsStyle)
+        </CodeSample>
+    }
+</div>

@@ -1,0 +1,53 @@
+﻿@inherits StandardSectionComponent
+
+<div>
+    @RenderSectionHeader()
+
+    @if (Standard.AllowPublicFields == AllowMode.Forbid)
+    {
+        <text>Only virgin-level peasants use public fields in @RenderLanguageName.</text>
+        if (Standard.AllowProperties != AllowMode.Forbid)
+        {
+            <text> Use properties instead like a real chad.</text>
+            if (Standard.AllowProperties == AllowMode.Discourage)
+            {
+                <text> We mean... they're not recommended, either, but at least not virgin-level peasants.</text>
+            }
+        }
+        else
+        {
+            <text> And since properties are not allowed in @RenderLanguageName... well, you're out of luck!</text>
+        }
+    }
+    else if (Standard.AllowPublicFields == AllowMode.Discourage)
+    {
+        <text>Public fields in @RenderLanguageName are considered to be a tool for virgin-level peasants.</text>
+        if (Standard.AllowProperties != AllowMode.Forbid && Standard.AllowProperties != AllowMode.Discourage)
+        {
+            <text> Just don't be a baddie and use properties, damn it.</text>
+        }
+        <text> Unless being baddie is your way of life then, </text>
+    }
+    else 
+    {
+        <text>When setting up public fields in @RenderLanguageName, you </text>
+    }
+    
+    @if (Standard.AllowPublicFields != AllowMode.Forbid)
+    {
+        <text>should name them according to <span class="naming-convention-name">@Standard.PublicFieldNamingStyle.LetterCaseStyleName</span> naming convention. At least have this little of dignity.</text>
+        @if (Standard.PublicFieldNamingStyle.HasHungarianParts)
+        {
+            <text>Also, apply following hungarian notation: @Standard.PublicFieldNamingStyle.ListHungarianAffixRules().</text>
+        }
+        @if (Standard.PublicFieldNamingStyle.HasNormalPrefixOrSuffix)
+        {
+            <text>And don't forget that they should be @Standard.PublicFieldNamingStyle.ListNormalAffixRules(this.NamingFormatter)!</text>
+        }
+
+        <CodeSample ID="@this.CodeSampleID">
+            @($"public int {this.NamingFormatter.Apply(Standard.PublicFieldNamingStyle, new string[] { "First", "Member" }, HungarianPart.Integer)};")<br/>
+            @($"public string {this.NamingFormatter.Apply(Standard.PublicFieldNamingStyle, new string[] { "Second", "Member" }, HungarianPart.String)};")
+        </CodeSample>
+    }
+</div>

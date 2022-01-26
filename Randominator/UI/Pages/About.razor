@@ -1,0 +1,114 @@
+﻿@page "/about"
+
+<AppPageTitle Value="About" HeaderOverride="" />
+
+<h1>About @AppInfo.Name</h1>
+<p>Currently all of @AppInfo.Name generators are created purely for fun. How you use them is up to you - but I do not take any responsibility if you take them <i><span class="text-special bold">too</span></i> seriously. Have fun, damn it!</p>
+<p>Generators might be updated and for this reason "saved" results might change at any time.</p>
+
+<h4>Bug?</h4>
+<p>If you found a bug, feel free to open an <a href="https://github.com/TehGM/Randominator/issues">Issue on GitHub</a>.</p>
+
+<h4>Suggestion?</h4>
+<p>If you want to suggest anything, feel free to start a <a href="https://github.com/TehGM/Randominator/discussions">Discussion on GitHub</a>.</p>
+
+<h2>Author</h2>
+<p>
+    @AppInfo.Name is a small fun side project created by <a href="@AppInfo.AuthorWebsite" target="_blank">@AppInfo.Author</a>.<br/>
+    <InlineCopyright/>
+</p>
+
+<h3>Support the Project</h3>
+<p>If you want to support me, this project, or all other projects I work on, you can consider donating:</p>
+<ul>
+    <li><a href="https://github.com/sponsors/TehGM">@AppInfo.Author @@ GitHub Sponsors</a></li>
+    <li><a href="https://www.patreon.com/tehgmdev">@AppInfo.Author @@ Patreon</a></li>
+    <li><a href="https://www.buymeacoffee.com/TehGM">@AppInfo.Author @@ Buy Me a Coffee</a></li>
+</ul>
+<p>If you prefer, I also don't mind cryptocurrency donations:</p>
+<ul>
+    <li>Bitcoin: <span class="text-special click-select">38eR7a9znMQg46Cc4aJMknwi9E6ozeyBHa</span></li>
+    <li>Ethereum: <span class="text-special click-select">0x2C38760D0F240328070Ed88832F6E6F4be24210F</span></li>
+    <li>Dogecoin: <span class="text-special click-select">DCcDhfqxnZ7PAVxthL4egxmHiawqwCse1W</span></li>
+    <li>Binance Coin: <span class="text-special click-select">0xC7F4dFCa48C144b891b88A5e1FacdB298dDBa1D9</span></li>
+    <li>SafeMoon: <span class="text-special click-select">0xC7F4dFCa48C144b891b88A5e1FacdB298dDBa1D9</span></li>
+</ul>
+<p class="items-horizontal">
+    <a href="https://www.digitalocean.com/?refcode=68a5a810935e&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge">
+        <img src="https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%201.svg" alt="DigitalOcean Referral Badge" />
+    </a>
+    <span>
+        You can also use my <a href="https://m.do.co/c/68a5a810935e">DigitalOcean referral link</a>!<br/>
+        If you register using my link, you get $100 for 60 days, and I get $25 if you spend $25.<br/>
+        Win win!
+    </span>
+</p>
+<p>In any case, thank you so much for your support!</p>
+
+
+<h2>Technicalities</h2>
+<p>Version: <span class="text-special bold">@AppInfo.Version</span></p>
+<p>Tech Stack: <span class="text-special bold">Microsoft Blazor - ASP.NET Core 6.0</span></p>
+
+<h4>Beta version</h4>
+<p>@AppInfo.Name is still considered to be beta/preview version. As such, UI and page design might be imperfect and every feature is subject to change.</p>
+
+<h4>Client-side</h4>
+<p>@AppInfo.Name runs entirely in your browser. No data is stored or processed by any of my servers. Your browser might store some @AppInfo.Name data, but it's only accessible to you.</p>
+
+<h4>Source Code</h4>
+<p>
+    As of version v@(AppInfo.Version), @AppInfo.Name is entirely open source.<br/>
+    See GitHub repository here: <a href="@_repoUrl">@_repoUrl</a>
+</p>
+
+<h4>Hosting</h4>
+<p>Since @AppInfo.Name is powered by Blazor Client-side, this website is statically hosted on <a href="https://pages.github.com/">GitHub Pages</a>!</p>
+<p>
+    The build and publish is automated with <a href="https://github.com/features/actions">GitHub Actions</a>.<br/>
+    If you're silly and curious for some ridiculous reason, you can view the pipeline here: <a href="@_pipelineUrl">@_pipelineUrl</a>
+</p>
+
+<h2>Changelog</h2>
+<h4>v0.2.0</h4>
+<ul>
+    <li>A powerful <NavLink href="generators/programming-standards">Programming Standards Generator</NavLink> has been added.</li>
+    <li><NavLink href="generators/mobile-game-name">Mobile Game Name Generator</NavLink> has been improved - support for 7 prefixes for both leading and trailing words, 2 additional middle sections, 10 more words. This results in over 2 million possibilities!</li>
+    <li><NavLink href="generators/mobile-game-name">Mobile Game Name Generator</NavLink> now also displays calculated number of possibilities on the page. Yes, this number is real.</li>
+    <li><NavLink href="generators/mobile-game-name">Mobile Game Name Generator</NavLink> now uses Comic Sans font for rainbow text on all devices. Previously mobile devices used Pacifico font.</li>
+    <li>Theme rework to get rid of Blazor's default style.</li>
+    <li>Buttons now look nicer.</li>
+    <li>Page contents now will not be more than 1320px wide, which makes them look nicer on big screens.</li>
+    <li>Header has been reworked - removed pointless "by @AppInfo.Author" part, added actual generator title. It's also now hidden on pages that don't need it.</li>
+    <li>Navigation menu now supports sections - currently collapsing them is disabled, but will be enabled once more sections and generators are added.</li>
+    <li>"Not found" page will now show a randomized image.</li>
+    <li>The loading page now is much nicer, and fitting the default style.</li>
+    <li>Added <NavLink href="about">About</NavLink> page.</li>
+    <li>Home page contents have been slightly updated.</li>
+    <li>Added copyright to navigation menu or page footer (depending on resolution).</li>
+    <li>Numerous under-the-hood and future-proofing changes.</li>
+</ul>
+<h4>v0.1.1</h4>
+<ul>
+    <li>Fix issue where @AppInfo.Name would not load if not loaded from index.</li>
+    <li>Added 10 more words to <NavLink href="generators/mobile-game-name">Mobile Game Name Generator</NavLink>.</li>
+</ul>
+<h4>v0.1.0</h4>
+<ul>
+    <li>Initial release, put quickly together in one evening.</li>
+    <li>Includes initial <NavLink href="generators/mobile-game-name">Mobile Game Name Generator</NavLink>.</li>
+</ul>
+
+@code {
+    private const string _repoUrl = "https://github.com/TehGM/Randominator";
+    private const string _pipelineUrl = "https://github.com/TehGM/Randominator/blob/master/.github/workflows/dotnet-build.yml";
+
+    [CascadingParameter]
+    public MainLayout Layout { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        this.Layout.OverwriteFooterItems(null);
+    }
+}

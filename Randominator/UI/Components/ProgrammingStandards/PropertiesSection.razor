@@ -1,0 +1,51 @@
+﻿@inherits StandardSectionComponent
+
+<div>
+    @RenderSectionHeader()
+
+    @if (Standard.AllowProperties == AllowMode.Forbid)
+    {
+        <text>Properties in @RenderLanguageName? Pffft, not on our watch!</text>
+        if (Standard.AllowPublicFields != AllowMode.Forbid)
+        {
+            <text> You can use public fields instead.</text>
+            if (Standard.AllowPublicFields == AllowMode.Discourage)
+            {
+                <text> They're ugly, but hey.</text>
+            }
+        }
+    }
+    else if (Standard.AllowProperties == AllowMode.Discourage)
+    {
+        <text>Eh, if you really want to, we guess you could use properties in @RenderLanguageName.</text>
+        if (Standard.AllowPublicFields != AllowMode.Forbid && Standard.AllowPublicFields != AllowMode.Discourage)
+        {
+            <text> You can use public fields instead, cause your @RenderLanguageName language isn't good enough for properties.</text>
+        }
+        <text> If you're a stubborn type and still gonna use properties, </text>
+    }
+    else 
+    {
+        <text>Properties in @RenderLanguageName need special treatment: </text>
+    }
+    
+    @if (Standard.AllowProperties != AllowMode.Forbid)
+    {
+        <p>
+            - they <b>NEED</b> to follow  <span class="naming-convention-name">@Standard.PropertyNamingStyle.LetterCaseStyleName</span> naming convention. No way around it.
+            @if (Standard.PropertyNamingStyle.HasHungarianParts)
+            {
+                <br/><text>- should follow hungarian notation if you don't want to turn your code into garbage - @Standard.PropertyNamingStyle.ListHungarianAffixRules().</text>
+            }
+            @if (Standard.PropertyNamingStyle.HasNormalPrefixOrSuffix)
+            {
+                <br/><text>- be @Standard.PropertyNamingStyle.ListNormalAffixRules(this.NamingFormatter).</text>
+            }
+        </p>
+
+        <CodeSample ID="@this.CodeSampleID">
+            @($"public int {this.NamingFormatter.Apply(Standard.PropertyNamingStyle, new string[] { "First", "Member" }, HungarianPart.Integer)} {{ get; set; }}")<br/>
+            @($"public string {this.NamingFormatter.Apply(Standard.PropertyNamingStyle, new string[] { "Second", "Member" }, HungarianPart.String)} {{ get; set; }}")
+        </CodeSample>
+    }
+</div>

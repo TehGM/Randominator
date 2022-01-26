@@ -1,0 +1,23 @@
+﻿@inherits StandardSectionComponent
+
+<div>
+    @RenderSectionHeader()
+
+    When writing method and function names, one thing is really important - @Standard.MethodBracketsStyle.RenderBracketsStyleText()
+
+    <p>
+        Method/function names in @RenderLanguageName should follow <span class="naming-convention-name">@Standard.MethodNamingStyle.LetterCaseStyleName</span> convention.
+        @if (Standard.MethodNamingStyle.HasHungarianParts)
+        {
+            <text>Also, method and function names should follow hungarian notation - @Standard.MethodNamingStyle.ListHungarianAffixRules().</text>
+        }
+        @if (Standard.MethodNamingStyle.HasNormalPrefixOrSuffix)
+        {
+            <text>Additionally method names REALLY should be @Standard.MethodNamingStyle.ListNormalAffixRules(this.NamingFormatter).</text>
+        }
+    </p>
+
+    <CodeSample ID="@this.CodeSampleID">
+        @BracketsFormatter.RenderCodeHtml($"public void {this.NamingFormatter.Apply(Standard.MethodNamingStyle, new string[] { "My", "Method" }, null)}()", "// logic code here", Standard.MethodBracketsStyle)
+    </CodeSample>
+</div>

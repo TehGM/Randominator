@@ -1,0 +1,26 @@
+﻿@if (!this.IsHidden)
+{
+    <div class="page-header px-4">
+         @ChildContent
+    </div>
+}
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public bool Hide { get; set; } = false;
+    [Parameter]
+    public bool HideWhenEmpty { get; set; } = true;
+
+    public bool IsHidden => this.Hide || (this.IsEmpty && this.HideWhenEmpty);
+    public bool IsEmpty => this.ChildContent == null;
+
+    public void SetTitle(string content)
+    {
+        this.ChildContent = !string.IsNullOrWhiteSpace(content)
+            ? @<h1 class="header-title">@content</h1>
+            : null;
+        this.StateHasChanged();
+    }
+}

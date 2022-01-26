@@ -1,0 +1,12 @@
+.invalid .form-control {
+    box-shadow: 0 0 0 .25rem var(--error-outline-color);
+}
+
+.validation-message {
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    &.error {
+        color: var(--error-text-color);
+    }
+}

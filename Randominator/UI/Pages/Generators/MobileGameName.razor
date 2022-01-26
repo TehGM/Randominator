@@ -1,23 +1,34 @@
 ﻿@page "/generators/mobile-game-name"
-@inject TehGM.Randominator.Generators.MobileGameName.IMobileGameNameGenerator _generator
+@using TehGM.Randominator.Generators.MobileGameName
+@inject IMobileGameNameGenerator _generator
+@inject IOptionsSnapshot<MobileGameNameOptions> _options
 
-<AppPageTitle>@_title</AppPageTitle>
-<h2>@_title Generator</h2>
+<AppPageTitle Value="Mobile Game Name Generator"/>
 
 <p>Ever wanted a solid name for your game, that will fit the champions and legends of mobile gaming? We got you covered!</p>
+<p>This generator can currently provide you <span class="text-special">@this._comboCount</span> <i>(yes, really)</i> game names for you. Neat, eh?!</p>
 <p>
     Behold...
     <h4 class="rainbow-text funky">@this._generatedName</h4>
 </p>
 
-<button @onclick="GenerateNew" class="btn btn-secondary">Generate new!</button>
+<button @onclick="GenerateNew" class="btn btn-secondary w-50">Generate new!</button>
 
 @code {
-    private const string _title = "Mobile Game Name";
     private string _generatedName = null;
+    private string _comboCount = null;
 
     protected override void OnParametersSet()
     {
+        // calculate combinations count
+        int prefixCount = this._options.Value.PrefixWordSet.Count + 1;
+        int leadingCount = this._options.Value.SharedWordSet.Count + this._options.Value.LeadingWordSet.Count;
+        int middleCount = this._options.Value.MiddleWordSet.Count;
+        int trailingCount = this._options.Value.SharedWordSet.Count + this._options.Value.TrailingWordSet.Count;
+        int comboCount = prefixCount * leadingCount * middleCount * prefixCount * trailingCount;
+        this._comboCount = comboCount.ToString("N0");
+
+        // generate new
         this.GenerateNew();
     }
 

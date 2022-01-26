@@ -1,4 +1,5 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+@import "_themes.scss";
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -9,29 +10,65 @@ h1:focus {
 }
 
 a, .btn-link {
-    color: #0071c1;
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+.page {
+    color: var(--text-color);
+}
+
+main {
+    background-color: var(--background-color);
 }
 
 .btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    color: var(--button-primary-color);
+    background-color: var(--button-primary-background-color);
+    border-color: var(--button-primary-border-color);
 }
 
 .content {
     padding-top: 1.1rem;
 }
 
-.valid.modified:not([type=checkbox]) {
-    outline: 1px solid #26b050;
+.accordion-item {
+    background-color: var(--accordion-background);
+
+    .accordion-button {
+        background-color: var(--accordion-header-background);
+        color: var(--accordion-header-color);
+    }
 }
 
-.invalid {
-    outline: 1px solid red;
+code {
+    color: var(--code-color);
 }
 
-.validation-message {
-    color: red;
+.text-special {
+    color: var(--special-text-color);
+
+    &.bold {
+        font-weight: bold;
+    }
+}
+
+.form-control {
+    color: var(--input-color);
+    border-color: var(--input-border-color);
+    border-width: var(--input-border-width);
+    background-color: var(--input-background-color);
+
+    &::placeholder {
+        color: var(--input-placeholder-color);
+    }
+
+    &:focus {
+        color: var(--input-color);
+        background-color: var(--input-focus-background-color);
+        border-color: var(--input-border-color);
+        border-width: var(--input-border-width);
+    }
 }
 
 #blazor-error-ui {
@@ -69,7 +106,7 @@ a, .btn-link {
     animation: rainbow 5s infinite;
 
     &.funky {
-        font-family: 'Pacifico', cursive;
+        font-family: 'Comic Sans', cursive;
         text-shadow: 2px 2px 4px #000000;
         font-size: 40px;
     }

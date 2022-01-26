@@ -1,0 +1,19 @@
+﻿.click-select {
+    $select-mode: all;
+    -moz-user-select: $select-mode;
+    -ms-user-select: $select-mode;
+    -webkit-user-select: $select-mode;
+    user-select: $select-mode;
+    cursor: pointer;
+    text-decoration: underline dotted gray;
+}
+
+.items-horizontal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    & > *:not(:first-child) {
+        margin-left: 10px;
+    }
+}

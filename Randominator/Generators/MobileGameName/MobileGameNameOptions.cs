@@ -2,8 +2,23 @@
 {
     public class MobileGameNameOptions
     {
-        public ICollection<string> MiddleWordSet { get; set; } = new string[] { "of" };
-
+        public double PrefixChance { get; set; } = 0.15;
+        public ICollection<string> PrefixWordSet { get; set; } = new string[]
+        {
+            "Great",
+            "Legendary",
+            "Epic",
+            "Super",
+            "Mobile",
+            "Turbo",
+            "Idle"
+        };
+        public ICollection<string> MiddleWordSet { get; set; } = new string[] 
+        { 
+            "of",
+            "of the",
+            "&"
+        };
         public ICollection<string> LeadingWordSet { get; set; } = new string[] 
         { 
             "Game",
@@ -69,13 +84,8 @@
             "Fever",
             "Sniper",
             "Snipers",
-            "Idle Defense",
             "Defense",
             "Crafting",
-            "Epic Idle",
-            "Super Idle",
-            "Epic Crafting",
-            "Super Crafting",
             "Dream",
             "Dreams",
             "Dream League",
@@ -123,7 +133,17 @@
             "Battleground",
             "Battlegrounds",
             "Quest",
-            "Quests"
+            "Quests",
+            "God",
+            "Gods",
+            "General",
+            "Generals",
+            "Champion",
+            "Champions",
+            "Puzzle",
+            "Puzzles",
+            "Gem",
+            "Gems"
         };
     }
 }

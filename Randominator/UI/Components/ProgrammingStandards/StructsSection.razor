@@ -1,0 +1,59 @@
+﻿@inherits StandardSectionComponent
+
+<div>
+    @RenderSectionHeader()
+
+    @if (Standard.AllowStructs == AllowMode.Forbid)
+    {
+        <text>Why would you use something as silly as struct in @LanguageName? Hahahah!<br/>No, seriously... <i>don't</i>.</text>
+        if (Standard.AllowClasses != AllowMode.Forbid)
+        {
+            <text> You can use proper classes instead.</text>
+            if (Standard.AllowClasses == AllowMode.Discourage)
+            {
+                <text> But you shouldn't...</text>
+            }
+        }
+    }
+    else if (Standard.AllowStructs == AllowMode.Discourage)
+    {
+        <text>Structs? Meh. But fine, you can use them.</text>
+        if (Standard.AllowClasses != AllowMode.Forbid)
+        {
+            <text> I should point you towards classes instead...</text>
+            if (Standard.AllowClasses == AllowMode.Discourage)
+            {
+                <text> Even though they're not much better...</text>
+            }
+        }
+        <text> But if you really really want to use structs in @LanguageName, </text>
+    }
+    else 
+    {
+        <text>When using structs in @LanguageName, </text>
+    }
+    
+    @if (Standard.AllowStructs != AllowMode.Forbid)
+    {
+        @Standard.TypeBracketsStyle.RenderBracketsStyleText()
+
+        <p>
+            Structs in @LanguageName should follow <span class="naming-convention-name">@Standard.StructNamingStyle.LetterCaseStyleName</span> convention.
+            @if (Standard.StructNamingStyle.HasHungarianParts)
+            {
+                <text>Also, class names should follow hungarian notation - @Standard.StructNamingStyle.ListHungarianAffixRules().</text>
+            }
+            @if (Standard.StructNamingStyle.HasNormalPrefixOrSuffix)
+            {
+                <text>Additionally class names should be @Standard.StructNamingStyle.ListNormalAffixRules(this.NamingFormatter).</text>
+            }
+        </p>
+
+        <CodeSample ID="@this.CodeSampleID">
+            @BracketsFormatter.RenderCodeHtml($"public {this.NamingFormatter.Apply(Standard.StructNamingStyle, new string[] { "My", "Type" }, HungarianPart.Struct)}", "// struct members here", Standard.TypeBracketsStyle)
+        </CodeSample>
+    }
+</div>
+
+@code {
+}

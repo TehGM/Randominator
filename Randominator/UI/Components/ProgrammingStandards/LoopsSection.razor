@@ -1,0 +1,27 @@
+﻿@inherits StandardSectionComponent
+
+<div>
+    @RenderSectionHeader()
+
+    @if (Standard.AllowLoops == AllowMode.Forbid)
+    {
+        <text>Use of any loops in @RenderLanguageName is forbidden!</text>
+    }
+    else if (Standard.AllowLoops == AllowMode.Discourage)
+    {
+        <text>Use of any loop is discouraged in @RenderLanguageName. However, if you need to use them, </text>
+    }
+    else 
+    {
+        <text>When using any loop in @RenderLanguageName, </text>
+    }
+    
+    @if (Standard.AllowLoops != AllowMode.Forbid)
+    {
+        @Standard.LoopBracketsStyle.RenderBracketsStyleText()
+
+        <CodeSample ID="@this.CodeSampleID">
+            @BracketsFormatter.RenderCodeHtml("while (true)", "// do something", Standard.LoopBracketsStyle)
+        </CodeSample>
+    }
+</div>

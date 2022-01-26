@@ -1,0 +1,14 @@
+::deep .generator {
+}
+
+footer {
+    p {
+        margin-bottom: unset;
+    }
+
+    text-align: center;
+    width: 100%;
+    font-size: 15px;
+    max-height: 55px;
+    flex-shrink: 0;
+}

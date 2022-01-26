@@ -1,0 +1,90 @@
+﻿@page "/generators/programming-standards"
+@using TehGM.Randominator.Generators.ProgrammingStandards
+@using TehGM.Randominator.UI.Components.ProgrammingStandards
+@inject IProgrammingStandardsGenerator Generator
+@inject INamingStyleFormatter NamingFormatter
+@inject IClipboard Clipboard
+@inject NavigationManager NavigationManager
+
+<AppPageTitle Value="Programming Standards Generator" />
+
+<p>Programmers love-hate to argue about programming standards. Here's a generator to solve these arguments once for all!</p>
+
+<FormTextInput Placeholder="Language Name" ValueChanged="OnLanguageInput" HighlightError="_highlightPasswordError" ValidationResults="_errors" />
+<button @onclick="GenerateNew" class="btn btn-secondary w-100 mt-1">Generate!</button>
+
+@if (_result != null)
+{
+    <hr/>
+    <h3>Official Unquestionable Standards for <span class="text-special bold">@_result.LanguageName</span> language!</h3>
+    <p>Our advanced AI algorithms generated this documentation for you so you can share it with your team members. Thanks to us, your code style will now always be consistent!</p>
+    <p>Link to this <i>(obviously 100% legit)</i> documentation page:<br/> 
+        <a href="@this._resultURL">@this._resultURL</a> 
+        <span class="copy-button @this._copyClass" @onclick="OnCopyClickAsync"></span> 
+    </p>
+
+    <div>
+        <LoopsSection Standard="@_result" SectionName="Loops"/>
+        <FlowControlSection Standard="@_result" SectionName="Flow Control"/>
+        <ClassesSection Standard="@_result" SectionName="Classes"/>
+        <StructsSection Standard="@_result" SectionName="Structs"/>
+        <InterfacesSection Standard="@_result" SectionName="Interfaces"/>
+        <MethodsSection Standard="@_result" SectionName="Methods and Functions"/>
+        <MethodArgumentsSection Standard="@_result" SectionName="Method and Function Arguments"/>
+        <PropertiesSection Standard="@_result" SectionName="Properties"/>
+        <PublicFieldsSection Standard="@_result" SectionName="Public Fields"/>
+        <PrivateFieldsSection Standard="@_result" SectionName="Private Fields"/>
+        <LocalFieldsSection Standard="@_result" SectionName="Local Fields"/>
+        <ConstantsSection Standard="@_result" SectionName="Constants"/>
+    </div>
+}
+
+@code {
+    [Parameter, SupplyParameterFromQuery(Name = "lang")]
+    public string LanguageName { get; set; }
+    private ProgrammingStandard _result = null;
+    private string _resultURL = null;
+    private string _copyClass = _copyUnclickedClass;
+
+    private List<InputValidationResult> _errors = new List<InputValidationResult>();
+    private bool _highlightPasswordError = false;
+
+    private const string _copyUnclickedClass = "bi bi-clipboard";
+    private const string _copyClickedClass = "bi bi-clipboard-check";
+
+    protected override void OnParametersSet()
+    {
+        if (!string.IsNullOrWhiteSpace(this.LanguageName))
+            this.GenerateNew();
+    }
+
+    private void OnLanguageInput(ChangeEventArgs e)
+    {
+        this.LanguageName = e.Value?.ToString();
+        _highlightPasswordError = false;
+        _errors.Clear();
+    }
+
+    public void GenerateNew()
+    {
+        _errors.Clear();
+
+        if (string.IsNullOrWhiteSpace(this.LanguageName))
+        {
+            _errors.Add("Please give us the language name!");
+            _highlightPasswordError = true;
+            return;
+        }
+
+        this._result = this.Generator.Generate(this.LanguageName);
+        this._resultURL = NavigationManager.GetUriWithQueryParameter("lang", this._result.LanguageName);
+        this._copyClass = _copyUnclickedClass;
+        NavigationManager.NavigateTo(this._resultURL, false);
+    }
+
+    private async Task OnCopyClickAsync()
+    {
+        await this.Clipboard.WriteTextAsync(this._resultURL);
+        this._copyClass = _copyClickedClass;
+    }
+}

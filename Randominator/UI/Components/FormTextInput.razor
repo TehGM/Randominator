@@ -1,0 +1,47 @@
+﻿<div class="form-group input-group @(HighlightError ? "invalid" : "valid")">
+    @if (!string.IsNullOrEmpty(PrependOiIcon) || !string.IsNullOrEmpty(PrependText))
+    {
+        <div class="input-group-prepend">
+            @if (!string.IsNullOrEmpty(PrependOiIcon))
+            {
+                <span class="oi oi-@PrependOiIcon"></span>
+            }
+            @if (!string.IsNullOrEmpty(PrependText))
+            {
+                <span>@PrependText</span>
+            }
+        </div>
+    }
+    <input class="form-control" @oninput="ValueChanged" @bind="Value" placeholder="@Placeholder" type="@(IsPassword ? "password" : "text")" />
+</div>
+
+@if (ValidationResults?.Any() == true)
+{
+    foreach (InputValidationResult validationResult in ValidationResults)
+    {
+        <div class="validation-message @(validationResult.IsError ? "error" : "success") form-group">
+            <span class="oi oi-@(validationResult.IsError ? "x" : "check")"></span>
+            @validationResult.Text
+        </div>
+    }
+}
+
+@code {
+    [Parameter]
+    public string Value { get; set; }
+    [Parameter]
+    public string Placeholder { get; set; }
+    [Parameter]
+    public bool IsPassword { get; set; }
+    [Parameter]
+    public bool HighlightError { get; set; }
+    [Parameter]
+    public string PrependOiIcon { get; set; }
+    [Parameter]
+    public string PrependText { get; set; }
+    [Parameter]
+    public IEnumerable<InputValidationResult> ValidationResults { get; set; }
+
+    [Parameter]
+    public EventCallback<ChangeEventArgs> ValueChanged { get; set; }
+}

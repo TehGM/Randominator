@@ -60,7 +60,13 @@ public class Program
 
     private static void ConfigureServices(IServiceCollection services)
     {
+        // utilities
+        services.AddRandomizer();
+        services.AddClipboard();
+
+        // generators
         services.AddMobileGameNameGenerator();
+        services.AddProgrammingStandardsGenerator();
     }
 
     private static void ConfigureLogging(WebAssemblyHostBuilder builder)
