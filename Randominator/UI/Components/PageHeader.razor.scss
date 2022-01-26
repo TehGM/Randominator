@@ -12,6 +12,7 @@
         font-weight: bold;
         font-size: 25px;
         margin-bottom: 0;
+        color: var(--header-color);
     }
 
     &::deep a, &::deep .btn-link {
