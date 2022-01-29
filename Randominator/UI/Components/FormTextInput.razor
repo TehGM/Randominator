@@ -12,7 +12,7 @@
             }
         </div>
     }
-    <input class="form-control" @oninput="ValueChanged" @bind="Value" placeholder="@Placeholder" type="@(IsPassword ? "password" : "text")" />
+    <input class="form-control" @oninput="OnValueChangedAsync" @bind="Value" placeholder="@Placeholder" type="@(IsPassword ? "password" : "text")" maxlength="@this.MaxLength"/>
 </div>
 
 @if (ValidationResults?.Any() == true)
@@ -41,7 +41,19 @@
     public string PrependText { get; set; }
     [Parameter]
     public IEnumerable<InputValidationResult> ValidationResults { get; set; }
-
+    [Parameter]
+    public int MaxLength { get; set; } = 524288;
+    
     [Parameter]
     public EventCallback<ChangeEventArgs> ValueChanged { get; set; }
+    
+    private Task OnValueChangedAsync(ChangeEventArgs e)
+    {
+        if (this.Value != null && this.Value.Length > this.MaxLength)
+        {
+            this.Value = this.Value.Remove(this.MaxLength);
+            e.Value = this.Value;
+        }
+        return this.ValueChanged.InvokeAsync(e);
+    }
 }

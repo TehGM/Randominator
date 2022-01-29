@@ -10,7 +10,7 @@
 
 <p>Programmers love-hate to argue about programming standards. Here's a generator to solve these arguments once for all!</p>
 
-<FormTextInput Placeholder="Language Name" ValueChanged="OnLanguageInput" HighlightError="_highlightPasswordError" ValidationResults="_errors" />
+<FormTextInput Placeholder="Language Name (max 100 characters)" ValueChanged="OnLanguageInput" HighlightError="_highlightPasswordError" ValidationResults="_errors" MaxLength="100" />
 <button @onclick="GenerateNew" class="btn btn-secondary w-100 mt-1">Generate!</button>
 
 @if (_result != null)
