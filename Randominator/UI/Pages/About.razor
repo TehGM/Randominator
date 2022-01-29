@@ -7,10 +7,10 @@
 <p>Generators might be updated and for this reason "saved" results might change at any time.</p>
 
 <h4>Bug?</h4>
-<p>If you found a bug, feel free to open an <a href="https://github.com/TehGM/Randominator/issues">Issue on GitHub</a>.</p>
+<p>If you found a bug, feel free to open an <a href="https://github.com/TehGM/Randominator/issues" target="_blank">Issue on GitHub</a>.</p>
 
 <h4>Suggestion?</h4>
-<p>If you want to suggest anything, feel free to start a <a href="https://github.com/TehGM/Randominator/discussions">Discussion on GitHub</a>.</p>
+<p>If you want to suggest anything, feel free to start a <a href="https://github.com/TehGM/Randominator/discussions" target="_blank">Discussion on GitHub</a>.</p>
 
 <h2>Author</h2>
 <p>
@@ -34,11 +34,11 @@
     <li>SafeMoon: <span class="text-special click-select">0xC7F4dFCa48C144b891b88A5e1FacdB298dDBa1D9</span></li>
 </ul>
 <p class="items-horizontal">
-    <a href="https://www.digitalocean.com/?refcode=68a5a810935e&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge">
+    <a href="https://www.digitalocean.com/?refcode=68a5a810935e&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge" target="_blank">
         <img src="https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%201.svg" alt="DigitalOcean Referral Badge" />
     </a>
     <span>
-        You can also use my <a href="https://m.do.co/c/68a5a810935e">DigitalOcean referral link</a>!<br/>
+        You can also use my <a href="https://m.do.co/c/68a5a810935e" target="_blank">DigitalOcean referral link</a>!<br/>
         If you register using my link, you get $100 for 60 days, and I get $25 if you spend $25.<br/>
         Win win!
     </span>
@@ -54,22 +54,30 @@
 <p>@AppInfo.Name is still considered to be beta/preview version. As such, UI and page design might be imperfect and every feature is subject to change.</p>
 
 <h4>Client-side</h4>
-<p>@AppInfo.Name runs entirely in your browser. No data is stored or processed by any of my servers. Your browser might store some @AppInfo.Name data, but it's only accessible to you.</p>
+<p>@AppInfo.Name runs entirely in your browser. No data is stored or processed by any of my servers. Your browser might store some @AppInfo.Name data, but it's only accessible by you.</p>
 
 <h4>Source Code</h4>
 <p>
     As of version v@(AppInfo.Version), @AppInfo.Name is entirely open source.<br/>
-    See GitHub repository here: <a href="@_repoUrl">@_repoUrl</a>
+    See GitHub repository here: <a href="@_repoUrl" target="_blank">@_repoUrl</a>
 </p>
 
 <h4>Hosting</h4>
-<p>Since @AppInfo.Name is powered by Blazor Client-side, this website is statically hosted on <a href="https://pages.github.com/">GitHub Pages</a>!</p>
+<p>Since @AppInfo.Name is powered by Blazor Client-side, this website is statically hosted on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>!</p>
 <p>
-    The build and publish is automated with <a href="https://github.com/features/actions">GitHub Actions</a>.<br/>
-    If you're silly and curious for some ridiculous reason, you can view the pipeline here: <a href="@_pipelineUrl">@_pipelineUrl</a>
+    The build and publish is automated with <a href="https://github.com/features/actions" target="_blank">GitHub Actions</a>.<br/>
+    If you're silly and curious for some ridiculous reason, you can view the pipeline here: <a href="@_pipelineUrl" target="_blank">@_pipelineUrl</a>
 </p>
 
 <h2>Changelog</h2>
+<h4>v0.2.2</h4>
+<ul>
+    <li>Links on <NavLink href="about">About</NavLink> page will now open in a new tab.</li>
+    <li>Language name in <NavLink href="generators/programming-standards">Programming Standards Generator</NavLink> is now limited to 100 characters.</li>
+    <li>Language name in <NavLink href="generators/programming-standards">Programming Standards Generator</NavLink> will now automatically be trimmed off leading and trailing whitespaces.</li>
+    <li>Fixed long words overflowing horizontally.</li>
+    <li>A tiny grammar fix on<NavLink href="about">About</NavLink> page.</li> 
+</ul>
 <h4>v0.2.1</h4>
 <ul>
     <li>Fixed bug that caused blank white space to appear on bottom on mobile screens.</li>

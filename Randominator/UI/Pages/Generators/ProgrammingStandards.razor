@@ -10,7 +10,7 @@
 
 <p>Programmers love-hate to argue about programming standards. Here's a generator to solve these arguments once for all!</p>
 
-<FormTextInput Placeholder="Language Name" ValueChanged="OnLanguageInput" HighlightError="_highlightPasswordError" ValidationResults="_errors" />
+<FormTextInput @ref=this._input Placeholder="Language Name (max 100 characters)" ValueChanged="OnLanguageInput" HighlightError="_highlightPasswordError" ValidationResults="_errors" MaxLength="100" />
 <button @onclick="GenerateNew" class="btn btn-secondary w-100 mt-1">Generate!</button>
 
 @if (_result != null)
@@ -46,6 +46,7 @@
     private string _resultURL = null;
     private string _copyClass = _copyUnclickedClass;
 
+    private FormTextInput _input;
     private List<InputValidationResult> _errors = new List<InputValidationResult>();
     private bool _highlightPasswordError = false;
 
@@ -76,6 +77,8 @@
             return;
         }
 
+        this.LanguageName = this.LanguageName.Trim();
+        this._input.SetValue(this.LanguageName);
         this._result = this.Generator.Generate(this.LanguageName);
         this._resultURL = NavigationManager.GetUriWithQueryParameter("lang", this._result.LanguageName);
         this._copyClass = _copyUnclickedClass;

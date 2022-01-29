@@ -50,7 +50,7 @@
         </p>
 
         <CodeSample ID="@this.CodeSampleID">
-            @BracketsFormatter.RenderCodeHtml($"public {this.NamingFormatter.Apply(Standard.StructNamingStyle, new string[] { "My", "Type" }, HungarianPart.Struct)}", "// struct members here", Standard.TypeBracketsStyle)
+            @BracketsFormatter.RenderCodeHtml($"public struct {this.NamingFormatter.Apply(Standard.StructNamingStyle, new string[] { "My", "Type" }, HungarianPart.Struct)}", "// struct members here", Standard.TypeBracketsStyle)
         </CodeSample>
     }
 </div>
