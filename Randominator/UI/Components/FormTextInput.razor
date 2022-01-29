@@ -43,10 +43,15 @@
     public IEnumerable<InputValidationResult> ValidationResults { get; set; }
     [Parameter]
     public int MaxLength { get; set; } = 524288;
-    
+
     [Parameter]
     public EventCallback<ChangeEventArgs> ValueChanged { get; set; }
-    
+
+    public void SetValue(string value)
+    {
+        this.Value = value;
+    }
+
     private Task OnValueChangedAsync(ChangeEventArgs e)
     {
         if (this.Value != null && this.Value.Length > this.MaxLength)
