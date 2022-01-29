@@ -39,12 +39,15 @@ jobs:
       run: dotnet publish --no-restore --nologo -c Release -o bin/publish
     - name: Run tests
       run: dotnet test --no-restore --nologo --verbosity normal
-    - name: Create 404.html
-      uses: canastro/copy-action@0.0.2
+    - name: Version static files
+      uses: jacobtomlinson/gha-find-replace@v2
       with:
-        source: 'bin/publish/wwwroot/index.html'
-        target: 'bin/publish/wwwroot/404.html'
-        flags: '-p -n'  # preserve params, and only copy if doesn't exist
+        find: '(?i)%%VERSION%%'
+        replace: ${{ github.run_id }}
+        regex: true
+        include: 'bin/publish/wwwroot/index.html'
+    - name: Create 404.html
+      run: 'cp -p -n bin/publish/wwwroot/index.html bin/publish/wwwroot/404.html'
     - name: Release to GitHub Pages
       if: (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event.inputs.releasePage == 'Y'
       uses: peaceiris/actions-gh-pages@v3
