@@ -78,7 +78,8 @@
         }
 
         this.LanguageName = this.LanguageName.Trim();
-        this._input.SetValue(this.LanguageName);
+        if (this._input != null)
+            this._input.SetValue(this.LanguageName);
         this._result = this.Generator.Generate(this.LanguageName);
         this._resultURL = NavigationManager.GetUriWithQueryParameter("lang", this._result.LanguageName);
         this._copyClass = _copyUnclickedClass;
