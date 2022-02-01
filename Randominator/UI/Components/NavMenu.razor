@@ -25,16 +25,16 @@
             </div>
             <hr/>
             <div class="nav-item px-3">
-                <a class="nav-link" @onclick="ToggleFunGenerators">
-                     <span class="bi bi-hypnotize" aria-hidden="true"></span> Fun Generators
+                <a class="nav-link" @onclick="ToggleMemeGenerators">
+                     <span class="bi bi-hypnotize" aria-hidden="true"></span> Meme Generators
                 </a>
             </div>
-            <div class="nav-item px-3 @this.FunGeneratorsClass">
+            <div class="nav-item px-3 @this.MemeGeneratorsClass">
                 <NavLink class="nav-link" href="generators/mobile-game-name">
                      <span class="bi bi-hypnotize" aria-hidden="true"></span> Mobile Game Name
                 </NavLink>
             </div>
-            <div class="nav-item px-3 @this.FunGeneratorsClass">
+            <div class="nav-item px-3 @this.MemeGeneratorsClass">
                 <NavLink class="nav-link" href="generators/programming-standards">
                      <span class="bi bi-hypnotize" aria-hidden="true"></span> Programming Standards
                 </NavLink>
@@ -53,11 +53,11 @@
 
 @code {
     private bool collapseNavMenu = true;
-    private bool collapseFunGenerators = false;
+    private bool collapseMemeGenerators = false;
 
     private string NavMenuClass => collapseNavMenu ? "collapse" : string.Empty;
     // TODO: remove false to unlock collapsing
-    private string FunGeneratorsClass => collapseFunGenerators && false ? "sub-item hidden" : "sub-item";
+    private string MemeGeneratorsClass => collapseMemeGenerators && false ? "sub-item hidden" : "sub-item";
 
     protected override void OnInitialized()
     {
@@ -68,8 +68,8 @@
     private void ToggleNavMenu()
         => collapseNavMenu = !collapseNavMenu;
 
-    private void ToggleFunGenerators()
-        => collapseFunGenerators = !collapseFunGenerators;
+    private void ToggleMemeGenerators()
+        => collapseMemeGenerators = !collapseMemeGenerators;
 
     private void OnLocationChanged(object sender, LocationChangedEventArgs e)
     {
