@@ -11,6 +11,7 @@ namespace TehGM.Randominator
         public static string Name => "Randominator";
         public static string Author => "TehGM";
         public static string AuthorWebsite => "https://tehgm.net";
+        public static string AuthorTwitter => "TehOriginalGM";
         public static string Version
         {
             get

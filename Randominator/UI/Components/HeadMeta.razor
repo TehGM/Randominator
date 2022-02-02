@@ -26,6 +26,8 @@
         @this.RenderTwitterCardsMeta("image", this.Image)
         @this.RenderTwitterCardsMeta("image:alt", this.ImageAltText)
         @this.RenderTwitterCardsMeta("card", string.IsNullOrWhiteSpace(this.Image) ? "summary" : "summary_large_image")
+        @this.RenderTwitterCardsMeta("twitter:site", $"@{AppInfo.AuthorTwitter}")
+        @this.RenderTwitterCardsMeta("twitter:creator", $"@{AppInfo.AuthorTwitter}")
     }
 
     @* additional content *@
