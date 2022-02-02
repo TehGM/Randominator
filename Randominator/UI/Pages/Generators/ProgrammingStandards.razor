@@ -7,8 +7,7 @@
 @inject NavigationManager NavigationManager
 
 <AppPageTitle Value="Programming Standards Generator" />
-<HeadMeta Title="Programming Standards Generator" 
-    Description="Generate style standards docs for any programming language you can possibly imagine." />
+<HeadMeta Title="@this._metaTitle" Description="@this._metaDescription" />
 
 <p>Programmers love-hate to argue about programming standards. Here's a generator to solve these arguments once for all!</p>
 
@@ -47,6 +46,8 @@
     private ProgrammingStandard _result = null;
     private string _resultURL = null;
     private string _copyClass = _copyUnclickedClass;
+    private string _metaTitle = "Programming Standards Generator";
+    private string _metaDescription = "Generate style standards docs for any programming language you can possibly imagine.";
 
     private List<InputValidationResult> _errors = new List<InputValidationResult>();
     private bool _highlightPasswordError = false;
@@ -83,6 +84,8 @@
         this._resultURL = NavigationManager.GetUriWithQueryParameter("lang", this._result.LanguageName);
         this._copyClass = _copyUnclickedClass;
         NavigationManager.NavigateTo(this._resultURL, false);
+        this._metaTitle = $"Programming Standards for {this.LanguageName}";
+        this._metaDescription = $"Check out the generated style standards for {this.LanguageName} language!";
     }
 
     private async Task OnCopyClickAsync()
