@@ -1,4 +1,6 @@
-﻿<HeadContent>
+﻿@inject NavigationManager Navigation
+
+<HeadContent>
     @* standard meta *@
     @this.RenderStandardMeta("description", this.Description)
     @this.RenderStandardMeta("application-name", AppInfo.Name)
@@ -13,6 +15,7 @@
         @this.RenderOpenGraphMeta("image:alt", this.ImageAltText)
         @this.RenderOpenGraphMeta("type", "website")
         @this.RenderOpenGraphMeta("site_name", @AppInfo.Name)
+        @this.RenderOpenGraphMeta("url", this.Navigation.Uri)
     }
 
     @* twitter cards *@
