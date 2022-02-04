@@ -8,6 +8,7 @@
     <NotFound>
         <PageTitle>Not found</PageTitle>
         <LayoutView Layout="@typeof(MainLayout)">
+            <HeadMeta Title="Page Not Found" SeoIndex="false" />
             <div class="d-flex flex-column justify-content-center align-items-center text-center" style="width: 100%; min-height: 100%;">
                 <h2>Well, seems nothing is here.</h2>
                 @if (_images.Any())
