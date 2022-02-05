@@ -7,7 +7,7 @@
 
         public string Location { get; }
         public string LastModified { get; init; }
-        public SitemapChangeFrequency ChangeFrequency { get; init; }
+        public SitemapChangeFrequency? ChangeFrequency { get; init; }
         public float Priority
         {
             get => this._priority;
@@ -23,7 +23,7 @@
         {
             this.Location = location;
             this.Priority = 0.5f;
-            this.ChangeFrequency = SitemapChangeFrequency.Yearly;
+            this.ChangeFrequency = null;
             this.LastModified = null;
         }
 
