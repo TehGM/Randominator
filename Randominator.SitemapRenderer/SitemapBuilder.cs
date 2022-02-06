@@ -76,7 +76,7 @@ namespace Randominator.SitemapRenderer
             string loc = $"{this._scheme}://{this._host}{Escape(location)}";
             string priorityValue = priority.ToString("0.0", CultureInfo.InvariantCulture);
             string changefreq = changeFrequency?.ToString().ToLowerInvariant();
-            string lastmod = lastModified?.ToString("yyyy-MM-ddTHH:mm:sszzz");
+            string lastmod = lastModified?.ToString("yyyy-MM-dd");
 
             lock (this._builder)
             {
