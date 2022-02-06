@@ -19,6 +19,15 @@
             }
         }
 
+        public SitemapAttribute(string location, SitemapChangeFrequency changeFrequency)
+            : this(location)
+        {
+            this.ChangeFrequency = changeFrequency;
+        }
+
+        public SitemapAttribute(SitemapChangeFrequency changeFrequency)
+            : this(null, changeFrequency) { }
+
         public SitemapAttribute(string location)
         {
             this.Location = location;
