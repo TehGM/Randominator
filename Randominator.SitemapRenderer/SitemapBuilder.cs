@@ -73,7 +73,7 @@ namespace Randominator.SitemapRenderer
                 return;
             }
 
-            string url = $"{this._scheme}://{this._host}{location}";
+            string loc = $"{this._scheme}://{this._host}{location}";
             string priorityValue = priority.ToString("0.0", CultureInfo.InvariantCulture);
             string changefreq = changeFrequency?.ToString().ToLowerInvariant();
             string lastmod = lastModified?.ToString("yyyy-MM-ddTHH:mm:sszzz");
@@ -82,7 +82,7 @@ namespace Randominator.SitemapRenderer
             {
                 // ok, XmlSerializer was failing me when it comes to lastmod prop... let's just do it manually
                 this._builder.Append("<url>");
-                this._builder.AppendFormat("<loc>{0}</loc>", url);
+                this._builder.AppendFormat("<loc>{0}</loc>", loc);
                 this._builder.AppendFormat("<priority>{0}</priority>", priorityValue);
                 if (changefreq != null)
                     this._builder.AppendFormat("<changefreq>{0}</changefreq>", changefreq);
@@ -92,7 +92,7 @@ namespace Randominator.SitemapRenderer
             }
 
             Log.Debug("Sitemap node for route {Route} built: loc = {Location}; priority = {Priority}; changefreq = {ChangeFrequency}; lastmod = {LastModified}",
-                location, url, priorityValue, changefreq ?? "null", lastmod ?? "null");
+                location, loc, priorityValue, changefreq ?? "null", lastmod ?? "null");
         }
 
         public string Build()
