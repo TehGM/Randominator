@@ -60,3 +60,5 @@ Disallow: /
 
 User-agent: ZoominfoBot
 Disallow: /
+
+Sitemap: https://randominator.tehgm.net/sitemap.xml
