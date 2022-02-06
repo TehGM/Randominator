@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using CommandLine;
 using Serilog;
 
@@ -23,7 +24,7 @@ namespace Randominator.SitemapRenderer
             string filepath = Path.GetFullPath(Path.Combine(options.OutputDirectory, options.OutputFile));
             Log.Information("Writing to {FilePath}", filepath);
             using FileStream file = File.Create(filepath);
-            using StreamWriter writer = new StreamWriter(file);
+            using StreamWriter writer = new StreamWriter(file, Encoding.UTF8);
             writer.Write(output);
         }
 
