@@ -38,7 +38,8 @@ namespace Randominator.SitemapRenderer
             string location = sitemapAttribute?.Location;
             if (location == null)
             {
-                Log.Logger.Debug("Sitemap attribute for {PageType} not found, checking route", pageType.FullName);
+                if (sitemapAttribute == null)
+                    Log.Logger.Debug("Sitemap attribute for {PageType} not found, checking route", pageType.FullName);
 
                 RouteAttribute routeAttribute = pageType.GetCustomAttribute<RouteAttribute>();
                 if (routeAttribute == null)
