@@ -50,6 +50,7 @@ namespace Randominator.SitemapRenderer
                 location = routeAttribute.Template;
             }
 
+            // if we haven't found any location for the page, it's literally impossible to generate a valid sitemap node for it
             if (location == null)
                 return;
 
@@ -66,7 +67,6 @@ namespace Randominator.SitemapRenderer
                 throw new ArgumentNullException(nameof(location));
 
             Log.Information("Building sitemap node for route {Route}", location);
-
             if (!location.StartsWith('/') || _invalidRouteRegex.IsMatch(location))
             {
                 Log.Error("Route {Route} is not a valid sitemap route", location);
@@ -80,7 +80,6 @@ namespace Randominator.SitemapRenderer
 
             lock (this._builder)
             {
-                // ok, XmlSerializer was failing me when it comes to lastmod prop... let's just do it manually
                 this._builder.Append("<url>");
                 this._builder.AppendFormat("<loc>{0}</loc>", loc);
                 this._builder.AppendFormat("<priority>{0}</priority>", priorityValue);
