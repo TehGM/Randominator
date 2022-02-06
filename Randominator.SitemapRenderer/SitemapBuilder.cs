@@ -12,7 +12,7 @@ namespace Randominator.SitemapRenderer
     internal class SitemapBuilder
     {
         private const float _defaultPriority = 0.5f;
-        private static readonly Regex _invalidRouteRegex = new Regex(@"^[^A-Za-z0-9-_/.%\\/]$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
+        private static readonly Regex _invalidRouteRegex = new Regex(@"^[^A-Za-z0-9-&'""<> _/.%\\/]$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
 
         private readonly StringBuilder _builder;
         private readonly string _scheme;
@@ -73,7 +73,7 @@ namespace Randominator.SitemapRenderer
                 return;
             }
 
-            string loc = $"{this._scheme}://{this._host}{location}";
+            string loc = $"{this._scheme}://{this._host}{Escape(location)}";
             string priorityValue = priority.ToString("0.0", CultureInfo.InvariantCulture);
             string changefreq = changeFrequency?.ToString().ToLowerInvariant();
             string lastmod = lastModified?.ToString("yyyy-MM-ddTHH:mm:sszzz");
@@ -92,6 +92,17 @@ namespace Randominator.SitemapRenderer
 
             Log.Debug("Sitemap node for route {Route} built: loc = {Location}; priority = {Priority}; changefreq = {ChangeFrequency}; lastmod = {LastModified}",
                 location, loc, priorityValue, changefreq ?? "null", lastmod ?? "null");
+        }
+
+        private static string Escape(string input)
+        {
+            return input
+                .Replace("&", "&amp;")
+                .Replace("'", "&apos;")
+                .Replace("\"", "&quot;")
+                .Replace(">", "&gt;")
+                .Replace("<", "&lt;")
+                .Replace(" ", "%20");
         }
 
         public string Build()
