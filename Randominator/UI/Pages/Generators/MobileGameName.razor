@@ -2,6 +2,7 @@
 @using TehGM.Randominator.Generators.MobileGameName
 @inject IMobileGameNameGenerator _generator
 @inject IOptionsSnapshot<MobileGameNameOptions> _options
+@attribute [Sitemap(SitemapChangeFrequency.Always)]
 
 <AppPageTitle Value="Mobile Game Name Generator"/>
 <HeadMeta Title="Mobile Game Name Generator" 

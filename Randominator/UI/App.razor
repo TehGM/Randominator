@@ -1,4 +1,6 @@
-﻿@inject IRandomizer Random
+﻿@using TehGM.Randominator.UI.Pages
+@inject IRandomizer Random
+@attribute [SitemapIgnore]
 
 <Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
