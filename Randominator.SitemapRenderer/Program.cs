@@ -21,7 +21,7 @@ namespace Randominator.SitemapRenderer
                 builder.AddRoute(page);
             string output = builder.Build();
             string filepath = Path.GetFullPath(Path.Combine(options.OutputDirectory, options.OutputFile));
-            Log.Logger.Information("Writing to {FilePath}", filepath);
+            Log.Information("Writing to {FilePath}", filepath);
             using FileStream file = File.Create(filepath);
             using StreamWriter writer = new StreamWriter(file);
             writer.Write(output);
@@ -43,7 +43,7 @@ namespace Randominator.SitemapRenderer
 
             AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
             {
-                Log.Logger.Fatal((Exception)e.ExceptionObject, "An unhandled exception has occured");
+                Log.Fatal((Exception)e.ExceptionObject, "An unhandled exception has occured");
             };
         }
 

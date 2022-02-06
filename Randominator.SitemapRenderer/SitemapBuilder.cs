@@ -29,7 +29,7 @@ namespace Randominator.SitemapRenderer
 
         public void AddRoute(Type pageType)
         {
-            Log.Logger.Verbose("Getting location for page {PageType}", pageType.FullName);
+            Log.Verbose("Getting location for page {PageType}", pageType.FullName);
 
             // if route has explicit sitemap attribute, this always takes priority
             SitemapAttribute sitemapAttribute = pageType.GetCustomAttribute<SitemapAttribute>();
@@ -39,12 +39,12 @@ namespace Randominator.SitemapRenderer
             if (location == null)
             {
                 if (sitemapAttribute == null)
-                    Log.Logger.Debug("Sitemap attribute for {PageType} not found, checking route", pageType.FullName);
+                    Log.Debug("Sitemap attribute for {PageType} not found, checking route", pageType.FullName);
 
                 RouteAttribute routeAttribute = pageType.GetCustomAttribute<RouteAttribute>();
                 if (routeAttribute == null)
                 {
-                    Log.Logger.Error("Type {PageType} does not have a route and isn't a valid Blazor page", pageType.FullName);
+                    Log.Error("Type {PageType} does not have a route and isn't a valid Blazor page", pageType.FullName);
                     return;
                 }
                 location = routeAttribute.Template;
@@ -65,11 +65,11 @@ namespace Randominator.SitemapRenderer
             if (string.IsNullOrWhiteSpace(location))
                 throw new ArgumentNullException(nameof(location));
 
-            Log.Logger.Information("Building sitemap node for route {Route}", location);
+            Log.Information("Building sitemap node for route {Route}", location);
 
             if (!location.StartsWith('/') || _invalidRouteRegex.IsMatch(location))
             {
-                Log.Logger.Error("Route {Route} is not a valid sitemap route", location);
+                Log.Error("Route {Route} is not a valid sitemap route", location);
                 return;
             }
 
