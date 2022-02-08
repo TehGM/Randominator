@@ -51,7 +51,7 @@ public class Program
 
         ConfigureLogging(builder);
         ConfigureOptions(builder.Services, builder.Configuration);
-        ConfigureServices(builder.Services);
+        ConfigureServices(builder.Services, builder.HostEnvironment.BaseAddress);
 
         await builder.Build().RunAsync();
     }
@@ -60,7 +60,7 @@ public class Program
     {
     }
 
-    private static void ConfigureServices(IServiceCollection services)
+    private static void ConfigureServices(IServiceCollection services, string baseAddress)
     {
         // utilities
         services.AddRandomizer();
