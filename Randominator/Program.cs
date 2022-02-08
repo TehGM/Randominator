@@ -21,6 +21,8 @@ public class Program
     {
         // add default logger for errors that happen before host runs
         Log.Logger = new LoggerConfiguration()
+                    .MinimumLevel.Error()
+                    .WriteTo.BrowserConsole()
                     .WriteTo.Console()
                     .CreateLogger();
         // capture unhandled exceptions
