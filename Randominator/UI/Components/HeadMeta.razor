@@ -12,6 +12,7 @@
     }
 
     @* standard meta *@
+    <PageTitle>@this.GetPageTitle()</PageTitle>
     @this.RenderStandardMeta("title", this.Title)
     @this.RenderStandardMeta("description", this.Description)
     @this.RenderStandardMeta("application-name", AppInfo.Name)
@@ -68,6 +69,12 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
+    // header
+    [Parameter]
+    public string HeaderTitle { get; set; }
+    [CascadingParameter]
+    public MainLayout BaseLayout { get; set; }
+
     // conditional rendering
     public RenderFragment RenderStandardMeta(string type, string value)
     {
@@ -81,4 +88,20 @@
 
     public RenderFragment RenderTwitterCardsMeta(string type, string value)
         => this.RenderStandardMeta($"twitter:{type}", value);
+
+    private string GetPageTitle()
+    {
+        if (string.IsNullOrWhiteSpace(this.Title))
+            return AppInfo.Name;
+        return $"{this.Title} - {AppInfo.Name}";
+    }
+
+    protected override void OnParametersSet()
+    {
+        if (this.BaseLayout != null)
+        {
+            string headerTitle = this.HeaderTitle ?? this.Title;
+            this.BaseLayout.Header.SetTitle(headerTitle);
+        }
+    }
 }

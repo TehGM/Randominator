@@ -1,8 +1,6 @@
 ﻿@page "/"
 @attribute [Sitemap(SitemapChangeFrequency.Monthly, Priority = 0.8f, LastModified = "2022-01-26T18:36:08+01:00")]
 
-<AppPageTitle Value="Home" HeaderOverride="" />
-
 <h1>Welcome to @AppInfo.Name v@(AppInfo.Version)</h1>
 <p><span class="text-special bold">@AppInfo.Name</span> is a client-side website featuring a "random" set of random (or not) generators that I programmed.</p>
 <p>This application is created purely for fun, so I cannot make any promises on any further improvements - but if I get an idea for a generator, I might add it (if I feel like it)!</p>
@@ -31,5 +29,6 @@
     {
         base.OnInitialized();
         this.Layout.OverwriteFooterItems(null);
+        this.Layout.Header.SetTitle(null);
     }
 }
