@@ -73,21 +73,12 @@
     {
         if (string.IsNullOrWhiteSpace(value))
             return null;
-        return 
-    @<meta name="@type" content="@value" />;
+        return @<meta name="@type" content="@value" />;
     }
 
     public RenderFragment RenderOpenGraphMeta(string type, string value)
-    {
-        if (string.IsNullOrWhiteSpace(value))
-            return null;
-        return @<meta property="og:@type" content="@value" />;
-    }
-    
+        => this.RenderStandardMeta($"og:{type}", value);
+
     public RenderFragment RenderTwitterCardsMeta(string type, string value)
-    {
-        if (string.IsNullOrWhiteSpace(value))
-            return null;
-        return @<meta name="twitter:@type" content="@value" />;
-    }
+        => this.RenderStandardMeta($"twitter:{type}", value);
 }
