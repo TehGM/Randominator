@@ -48,7 +48,7 @@
   </Target>
 
   <ItemGroup>
-    <PackageReference Include="BlazorWasmPreRendering.Build" Version="1.0.0-preview.14.0" />
+    <PackageReference Include="BlazorWasmPreRendering.Build" Version="1.0.0-preview.15.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
