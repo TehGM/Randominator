@@ -101,7 +101,7 @@
         if (this.BaseLayout != null)
         {
             string headerTitle = this.HeaderTitle ?? this.Title;
-            this.BaseLayout.Header.SetTitle(headerTitle);
+            this.BaseLayout?.Header?.SetTitle(headerTitle);
         }
     }
 }
