@@ -10,12 +10,18 @@ main {
     display: flex;
     flex-direction: column;
     background-color: var(--background-color);
+    overflow: hidden;
 }
 
 article {
     padding-bottom: 20px;
     max-width: 1320px;
     flex: 1 0 auto;
+
+    &.w-100 {
+        max-width: 100%;
+        width: 100%;
+    }
 }
 
 .sidebar {
@@ -44,4 +50,8 @@ article {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
     }
+}
+
+article.no-padding {
+    padding: 0 !important;
 }

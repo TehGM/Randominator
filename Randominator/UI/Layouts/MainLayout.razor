@@ -11,10 +11,13 @@
     
         <main>
             <PageHeader @ref="this.Header"></PageHeader>
-            <article class="content px-4 @_articleAdditionalClass">
+            <article class="@this.BuildArticleClass()">
                 @Body
             </article>
-            <PageFooter @ref="this.Footer" Items="@this.FooterItems"></PageFooter>
+            @if (!this.DisableFooter)
+            {
+                <PageFooter @ref="this.Footer" Items="@this.FooterItems"></PageFooter>
+            }
         </main>
     </div>
 </CascadingValue>
@@ -24,6 +27,39 @@
     public PageFooter Footer { get; private set; }
     public string ThemeCSS { get; private set; } = "sunset";
     public ICollection<PageFooter.Item> FooterItems { get; private set; }
+
+    // style control
+    private string _articleAdditionalClass;
+    private bool _disablePadding = false;
+    private bool _disableFooter = false;
+    private bool _fullWidth = false;
+    public bool DisablePadding 
+    {
+        get => this._disablePadding;
+        set
+        {
+            this._disablePadding = value;
+            base.StateHasChanged();
+        }
+    }
+    public bool DisableFooter 
+    {
+        get => this._disableFooter;
+        set
+        {
+            this._disableFooter = value;
+            base.StateHasChanged();
+        }
+    }
+    public bool FullWidth 
+    {
+        get => this._fullWidth;
+        set
+        {
+            this._fullWidth = value;
+            base.StateHasChanged();
+        }
+    }
     public string ArticleAdditionalClass 
     {
         get => this._articleAdditionalClass;
@@ -33,7 +69,6 @@
             base.StateHasChanged();
         }
     }
-    private string _articleAdditionalClass;
 
     public void OverwriteFooterItems(IEnumerable<PageFooter.Item> items)
     {
@@ -45,5 +80,20 @@
     {
         this.ThemeCSS = themeCss;
         base.StateHasChanged();
+    }
+
+    private string BuildArticleClass()
+    {
+        List<string> classes = new List<string>
+        {
+            "content", "px-4"
+        };
+        if (this.DisablePadding)
+            classes.Add("no-padding");
+        if (this.FullWidth)
+            classes.Add("w-100");
+        if (!string.IsNullOrWhiteSpace(this.ArticleAdditionalClass))
+            classes.Add(this.ArticleAdditionalClass);
+        return string.Join(' ', classes);
     }
 }
