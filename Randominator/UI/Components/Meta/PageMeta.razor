@@ -73,7 +73,7 @@
     [Parameter]
     public string HeaderTitle { get; set; }
     [CascadingParameter]
-    public MainLayout BaseLayout { get; set; }
+    public BaseLayout BaseLayout { get; set; }
 
     // conditional rendering
     public RenderFragment RenderStandardMeta(string type, string value)

@@ -1,99 +1,24 @@
 ﻿@inherits LayoutComponentBase
+@layout BaseLayout
 
 <CascadingValue Value=this IsFixed=true>
-    <PageMeta Title="@AppInfo.Name"
-        Description="A set of randomizing generators. Generate countless values, data sets, memes, jokes and more!" />
-
-    <div class="page" theme="@this.ThemeCSS">
-        <div class="sidebar">
-            <NavMenu />
-        </div>
-    
-        <main>
-            <PageHeader @ref="this.Header"></PageHeader>
-            <article class="@this.BuildArticleClass()">
-                @Body
-            </article>
-            @if (!this.DisableFooter)
-            {
-                <PageFooter @ref="this.Footer" Items="@this.FooterItems"></PageFooter>
-            }
-        </main>
-    </div>
+    <article class="content px-4">
+        @Body
+    </article>
+    <PageFooter @ref="this.Footer" Items="@this.FooterItems"></PageFooter>
 </CascadingValue>
 
 @code {
-    public PageHeader Header { get; private set; }
-    public PageFooter Footer { get; private set; }
-    public string ThemeCSS { get; private set; } = "sunset";
-    public ICollection<PageFooter.Item> FooterItems { get; private set; }
+    [CascadingParameter]
+    private BaseLayout BaseLayout { get; set; }
 
-    // style control
-    private string _articleAdditionalClass;
-    private bool _disablePadding = false;
-    private bool _disableFooter = false;
-    private bool _fullWidth = false;
-    public bool DisablePadding 
-    {
-        get => this._disablePadding;
-        set
-        {
-            this._disablePadding = value;
-            base.StateHasChanged();
-        }
-    }
-    public bool DisableFooter 
-    {
-        get => this._disableFooter;
-        set
-        {
-            this._disableFooter = value;
-            base.StateHasChanged();
-        }
-    }
-    public bool FullWidth 
-    {
-        get => this._fullWidth;
-        set
-        {
-            this._fullWidth = value;
-            base.StateHasChanged();
-        }
-    }
-    public string ArticleAdditionalClass 
-    {
-        get => this._articleAdditionalClass;
-        set
-        {
-            this._articleAdditionalClass = value;
-            base.StateHasChanged();
-        }
-    }
+    public PageHeader Header => this.BaseLayout.Header;
+    public PageFooter Footer { get; private set; }
+    public ICollection<PageFooter.Item> FooterItems { get; private set; }
 
     public void OverwriteFooterItems(IEnumerable<PageFooter.Item> items)
     {
         this.FooterItems = items != null ? new List<PageFooter.Item>(items) : null;
         base.StateHasChanged();
-    }
-
-    public void ChangeTheme(string themeCss)
-    {
-        this.ThemeCSS = themeCss;
-        base.StateHasChanged();
-    }
-
-    private string BuildArticleClass()
-    {
-        List<string> classes = new List<string>
-        {
-            "content", "px-4"
-        };
-        if (this.DisablePadding)
-            classes.Add("no-padding");
-        if (this.FullWidth)
-            classes.Add("w-100");
-        if (!string.IsNullOrWhiteSpace(this.ArticleAdditionalClass))
-            classes.Add(this.ArticleAdditionalClass);
-        return string.Join(' ', classes);
     }
 }
