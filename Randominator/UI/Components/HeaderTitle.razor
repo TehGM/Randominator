@@ -1,0 +1,12 @@
+﻿@code {
+    [CascadingParameter]
+    public BaseLayout Layout { get; set; }
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        this.Layout.Header.SetTitle(this.ChildContent);
+        base.OnParametersSet();
+    }
+}

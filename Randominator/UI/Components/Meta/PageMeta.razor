@@ -69,12 +69,6 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
-    // header
-    [Parameter]
-    public string HeaderTitle { get; set; }
-    [CascadingParameter]
-    public BaseLayout BaseLayout { get; set; }
-
     // conditional rendering
     public RenderFragment RenderStandardMeta(string type, string value)
     {
@@ -94,14 +88,5 @@
         if (string.IsNullOrWhiteSpace(this.Title))
             return AppInfo.Name;
         return $"{this.Title} - {AppInfo.Name}";
-    }
-
-    protected override void OnParametersSet()
-    {
-        if (this.BaseLayout != null)
-        {
-            string headerTitle = this.HeaderTitle ?? this.Title;
-            this.BaseLayout?.Header?.SetTitle(headerTitle);
-        }
     }
 }
