@@ -123,13 +123,4 @@
 @code {
     private const string _repoUrl = "https://github.com/TehGM/Randominator";
     private const string _pipelineUrl = "https://github.com/TehGM/Randominator/blob/master/.github/workflows/dotnet-build.yml";
-
-    [CascadingParameter]
-    public MainLayout Layout { get; set; }
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        this.Layout.OverwriteFooterItems(null);
-    }
 }

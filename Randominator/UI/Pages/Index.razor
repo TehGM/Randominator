@@ -22,14 +22,3 @@
 </p>
 
 <Doofen FileName="creator-rage"/>
-
-@code {
-    [CascadingParameter]
-    public MainLayout Layout { get; set; }
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        this.Layout.OverwriteFooterItems(null);
-    }
-}
