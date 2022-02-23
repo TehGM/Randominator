@@ -50,8 +50,7 @@ public class Program
         await builder.Configuration.AddJsonFileAsync(client, $"appsettings.{builder.HostEnvironment.Environment}.json", optional: true).ConfigureAwait(false);
 
         ConfigureLogging(builder);
-        ConfigureOptions(builder.Services, builder.Configuration);
-        ConfigureServices(builder.Services, builder.HostEnvironment.BaseAddress);
+        ConfigureServices(builder.Services, builder.HostEnvironment.BaseAddress, builder.Configuration);
 
         await builder.Build().RunAsync();
     }
@@ -60,8 +59,11 @@ public class Program
     {
     }
 
-    private static void ConfigureServices(IServiceCollection services, string baseAddress)
+    private static void ConfigureServices(IServiceCollection services, string baseAddress, IConfiguration configuration)
     {
+        // options
+        ConfigureOptions(services, configuration);
+
         // utilities
         services.AddRandomizer();
         services.AddClipboard();
