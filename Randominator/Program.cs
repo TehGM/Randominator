@@ -12,6 +12,7 @@ using Serilog;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http;
+using TehGM.Randominator.Features.Player;
 
 namespace TehGM.Randominator;
 
@@ -57,6 +58,7 @@ public class Program
 
     private static void ConfigureOptions(IServiceCollection services, IConfiguration configuration)
     {
+        services.Configure<PlayerOptions>(configuration.GetSection("Player"));
     }
 
     private static void ConfigureServices(IServiceCollection services, string baseAddress, IConfiguration configuration)
@@ -71,6 +73,9 @@ public class Program
         // generators
         services.AddMobileGameNameGenerator();
         services.AddProgrammingStandardsGenerator();
+
+        // features
+        services.AddPlayer();
     }
 
     private static void ConfigureLogging(WebAssemblyHostBuilder builder)

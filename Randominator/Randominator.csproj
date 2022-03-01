@@ -47,8 +47,13 @@
   	<Exec Command="webcompiler -r UI -c webcompiler.json" StandardOutputImportance="high" />
   </Target>
 
+  <!-- PRERENDERING -->
+  <PropertyGroup>
+	<BlazorWasmPrerenderingUrlPathToExplicitFetch>/player</BlazorWasmPrerenderingUrlPathToExplicitFetch>
+  </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="BlazorWasmPreRendering.Build" Version="1.0.0-preview.15.0" />
+    <PackageReference Include="BlazorWasmPreRendering.Build" Version="1.0.0-preview.19.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
