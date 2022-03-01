@@ -19,9 +19,13 @@
             if (!string.IsNullOrWhiteSpace(style.NormalSuffix))
                 AddWordTrailing(style.NormalSuffix);
 
+            // prefixes like _ will cause camelCase to become PascalCase
+            // for this reason, we need to find index of actual leading word
+            int leadingWordIndex = IsLeadingWord(results.First()) ? 0 : 1;
+
             // apply style to each word
             for (int i = 0; i < results.Count; i++)
-                results[i] = formatter.ApplyToWord(style, results[i], i == 0);
+                results[i] = formatter.ApplyToWord(style, results[i], i <= leadingWordIndex);
 
             // merge words and return
             return formatter.MergeWords(style, results);
@@ -30,6 +34,8 @@
                 => results.InsertRange(0, word.Split(' '));
             void AddWordTrailing(string word)
                 => results.AddRange(word.Split(' '));
+            bool IsLeadingWord(string word)
+                => word.All(c => char.IsDigit(c) || char.IsLetter(c));
         }
 
         public static string ApplyToWord(this INamingStyleFormatter formatter, NamingStyle style, string word, bool isLeading = false)
