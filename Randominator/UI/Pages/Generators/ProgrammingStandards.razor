@@ -14,7 +14,7 @@
 
 <p>Programmers love-hate to argue about programming standards. Here's a generator to solve these arguments once for all!</p>
 
-<FormTextInput Value="@this.LanguageName" Placeholder="Language Name (max 100 characters)" ValueChanged="OnLanguageInput" HighlightError="_highlightPasswordError" ValidationResults="_errors" MaxLength="100" />
+<FormTextInput Value="@this.LanguageName" Placeholder="Language Name (max 100 characters)" ValueChanged="OnLanguageInput" HighlightError="_highlightPasswordError" ValidationResults="_errors" MaxLength="100" OnEnter="OnGenerateClicked" />
 <button @onclick="OnGenerateClicked" class="btn btn-secondary w-100 mt-1">Generate!</button>
 
 @if (_result != null)

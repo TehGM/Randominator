@@ -12,7 +12,7 @@
             }
         </div>
     }
-    <input class="form-control" @oninput="OnValueChangedAsync" @bind="Value" placeholder="@Placeholder" type="@(IsPassword ? "password" : "text")" maxlength="@this.MaxLength"/>
+    <input class="form-control" @onkeydown="OnEnterPressedAsync" @oninput="OnValueChangedAsync" @bind="Value" placeholder="@Placeholder" type="@(IsPassword ? "password" : "text")" maxlength="@this.MaxLength"/>
 </div>
 
 @if (ValidationResults?.Any() == true)
@@ -43,6 +43,8 @@
     public IEnumerable<InputValidationResult> ValidationResults { get; set; }
     [Parameter]
     public int MaxLength { get; set; } = 524288;
+    [Parameter]
+    public EventCallback<KeyboardEventArgs> OnEnter { get; set; }
 
     [Parameter]
     public EventCallback<ChangeEventArgs> ValueChanged { get; set; }
@@ -55,5 +57,14 @@
             e.Value = this.Value;
         }
         return this.ValueChanged.InvokeAsync(e);
+    }
+
+    private Task OnEnterPressedAsync(KeyboardEventArgs e)
+    {
+        if (!this.OnEnter.HasDelegate)
+            return Task.CompletedTask;
+        if (e.Code != "Enter" && e.Code != "NumpadEnter")
+            return Task.CompletedTask;
+        return this.OnEnter.InvokeAsync(e);
     }
 }
