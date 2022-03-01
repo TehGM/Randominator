@@ -16,7 +16,10 @@
                 @if (_images.Any())
                 {
                     this._imgPath = this.Random.GetRandomValue(_images);
-                    <img src="@this._imgPath" style="max-width: 80%;" alt="Route not found." />
+                    @if (!string.IsNullOrWhiteSpace(this._imgPath))
+                    {
+                        <img src="@this._imgPath" style="max-width: 80%;" />
+                    }
                 }
                 <span style="margin-top:50px;">Return <a href=""><span class="oi oi-home" aria-hidden="true" />home</a>.</span>
             </div>
