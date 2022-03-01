@@ -15,7 +15,7 @@
 <p>Programmers love-hate to argue about programming standards. Here's a generator to solve these arguments once for all!</p>
 
 <FormTextInput Value="@this.LanguageName" Placeholder="Language Name (max 100 characters)" ValueChanged="OnLanguageInput" HighlightError="_highlightPasswordError" ValidationResults="_errors" MaxLength="100" />
-<button @onclick="GenerateNew" class="btn btn-secondary w-100 mt-1">Generate!</button>
+<button @onclick="OnGenerateClicked" class="btn btn-secondary w-100 mt-1">Generate!</button>
 
 @if (_result != null)
 {
@@ -67,28 +67,38 @@
     private void OnLanguageInput(ChangeEventArgs e)
     {
         this.LanguageName = e.Value.ToString();
-        _highlightPasswordError = false;
-        _errors.Clear();
+        this._highlightPasswordError = false;
+        this._errors.Clear();
+    }
+
+    private void OnGenerateClicked()
+    {
+        this.UpdateLanguageURL();
+        this.NavigationManager.NavigateTo(this._resultURL, false);
     }
 
     public void GenerateNew()
     {
-        _errors.Clear();
+        this._errors.Clear();
 
         if (string.IsNullOrWhiteSpace(this.LanguageName))
         {
-            _errors.Add("Please give us the language name!");
-            _highlightPasswordError = true;
+            this._errors.Add("Please give us the language name!");
+            this._highlightPasswordError = true;
             return;
         }
 
-        this.LanguageName = this.LanguageName.Trim();
+        this.UpdateLanguageURL();
         this._result = this.Generator.Generate(this.LanguageName);
-        this._resultURL = NavigationManager.GetUriWithQueryParameter("lang", this._result.LanguageName);
         this._copyClass = _copyUnclickedClass;
-        NavigationManager.NavigateTo(this._resultURL, false);
         this._metaTitle = $"Programming Standards for {this.LanguageName}";
         this._metaDescription = $"Check out the generated style standards for {this.LanguageName} language!";
+    }
+
+    private void UpdateLanguageURL()
+    {
+        this.LanguageName = this.LanguageName.Trim();
+        this._resultURL = this.NavigationManager.GetUriWithQueryParameter("lang", this.LanguageName);
     }
 
     private async Task OnCopyClickAsync()
