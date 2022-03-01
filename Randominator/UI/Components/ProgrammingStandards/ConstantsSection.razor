@@ -35,8 +35,8 @@
         }
 
         <CodeSample ID="@this.CodeSampleID">
-            @($"public const int {this.NamingFormatter.Apply(Standard.ConstantNamingStyle, new string[] { "First", "Member" }, HungarianPart.Integer)};")<br/>
-            @($"public const string {this.NamingFormatter.Apply(Standard.ConstantNamingStyle, new string[] { "Second", "Member" }, HungarianPart.String)};")
+            @($"public const int {this.NamingFormatter.ApplyStyle(Standard.ConstantNamingStyle, new string[] { "First", "Member" }, HungarianPart.Integer)};")<br/>
+            @($"public const string {this.NamingFormatter.ApplyStyle(Standard.ConstantNamingStyle, new string[] { "Second", "Member" }, HungarianPart.String)};")
         </CodeSample>
     }
 </div>

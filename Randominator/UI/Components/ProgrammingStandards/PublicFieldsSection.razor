@@ -46,8 +46,8 @@
         }
 
         <CodeSample ID="@this.CodeSampleID">
-            @($"public int {this.NamingFormatter.Apply(Standard.PublicFieldNamingStyle, new string[] { "First", "Member" }, HungarianPart.Integer)};")<br/>
-            @($"public string {this.NamingFormatter.Apply(Standard.PublicFieldNamingStyle, new string[] { "Second", "Member" }, HungarianPart.String)};")
+            @($"public int {this.NamingFormatter.ApplyStyle(Standard.PublicFieldNamingStyle, new string[] { "First", "Member" }, HungarianPart.Integer)};")<br/>
+            @($"public string {this.NamingFormatter.ApplyStyle(Standard.PublicFieldNamingStyle, new string[] { "Second", "Member" }, HungarianPart.String)};")
         </CodeSample>
     }
 </div>

@@ -15,6 +15,6 @@
 
     <CodeSample ID="@this.CodeSampleID">
         @BracketsFormatter.RenderCodeHtml(
-            $"public void {this.NamingFormatter.Apply(Standard.MethodNamingStyle, new string[] { "My", "Method" }, null)}(int {this.NamingFormatter.Apply(Standard.MethodArgumentNamingStyle, new string[] { "first", "arg" }, HungarianPart.Integer)}, string {this.NamingFormatter.Apply(Standard.MethodArgumentNamingStyle, new string[] { "second", "arg" }, HungarianPart.String)})", "// logic code here", Standard.MethodBracketsStyle)
+            $"public void {this.NamingFormatter.ApplyStyle(Standard.MethodNamingStyle, new string[] { "My", "Method" }, null)}(int {this.NamingFormatter.ApplyStyle(Standard.MethodArgumentNamingStyle, new string[] { "first", "arg" }, HungarianPart.Integer)}, string {this.NamingFormatter.ApplyStyle(Standard.MethodArgumentNamingStyle, new string[] { "second", "arg" }, HungarianPart.String)})", "// logic code here", Standard.MethodBracketsStyle)
     </CodeSample>
 </div>

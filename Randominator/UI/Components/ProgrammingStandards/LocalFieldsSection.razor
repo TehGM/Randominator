@@ -16,7 +16,7 @@
     </p>
 
     <CodeSample ID="@this.CodeSampleID">
-        @BracketsFormatter.RenderCodeHtml($"public void {this.NamingFormatter.Apply(Standard.MethodNamingStyle, new string[] { "My", "Method" }, null)}()", 
-        $"int {this.NamingFormatter.Apply(Standard.LocalFieldNamingStyle, new string[] { "First", "Member" }, HungarianPart.Integer)};<br/>    string {this.NamingFormatter.Apply(Standard.LocalFieldNamingStyle, new string[] { "Second", "Member" }, HungarianPart.String)};", Standard.MethodBracketsStyle)
+        @BracketsFormatter.RenderCodeHtml($"public void {this.NamingFormatter.ApplyStyle(Standard.MethodNamingStyle, new string[] { "My", "Method" }, null)}()", 
+        $"int {this.NamingFormatter.ApplyStyle(Standard.LocalFieldNamingStyle, new string[] { "First", "Member" }, HungarianPart.Integer)};<br/>    string {this.NamingFormatter.ApplyStyle(Standard.LocalFieldNamingStyle, new string[] { "Second", "Member" }, HungarianPart.String)};", Standard.MethodBracketsStyle)
     </CodeSample>
 </div>

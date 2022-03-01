@@ -41,7 +41,7 @@
         </p>
 
         <CodeSample ID="@this.CodeSampleID">
-            @BracketsFormatter.RenderCodeHtml($"public interface {this.NamingFormatter.Apply(Standard.InterfaceNamingStyle, new string[] { "My", "Type" }, HungarianPart.Interface)}", "// interface members here", Standard.TypeBracketsStyle)
+            @BracketsFormatter.RenderCodeHtml($"public interface {this.NamingFormatter.ApplyStyle(Standard.InterfaceNamingStyle, new string[] { "My", "Type" }, HungarianPart.Interface)}", "// interface members here", Standard.TypeBracketsStyle)
         </CodeSample>
     }
 </div>

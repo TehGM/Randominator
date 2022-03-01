@@ -18,6 +18,6 @@
     </p>
 
     <CodeSample ID="@this.CodeSampleID">
-        @BracketsFormatter.RenderCodeHtml($"public void {this.NamingFormatter.Apply(Standard.MethodNamingStyle, new string[] { "My", "Method" }, null)}()", "// logic code here", Standard.MethodBracketsStyle)
+        @BracketsFormatter.RenderCodeHtml($"public void {this.NamingFormatter.ApplyStyle(Standard.MethodNamingStyle, new string[] { "My", "Method" }, null)}()", "// logic code here", Standard.MethodBracketsStyle)
     </CodeSample>
 </div>

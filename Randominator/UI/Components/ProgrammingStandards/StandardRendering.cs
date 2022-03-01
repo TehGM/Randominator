@@ -29,9 +29,9 @@ namespace TehGM.Randominator.UI.Components.ProgrammingStandards
         {
             List<string> rules = new List<string>(2);
             if (!string.IsNullOrWhiteSpace(style.NormalPrefix))
-                rules.Add($"prefixed with <code>{formatter.ApplyToWord(style, style.NormalPrefix, true)}</code>");
+                rules.Add($"prefixed with <code>{formatter.ChangeLetterCaseAndMerge(style, style.NormalPrefix.Split(' '), true)}</code>");
             if (!string.IsNullOrWhiteSpace(style.NormalSuffix))
-                rules.Add($"suffixed with <code>{formatter.ApplyToWord(style, style.NormalSuffix, false)}</code>");
+                rules.Add($"suffixed with <code>{formatter.ChangeLetterCaseAndMerge(style, style.NormalSuffix.Split(' '), false)}</code>");
             return (MarkupString)string.Join(" and ", rules);
         }
 

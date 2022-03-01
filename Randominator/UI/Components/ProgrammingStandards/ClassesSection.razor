@@ -50,7 +50,7 @@
         </p>
 
         <CodeSample ID="@this.CodeSampleID">
-            @BracketsFormatter.RenderCodeHtml($"public class {this.NamingFormatter.Apply(Standard.ClassNamingStyle, new string[] { "My", "Type" }, HungarianPart.Class)}", "// class members here", Standard.TypeBracketsStyle)
+            @BracketsFormatter.RenderCodeHtml($"public class {this.NamingFormatter.ApplyStyle(Standard.ClassNamingStyle, new string[] { "My", "Type" }, HungarianPart.Class)}", "// class members here", Standard.TypeBracketsStyle)
         </CodeSample>
     }
 </div>

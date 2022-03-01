@@ -44,8 +44,8 @@
         </p>
 
         <CodeSample ID="@this.CodeSampleID">
-            @($"public int {this.NamingFormatter.Apply(Standard.PropertyNamingStyle, new string[] { "First", "Member" }, HungarianPart.Integer)} {{ get; set; }}")<br/>
-            @($"public string {this.NamingFormatter.Apply(Standard.PropertyNamingStyle, new string[] { "Second", "Member" }, HungarianPart.String)} {{ get; set; }}")
+            @($"public int {this.NamingFormatter.ApplyStyle(Standard.PropertyNamingStyle, new string[] { "First", "Member" }, HungarianPart.Integer)} {{ get; set; }}")<br/>
+            @($"public string {this.NamingFormatter.ApplyStyle(Standard.PropertyNamingStyle, new string[] { "Second", "Member" }, HungarianPart.String)} {{ get; set; }}")
         </CodeSample>
     }
 </div>
