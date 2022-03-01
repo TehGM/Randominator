@@ -33,3 +33,9 @@ main {
         top: 0;
     }
 }
+
+@media (max-width: 641px) {
+    .sidebar {
+        border-right-style: none;
+    }
+}
