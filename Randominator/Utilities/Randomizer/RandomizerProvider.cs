@@ -14,7 +14,7 @@ namespace TehGM.Randominator.Utilities.Services
         public IRandomizer GetSharedRandomizer()
             => this._sharedRandomizer;
 
-        public IRandomizer GetRandomizerWithSeed(int seed)
+        public IRandomizer GetRandomizerWithSeed(Seed seed)
             => new RandomizerService(seed);
     }
 }

@@ -9,7 +9,7 @@
             this._random = new Random();
         }
 
-        public RandomizerService(int seed)
+        public RandomizerService(Seed seed)
         {
             this._random = new Random(seed);
         }

@@ -1,7 +1,12 @@
-﻿namespace TehGM.Randominator
+﻿using TehGM.Randominator.Utilities;
+
+namespace TehGM.Randominator
 {
     internal static class RandomizerExtensions
     {
+        public static IRandomizer GetRandomizerWithSeed(this IRandomizerProvider provider, string seed, bool caseInsensitive = false)
+            => provider.GetRandomizerWithSeed(Seed.FromString(seed, caseInsensitive));
+
         public static T GetRandomValue<T>(this IRandomizer randomizer, IEnumerable<T> values)
         {
             ThrowIfNullOrEmpty(values);
