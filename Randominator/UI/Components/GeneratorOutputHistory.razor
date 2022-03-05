@@ -2,10 +2,10 @@
 @typeparam TItem
 @inject IGeneratorMemoryProvider GeneratorMemoryProvider
 
-<div class="history-box @this.CssClass">
+<div class="history-box @this.CssClass @(this.Clickable ? "clickable" : string.Empty)">
     @foreach (TItem item in this.OrderItems())
     {
-        <div class="history-item @this.ItemCssClass">
+        <div class="history-item @this.ItemCssClass @(this.Clickable ? "clickable" : string.Empty)" @onclick="() => OnItemClickedAsync(item)" >
             @this.RenderItem(item)
         </div>
     }
@@ -24,6 +24,10 @@
     public string CssClass { get; set; }
     [Parameter]
     public string ItemCssClass { get; set; }
+    [Parameter]
+    public bool Clickable { get; set; } = false;
+    [Parameter]
+    public EventCallback<TItem> OnItemClick { get; set; }
 
     public IGeneratorMemory<TItem> Memory 
         => this.GeneratorMemoryProvider.GetOrCreate<TItem>(this.Key);
@@ -44,6 +48,13 @@
     {
         this.Memory.Clear();
         base.StateHasChanged();
+    }
+
+    private Task OnItemClickedAsync(TItem item)
+    {
+        if (!this.Clickable)
+            return Task.CompletedTask;
+        return this.OnItemClick.InvokeAsync(item);
     }
 
     private RenderFragment RenderItem(TItem item)

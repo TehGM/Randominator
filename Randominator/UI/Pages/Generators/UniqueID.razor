@@ -13,6 +13,7 @@
 <p>Please keep in mind that with lower precision formats, such as 32-bit number, collision might still occur.</p>
 <hr/>
 <p>Click on any generated value to select it all - then simply hit copy!</p>
+<p>If you need to return to a previously generated ID, you can do so by clicking on one in the history below.</p>
 <hr/>
 <h2>Your Unique ID:</h2>
 <div class="results">
@@ -45,7 +46,7 @@
 
 <div class="history col-12 col-sm-11 col-lg-9 col-xl-8 col-xxl-7">
     <h4 class="text-center">Last 10 IDs</h4>
-    <GeneratorOutputHistory Key="unique-id" TItem="UniqueIdValue" MaxItems="10" @ref="this._history" ItemCssClass="click-select no-underline">
+    <GeneratorOutputHistory Key="unique-id" TItem="UniqueIdValue" MaxItems="10" @ref="this._history" Clickable="true" OnItemClick="OnItemClicked">
         <ItemTemplate Context="item">
             @item.StringValue
         </ItemTemplate>
@@ -54,6 +55,7 @@
 
 @code {
     private UniqueIdValue _generatedValue = null;
+    private bool _isNewValue;
     private GeneratorOutputHistory<UniqueIdValue> _history;
     private const string _resultCssClass = "text-special bold id-result click-select no-underline";
 
@@ -65,13 +67,25 @@
     public void GenerateNew()
     {
         this.AddToHistory();
-        this._generatedValue = this._generator.Generate();
-        base.StateHasChanged();
+        this.UpdateValue(this._generator.Generate());
+        this._isNewValue = true;
+    }
+
+    private void OnItemClicked(UniqueIdValue value)
+    {
+        this.AddToHistory();
+        this.UpdateValue(value);
+        this._isNewValue = false;
+    }
+
+    private void UpdateValue(UniqueIdValue value)
+    {
+        this._generatedValue = value;
     }
 
     private void AddToHistory()
     {
-        if (this._generatedValue != null)
+        if (this._generatedValue != null && this._isNewValue)
             this._history.Add(this._generatedValue);
     }
 
