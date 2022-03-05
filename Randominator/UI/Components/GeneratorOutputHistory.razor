@@ -1,4 +1,6 @@
-﻿@typeparam TItem
+﻿@using TehGM.Randominator.Utilities.GeneratorMemory
+@typeparam TItem
+@inject IGeneratorMemoryProvider GeneratorMemoryProvider
 
 <div class="history-box @this.CssClass">
     @foreach (TItem item in this.OrderItems())
@@ -10,6 +12,8 @@
 </div>
 
 @code {
+    [Parameter, EditorRequired]
+    public string Key { get; set; }
     [Parameter]
     public int MaxItems { get; set; } = -1;
     [Parameter]
@@ -21,37 +25,24 @@
     [Parameter]
     public string ItemCssClass { get; set; }
 
-    private Queue<TItem> _items;
+    public IGeneratorMemory<TItem> Memory 
+        => this.GeneratorMemoryProvider.GetOrCreate<TItem>(this.Key);
 
     protected override void OnParametersSet()
     {
-        this.TrimCollection();
+        this.Memory.MaxHistoryItems = this.MaxItems;
         base.OnParametersSet();
-    }
-
-    private void TrimCollection()
-    {
-        if (this._items == null)
-            return;
-        if (this.MaxItems < 0)
-            return;
-        while (this._items.Count > this.MaxItems)
-            this._items.Dequeue();
     }
 
     public void Add(TItem item)
     {
-        if (this._items == null)
-            this._items = new Queue<TItem>(this.MaxItems);
-        this._items.Enqueue(item);
-        this.TrimCollection();
+        this.Memory.AddItem(item);
         base.StateHasChanged();
     }
 
     public void Clear()
     {
-        this._items.Clear();
-        this._items.TrimExcess();
+        this.Memory.Clear();
         base.StateHasChanged();
     }
 
@@ -64,12 +55,9 @@
 
     private IEnumerable<TItem> OrderItems()
     {
-        if (this._items == null)
-            return Enumerable.Empty<TItem>();
-
         // Reverse order is actually... normal order, cause default order displays elements on top
         if (this.Reverse)
-            return this._items;
-        return this._items.Reverse();
+            return this.Memory.HistoryItems;
+        return this.Memory.HistoryItems.Reverse();
     }
 }

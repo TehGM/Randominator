@@ -69,6 +69,7 @@ public class Program
         // utilities
         services.AddRandomizer();
         services.AddClipboard();
+        services.AddGeneratorMemory();
 
         // generators
         services.AddMobileGameNameGenerator();
