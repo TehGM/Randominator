@@ -84,9 +84,8 @@
     private bool _showPlayer;
 
     private string NavMenuClass => this._collapseNavMenu ? "collapse" : string.Empty;
-    // TODO: remove false to unlock collapsing
-    private string MemeGeneratorsClass => this._collapseMemeGenerators && false ? "sub-item hidden" : "sub-item";
-    private string UtilityGeneratorsClass => this._collapseUtilityGenerators && false ? "sub-item hidden" : "sub-item";
+    private string MemeGeneratorsClass => this._collapseMemeGenerators ? "sub-item hidden" : "sub-item";
+    private string UtilityGeneratorsClass => this._collapseUtilityGenerators ? "sub-item hidden" : "sub-item";
 
     protected override void OnInitialized()
     {
