@@ -46,12 +46,12 @@
 
     public void GenerateNew()
     {
-        this.AddPreviousToHistory();
+        this.AddToHistory();
         this._generatedName = this._generator.Generate();
         base.StateHasChanged();
     }
 
-    private void AddPreviousToHistory()
+    private void AddToHistory()
     {
         if (this._generatedName != null)
             this._history.Add(this._generatedName);
@@ -59,6 +59,6 @@
 
     void IDisposable.Dispose()
     {
-        this.AddPreviousToHistory();
+        this.AddToHistory();
     }
 }
