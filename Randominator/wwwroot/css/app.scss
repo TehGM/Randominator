@@ -119,6 +119,20 @@ code {
     font-size: 40px;
 }
 
+.click-select {
+    $select-mode: all;
+    -moz-user-select: $select-mode;
+    -ms-user-select: $select-mode;
+    -webkit-user-select: $select-mode;
+    user-select: $select-mode;
+    cursor: pointer;
+    text-decoration: underline dotted gray;
+}
+
+.no-underline {
+    text-decoration: none !important;
+}
+
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes rainbow{

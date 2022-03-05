@@ -9,8 +9,11 @@
 </PageMeta>
 <HeaderTitle>Unique ID Generator</HeaderTitle>
 
-<p>This very simple generator will provide you an unique ID in various formats!</p>
+<p>This very simple generator will provide you an unique ID in various formats.</p>
 <p>Please keep in mind that with lower precision formats, such as 32-bit number, collision might still occur.</p>
+<hr/>
+<p>Click on any generated value to select it all - then simply hit copy!</p>
+<hr/>
 <h2>Your Unique ID:</h2>
 <div class="results">
     <h4>GUID/UUID</h4>
@@ -42,7 +45,7 @@
 
 <div class="history col-12 col-sm-11 col-lg-9 col-xl-8 col-xxl-7">
     <h4 class="text-center">Last 10 IDs</h4>
-    <GeneratorOutputHistory Key="unique-id" TItem="UniqueIdValue" MaxItems="10" @ref="this._history">
+    <GeneratorOutputHistory Key="unique-id" TItem="UniqueIdValue" MaxItems="10" @ref="this._history" ItemCssClass="click-select no-underline">
         <ItemTemplate Context="item">
             @item.StringValue
         </ItemTemplate>
@@ -52,7 +55,7 @@
 @code {
     private UniqueIdValue _generatedValue = null;
     private GeneratorOutputHistory<UniqueIdValue> _history;
-    private const string _resultCssClass = "text-special bold id-result";
+    private const string _resultCssClass = "text-special bold id-result click-select no-underline";
 
     protected override void OnParametersSet()
     {
