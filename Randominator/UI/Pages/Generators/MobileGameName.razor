@@ -1,5 +1,6 @@
 ﻿@page "/generators/mobile-game-name"
 @using TehGM.Randominator.Generators.MobileGameName
+@implements IDisposable
 @inject IMobileGameNameGenerator _generator
 @inject IOptionsSnapshot<MobileGameNameOptions> _options
 @attribute [Sitemap(SitemapChangeFrequency.Always)]
@@ -45,9 +46,19 @@
 
     public void GenerateNew()
     {
-        if (this._generatedName != null)
-            this._history.Add(this._generatedName);
+        this.AddPreviousToHistory();
         this._generatedName = this._generator.Generate();
         base.StateHasChanged();
+    }
+
+    private void AddPreviousToHistory()
+    {
+        if (this._generatedName != null)
+            this._history.Add(this._generatedName);
+    }
+
+    void IDisposable.Dispose()
+    {
+        this.AddPreviousToHistory();
     }
 }
