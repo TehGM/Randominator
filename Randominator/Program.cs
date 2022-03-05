@@ -74,6 +74,7 @@ public class Program
         // generators
         services.AddMobileGameNameGenerator();
         services.AddProgrammingStandardsGenerator();
+        services.AddUniqueIdGenerator();
 
         // features
         services.AddPlayer();

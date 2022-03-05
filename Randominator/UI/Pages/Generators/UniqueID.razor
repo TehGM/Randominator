@@ -1,0 +1,79 @@
+﻿@page "/generators/unique-id"
+@using TehGM.Randominator.Generators.UniqueID
+@implements IDisposable
+@inject IUniqueIdGenerator _generator
+@attribute [Sitemap(SitemapChangeFrequency.Always)]
+
+<PageMeta Title="Unique ID Generator" Description="You can use this if you ever needed an unique ID, in various formats!">
+    <GeneratorStructuredData GeneratorType="GeneratorType.Utility"/>
+</PageMeta>
+<HeaderTitle>Unique ID Generator</HeaderTitle>
+
+<p>This very simple generator will provide you an unique ID in various formats!</p>
+<p>Please keep in mind that with lower precision formats, such as 32-bit number, collision might still occur.</p>
+<h2>Your Unique ID:</h2>
+<div class="results">
+    <h4>GUID/UUID</h4>
+    <p class="large-text @_resultCssClass">@this._generatedValue.StringValue</p>
+
+    <h4>Number (32-bit)</h4>
+    <p class="@_resultCssClass">@this._generatedValue.HashCodeValue</p>
+    
+    <h4>Number (128-bit)</h4>
+    <p class="@_resultCssClass">@this._generatedValue.NumberValue</p>
+    
+    <h4>Base64</h4>
+    <p class="@_resultCssClass">@this._generatedValue.Base64Value</p>
+    
+    <h4>SHA1</h4>
+    <p class="@_resultCssClass">@this._generatedValue.SHA1Value</p>
+    
+    <h4>SHA256</h4>
+    <p class="@_resultCssClass">@this._generatedValue.SHA256Value</p>
+    
+    <h4>SHA384</h4>
+    <p class="@_resultCssClass">@this._generatedValue.SHA384Value</p>
+    
+    <h4>SHA512</h4>
+    <p class="@_resultCssClass">@this._generatedValue.SHA512Value</p>
+</div>
+
+<button @onclick="GenerateNew" class="btn btn-secondary col-12 col-sm-11 col-lg-9 col-xl-8 col-xxl-7">Generate new!</button>
+
+<div class="history col-12 col-sm-11 col-lg-9 col-xl-8 col-xxl-7">
+    <h4 class="text-center">Last 10 IDs</h4>
+    <GeneratorOutputHistory Key="unique-id" TItem="UniqueIdValue" MaxItems="10" @ref="this._history">
+        <ItemTemplate Context="item">
+            @item.StringValue
+        </ItemTemplate>
+    </GeneratorOutputHistory>
+</div>
+
+@code {
+    private UniqueIdValue _generatedValue = null;
+    private GeneratorOutputHistory<UniqueIdValue> _history;
+    private const string _resultCssClass = "text-special bold id-result";
+
+    protected override void OnParametersSet()
+    {
+        this.GenerateNew();
+    }
+
+    public void GenerateNew()
+    {
+        this.AddToHistory();
+        this._generatedValue = this._generator.Generate();
+        base.StateHasChanged();
+    }
+
+    private void AddToHistory()
+    {
+        if (this._generatedValue != null)
+            this._history.Add(this._generatedValue);
+    }
+
+    void IDisposable.Dispose()
+    {
+        this.AddToHistory();
+    }
+}

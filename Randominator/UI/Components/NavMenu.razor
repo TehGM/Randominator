@@ -26,7 +26,7 @@
             {
                 <div class="nav-item px-3">
                     <NavLink class="nav-link rainbow-text" href="player" @onclick="OnPlayerClicked">
-                        <span class="oi oi-musical-note" aria-hidden="true"></span> Player
+                        <span class="bi bi-youtube" aria-hidden="true"></span> Player
                     </NavLink>
                 </div>
             }
@@ -36,6 +36,8 @@
                 </NavLink>
             </div>
             <hr/>
+
+            @* meme generators *@
             <div class="nav-item px-3">
                 <a class="nav-link" @onclick="ToggleMemeGenerators">
                      <span class="bi bi-hypnotize" aria-hidden="true"></span> Meme Generators
@@ -49,6 +51,18 @@
             <div class="nav-item px-3 @this.MemeGeneratorsClass">
                 <NavLink class="nav-link" href="generators/programming-standards">
                      <span class="bi bi-hypnotize" aria-hidden="true"></span> Programming Standards
+                </NavLink>
+            </div>
+
+            @* utility generators *@
+            <div class="nav-item px-3">
+                <a class="nav-link" @onclick="ToggleUtilityGenerators">
+                     <span class="bi bi-tools" aria-hidden="true"></span> Utility Generators
+                </a>
+            </div>
+            <div class="nav-item px-3 @this.UtilityGeneratorsClass">
+                <NavLink class="nav-link" href="generators/unique-id">
+                     <span class="bi bi-gear-wide-connected" aria-hidden="true"></span> Unique ID
                 </NavLink>
             </div>
         </nav>
@@ -66,11 +80,13 @@
 @code {
     private bool _collapseNavMenu = true;
     private bool _collapseMemeGenerators = false;
+    private bool _collapseUtilityGenerators = false;
     private bool _showPlayer;
 
     private string NavMenuClass => this._collapseNavMenu ? "collapse" : string.Empty;
     // TODO: remove false to unlock collapsing
     private string MemeGeneratorsClass => this._collapseMemeGenerators && false ? "sub-item hidden" : "sub-item";
+    private string UtilityGeneratorsClass => this._collapseUtilityGenerators && false ? "sub-item hidden" : "sub-item";
 
     protected override void OnInitialized()
     {
@@ -81,9 +97,12 @@
 
     private void ToggleNavMenu()
         => this._collapseNavMenu = !this._collapseNavMenu;
-
+        
     private void ToggleMemeGenerators()
         => this._collapseMemeGenerators = !this._collapseMemeGenerators;
+
+    private void ToggleUtilityGenerators()
+        => this._collapseUtilityGenerators = !this._collapseUtilityGenerators;
 
     private void OnPlayerClicked()
         => this.PlayerRefresher.Refresh();
