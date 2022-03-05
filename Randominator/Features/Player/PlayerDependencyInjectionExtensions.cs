@@ -8,8 +8,8 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddPlayer(this IServiceCollection services)
         {
-            services.TryAddSingleton<IPlayerVideoProvider, PlayerService>();
-            services.TryAddSingleton<IPlayerRefresher>(provider => (IPlayerRefresher)provider.GetRequiredService<IPlayerVideoProvider>());
+            services.TryAddScoped<IPlayerVideoProvider, PlayerService>();
+            services.TryAddScoped<IPlayerRefresher>(provider => (IPlayerRefresher)provider.GetRequiredService<IPlayerVideoProvider>());
 
             return services;
         }

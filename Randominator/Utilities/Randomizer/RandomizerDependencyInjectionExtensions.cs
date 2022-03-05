@@ -9,8 +9,8 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddRandomizer(this IServiceCollection services)
         {
-            services.TryAddSingleton<IRandomizerProvider, RandomizerProvider>();
-            services.TryAddSingleton<IRandomizer>(provider => provider.GetRequiredService<IRandomizerProvider>().GetSharedRandomizer());
+            services.TryAddScoped<IRandomizerProvider, RandomizerProvider>();
+            services.TryAddScoped<IRandomizer>(provider => provider.GetRequiredService<IRandomizerProvider>().GetSharedRandomizer());
 
             return services;
         }
