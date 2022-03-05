@@ -102,16 +102,21 @@ code {
         content: "An error has occurred."
     }
 
+
+/* text */
 .rainbow-text {
     -webkit-animation: rainbow 5s infinite;
     -ms-animation: rainbow 5s infinite;
     animation: rainbow 5s infinite;
+}
 
-    &.funky {
-        font-family: 'Comic Sans', cursive;
-        text-shadow: 2px 2px 4px #000000;
-        font-size: 40px;
-    }
+.funky {
+    font-family: 'Comic Sans', cursive;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.large-text {
+    font-size: 40px;
 }
 
 

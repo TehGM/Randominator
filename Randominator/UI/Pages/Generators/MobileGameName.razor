@@ -13,14 +13,21 @@
 <p>This generator can currently provide <span class="text-special">@this._comboCount</span> <i>(yes, really)</i> game names for you. Neat, eh?!</p>
 <p>
     Behold...
-    <h4 class="rainbow-text funky">@this._generatedName</h4>
+    <h4 class="rainbow-text funky large-text">@this._generatedName</h4>
 </p>
 
 <button @onclick="GenerateNew" class="btn btn-secondary w-50">Generate new!</button>
 
+<div class="history w-50">
+    <h4 class="text-center">Last 10 Names</h4>
+    <GeneratorOutputHistory TItem="string" MaxItems="10" @ref="this._history" ItemCssClass="rainbow-text funky" />
+</div>
+
 @code {
     private string _generatedName = null;
     private string _comboCount = null;
+
+    private GeneratorOutputHistory<string> _history;
 
     protected override void OnParametersSet()
     {
@@ -38,6 +45,8 @@
 
     public void GenerateNew()
     {
+        if (this._generatedName != null)
+            this._history.Add(this._generatedName);
         this._generatedName = this._generator.Generate();
         base.StateHasChanged();
     }
