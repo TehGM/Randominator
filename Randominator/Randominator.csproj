@@ -53,7 +53,7 @@
 
   <!-- PRERENDERING -->
   <PropertyGroup>
-	<BlazorWasmPrerenderingUrlPathToExplicitFetch>/player</BlazorWasmPrerenderingUrlPathToExplicitFetch>
+	<BlazorWasmPrerenderingUrlPathToExplicitFetch>/player;/debug/randomizer-distribution</BlazorWasmPrerenderingUrlPathToExplicitFetch>
   </PropertyGroup>
 
   <ItemGroup>
