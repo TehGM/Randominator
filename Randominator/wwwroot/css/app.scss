@@ -55,24 +55,6 @@ code {
     }
 }
 
-.form-control {
-    color: var(--input-color);
-    border-color: var(--input-border-color);
-    border-width: var(--input-border-width);
-    background-color: var(--input-background-color);
-
-    &::placeholder {
-        color: var(--input-placeholder-color);
-    }
-
-    &:focus {
-        color: var(--input-color);
-        background-color: var(--input-focus-background-color);
-        border-color: var(--input-border-color);
-        border-width: var(--input-border-width);
-    }
-}
-
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;
@@ -103,20 +85,23 @@ code {
     }
 
 
-/* Prepend/Append */
-.prepend-box, .input-group-prepend, .input-group-append {
+/* Form Controls */
+.form-control {
     color: var(--input-color);
-    background-color: var(--prepend-background-color);
-    border: var(--input-border-width) solid var(--prepend-border-color);
-    height: 38px;
-    text-align: center;
-    white-space: nowrap;
-    font-size: 1rem;
-    line-height: 1.5;
-    font-weight: 400;
-    padding: 0.375rem 0.75rem;
-    align-items: center;
-    border-radius: 0.25rem;
+    border-color: var(--input-border-color);
+    border-width: var(--input-border-width);
+    background-color: var(--input-background-color);
+
+    &::placeholder {
+        color: var(--input-placeholder-color);
+    }
+
+    &:focus {
+        color: var(--input-color);
+        background-color: var(--input-focus-background-color);
+        border-color: var(--input-border-color);
+        border-width: var(--input-border-width);
+    }
 }
 
 

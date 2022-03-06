@@ -14,8 +14,12 @@
 
 <p>Programmers love-hate to argue about programming standards. Here's a generator to solve these arguments once for all!</p>
 
-<FormTextInput Value="@this.LanguageName" Placeholder="Language Name (max 100 characters)" ValueChanged="OnLanguageInput" HighlightError="_highlightPasswordError" ValidationResults="_errors" MaxLength="100" OnEnter="OnGenerateClicked" />
-<button @onclick="OnGenerateClicked" class="btn btn-secondary w-100 mt-1">Generate!</button>
+<FormInputWrapper HighlightError="@this._highlightInputError">
+    <FormInputPrepend>Language Name</FormInputPrepend>
+    <FormTextInput Value="@this.LanguageName" Placeholder="Language Name (max 100 characters)" ValueChanged="this.OnLanguageInput" MaxLength="100" OnEnter="this.OnGenerateClicked" />
+</FormInputWrapper>
+<FormInputValidationResults ValidationResults="@this._errors" />
+<button @onclick="this.OnGenerateClicked" class="btn btn-secondary w-100 mt-1">Generate!</button>
 
 @if (_result != null)
 {
@@ -52,8 +56,8 @@
     private string _metaTitle = "Programming Standards Generator";
     private string _metaDescription = "Generate style standards docs for any programming language you can possibly imagine.";
 
-    private List<InputValidationResult> _errors = new List<InputValidationResult>();
-    private bool _highlightPasswordError = false;
+    private List<ValidationResult> _errors = new List<ValidationResult>();
+    private bool _highlightInputError = false;
 
     private const string _copyUnclickedClass = "bi bi-clipboard";
     private const string _copyClickedClass = "bi bi-clipboard-check";
@@ -64,35 +68,45 @@
             this.GenerateNew();
     }
 
-    private void OnLanguageInput(ChangeEventArgs e)
+    private void OnLanguageInput(string value)
     {
-        this.LanguageName = e.Value.ToString();
-        this._highlightPasswordError = false;
+        this.LanguageName = value;
+        this._highlightInputError = false;
         this._errors.Clear();
     }
 
     private void OnGenerateClicked()
     {
+        if (!this.Validate())
+            return;
+
         this.UpdateLanguageURL();
         this.NavigationManager.NavigateTo(this._resultURL, false);
     }
 
     public void GenerateNew()
     {
-        this._errors.Clear();
-
-        if (string.IsNullOrWhiteSpace(this.LanguageName))
-        {
-            this._errors.Add("Please give us the language name!");
-            this._highlightPasswordError = true;
-            return;
-        }
-
         this.UpdateLanguageURL();
         this._result = this.Generator.Generate(this.LanguageName);
         this._copyClass = _copyUnclickedClass;
         this._metaTitle = $"Programming Standards for {this.LanguageName}";
         this._metaDescription = $"Check out the generated style standards for {this.LanguageName} language!";
+    }
+
+    private bool Validate()
+    {
+        this._errors.Clear();
+
+        if (string.IsNullOrWhiteSpace(this.LanguageName))
+        {
+            this._errors.Add("Please give us the language name!");
+            this._highlightInputError = true;
+            this._result = null;
+            this._resultURL = null;
+            return false;
+        }
+
+        return true;
     }
 
     private void UpdateLanguageURL()
