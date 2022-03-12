@@ -70,6 +70,7 @@ public class Program
         services.AddRandomizer();
         services.AddClipboard();
         services.AddGeneratorMemory();
+        services.AddEnglishWords();
 
         // generators
         services.AddMobileGameNameGenerator();
