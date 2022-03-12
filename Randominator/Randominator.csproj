@@ -33,6 +33,7 @@
   	<Content Include="Dockerfile" Condition="Exists('Dockerfile')">
   	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
   	</Content>
+  	<Content Include="UI\Pages\Generators\Dare.razor.scss" />
   	<Content Include="UI\Pages\Generators\UniqueID.razor.scss" />
   	<Content Include="UI\Pages\Generators\MobileGameName.razor.scss" />
   	<Content Include="UI\Pages\Generators\ProgrammingStandards.razor.scss" />

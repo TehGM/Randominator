@@ -1,0 +1,55 @@
+﻿@page "/generators/dare"
+@using TehGM.Randominator.Generators.Dare
+@implements IDisposable
+@inject IDareGenerator _generator
+@attribute [Sitemap(SitemapChangeFrequency.Always)]
+
+<PageMeta Title="Dare Generator" Description="Playing truth or dare and running out of ideas? Or simply want to make someone miserable? Ha, we got a dare generator for you!">
+    <GeneratorStructuredData GeneratorType="GeneratorType.Meme"/>
+</PageMeta>
+<HeaderTitle>Dare Generator</HeaderTitle>
+
+<p>Playing truth or dare and running out of ideas? Or simply want to make someone miserable? Ha, we got a dare generator for you!</p>
+<p>Some results might be wierd or seemingly impossible... but we don't care! A dare is a dare, you have to do it now!</p>
+<p><span class="text-special bold">Disclaimer</span>: <i>we do not take responsibility for any damage, injury or reprecussions caused by actions taken to complete the dare. <span class="text-special">Use your brain, damn it!</span></i></p>
+<p>
+    <h4 class="rainbow-text funky large-text">@this._generatedDare</h4>
+</p>
+
+<button @onclick="GenerateNewAsync" class="btn btn-secondary col-12 col-sm-11 col-lg-9 col-xl-8 col-xxl-7">Generate new!</button>
+
+<div class="history col-12 col-sm-11 col-lg-9 col-xl-8 col-xxl-7">
+    <h4 class="text-center">Last 10 Dares</h4>
+    <GeneratorOutputHistory Key="dare" TItem="string" MaxItems="10" @ref="this._history" ItemCssClass="funky" />
+</div>
+<p><i>Note: if you spot any grammar error, feel free to post it in the <a href="https://github.com/TehGM/Randominator/discussions/9" target="_blank">GitHub Discussion</a> - it's not possible for me to catch them all by myself!</i></p>
+
+@code {
+    private string _generatedDare = null;
+
+    private GeneratorOutputHistory<string> _history;
+
+    protected override Task OnParametersSetAsync()
+    {
+        // generate new
+        return this.GenerateNewAsync();
+    }
+
+    public async Task GenerateNewAsync()
+    {
+        this.AddToHistory();
+        this._generatedDare = $"I dare you to {await this._generator.GenerateAsync().ConfigureAwait(false)}";
+        base.StateHasChanged();
+    }
+
+    private void AddToHistory()
+    {
+        if (this._generatedDare != null)
+            this._history.Add(this._generatedDare);
+    }
+
+    void IDisposable.Dispose()
+    {
+        this.AddToHistory();
+    }
+}
