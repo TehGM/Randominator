@@ -54,11 +54,11 @@ healthily
 honestly
 hungrily
 hurriedly
-Inadequately
-Ingeniously
-Innocently
-Inquisitively
-Irritably
+inadequately
+ingeniously
+innocently
+inquisitively
+irritably
 joyously
 justly
 kindly
