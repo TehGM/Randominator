@@ -22,28 +22,40 @@ namespace TehGM.Randominator.Utilities.Services
         public async Task<IEnumerable<string>> GetVerbsAsync(CancellationToken cancellationToken = default)
         {
             if (this._verbs == null)
+            {
                 this._verbs = await this.GetWordsListAsync("data/english-verbs.txt", cancellationToken).ConfigureAwait(false);
+                this._log.LogInformation("Loaded {Count} English {WordType}", this._verbs.Count(), "verbs");
+            }
             return this._verbs;
         }
 
         public async Task<IEnumerable<string>> GetNounsAsync(CancellationToken cancellationToken = default)
         {
             if (this._nouns == null)
+            {
                 this._nouns = await this.GetWordsListAsync("data/english-nouns.txt", cancellationToken).ConfigureAwait(false);
+                this._log.LogInformation("Loaded {Count} English {WordType}", this._nouns.Count(), "nouns");
+            }
             return this._nouns;
         }
 
         public async Task<IEnumerable<string>> GetAdjectivesAsync(CancellationToken cancellationToken = default)
         {
             if (this._adjectives == null)
+            {
                 this._adjectives = await this.GetWordsListAsync("data/english-adjectives.txt", cancellationToken).ConfigureAwait(false);
+                this._log.LogInformation("Loaded {Count} English {WordType}", this._adjectives.Count(), "adjectives");
+            }
             return this._adjectives;
         }
 
         public async Task<IEnumerable<string>> GetAdverbsOfMannerAsync(CancellationToken cancellationToken = default)
         {
             if (this._adverbsOfManner == null)
+            {
                 this._adverbsOfManner = await this.GetWordsListAsync("data/english-adverbs-of-manner.txt", cancellationToken).ConfigureAwait(false);
+                this._log.LogInformation("Loaded {Count} English {WordType}", this._adverbsOfManner.Count(), "adverbs of manner");
+            }
             return this._adverbsOfManner;
         }
 
