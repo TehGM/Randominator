@@ -38,7 +38,7 @@
     public async Task GenerateNewAsync()
     {
         this.AddToHistory();
-        this._generatedDare = $"I dare you to {await this._generator.GenerateAsync().ConfigureAwait(false)}";
+        this._generatedDare = $"I dare you to {await this._generator.GenerateAsync()}";
         base.StateHasChanged();
     }
 
