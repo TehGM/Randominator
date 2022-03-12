@@ -16,6 +16,7 @@
             { "special", "the" },
             { "tomorrow", "the" },
             { "minimum", "the" },
+            { "maximum", "the" },
             { "east", "the" },
             { "west", "the" },
             { "north", "the" },
@@ -47,7 +48,20 @@
             { "rice", "some" },
             { "hurt", "some" },
             { "temporary", "the" },
-            { "salt", "some" }
+            { "salt", "some" },
+            { "security", "the" },
+            { "chemistry", "the" },
+            { "reading", "some" },
+            { "freedom", "the" },
+            { "leading", "the" },
+            { "stuff", "some" },
+            { "climate", "the" },
+            { "inevitable", "the" },
+            { "housing", "the" },
+            { "plenty", "o'" },
+            { "help", "the" },
+            { "grass", "the" },
+            { "personal", "the" }
         };
 
         public IDictionary<string, string> VerbTransformations { get; set; } = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
@@ -56,7 +70,8 @@
             { "reason", "reason with" },
             { "sight", "sight at" },
             { "travel", "travel to" },
-            { "wink", "wink at" }
+            { "wink", "wink at" },
+            { "beware", "beware of" }
         };
     }
 }
