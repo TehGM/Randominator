@@ -27,5 +27,8 @@ namespace TehGM.Randominator
                 return _version;
             }
         }
+
+        public static string GetDiscussionURL(uint discussionID)
+            => $"{DiscussionsURL}/{discussionID}";
     }
 }
