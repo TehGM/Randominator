@@ -36,7 +36,18 @@
             { "fun", "some" },
             { "dust", "some" },
             { "history", "the" },
-            { "length", "the" }
+            { "length", "the" },
+            { "hair", "" },
+            { "blind", "the" },
+            { "depression", "the" },
+            { "public", "the" },
+            { "economics", "the" },
+            { "soil", "the" },
+            { "salary", "" },
+            { "rice", "some" },
+            { "hurt", "some" },
+            { "temporary", "the" },
+            { "salt", "some" }
         };
 
         public IDictionary<string, string> VerbTransformations { get; set; } = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
@@ -44,7 +55,8 @@
             { "listen", "listen to" },
             { "reason", "reason with" },
             { "sight", "sight at" },
-            { "travel", "travel to" }
+            { "travel", "travel to" },
+            { "wink", "wink at" }
         };
     }
 }
