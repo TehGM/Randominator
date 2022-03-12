@@ -14,6 +14,8 @@ using Microsoft.Extensions.Configuration;
 using System.Net.Http;
 using TehGM.Randominator.Features.Player;
 using TehGM.Randominator.Generators.Dare;
+using TehGM.Randominator.Generators.MobileGameName;
+using TehGM.Randominator.Generators.ProgrammingStandards;
 
 namespace TehGM.Randominator;
 
@@ -60,7 +62,9 @@ public class Program
     private static void ConfigureOptions(IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<PlayerOptions>(configuration.GetSection("Player"));
-        services.Configure<DareGeneratorOptions>(configuration.GetSection("DareGenerator"));
+        services.Configure<DareGeneratorOptions>(configuration.GetSection("Generators:Dare"));
+        services.Configure<MobileGameNameOptions>(configuration.GetSection("Generators:MobileGameName"));
+        services.Configure<ProgrammingStandardsOptions>(configuration.GetSection("Generators:ProgrammingStandards"));
     }
 
     private static void ConfigureServices(IServiceCollection services, string baseAddress, IConfiguration configuration)
