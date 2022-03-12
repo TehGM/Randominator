@@ -11,6 +11,7 @@ namespace TehGM.Randominator.Utilities.Services
         private IEnumerable<string> _verbs;
         private IEnumerable<string> _nouns;
         private IEnumerable<string> _adjectives;
+        private IEnumerable<string> _adverbsOfManner;
 
         public EnglishWordsProvider(HttpClient client, ILogger<EnglishWordsProvider> log)
         {
@@ -37,6 +38,13 @@ namespace TehGM.Randominator.Utilities.Services
             if (this._adjectives == null)
                 this._adjectives = await this.GetWordsListAsync("data/english-adjectives.txt", cancellationToken).ConfigureAwait(false);
             return this._adjectives;
+        }
+
+        public async Task<IEnumerable<string>> GetAdverbsOfMannerAsync(CancellationToken cancellationToken = default)
+        {
+            if (this._adverbsOfManner == null)
+                this._adverbsOfManner = await this.GetWordsListAsync("data/english-adverbs-of-manner.txt", cancellationToken).ConfigureAwait(false);
+            return this._adverbsOfManner;
         }
 
         private async Task<IEnumerable<string>> GetWordsListAsync(string filename, CancellationToken cancellationToken)

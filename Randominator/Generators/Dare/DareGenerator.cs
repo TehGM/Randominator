@@ -26,7 +26,14 @@ namespace TehGM.Randominator.Generators.Dare.Services
             string noun = this._randomizer.GetRandomValue(
                 await this._wordsProvider.GetNounsAsync(cancellationToken).ConfigureAwait(false));
 
-            return string.Join(' ', this.TransformVerb(verb), this.GetArticle(noun), noun);
+            string result = string.Join(' ', this.TransformVerb(verb), this.GetArticle(noun), noun);
+            if (this._randomizer.RollChance(this._options.AdverbChance))
+            {
+                string adverb = this._randomizer.GetRandomValue(
+                    await this._wordsProvider.GetAdverbsOfMannerAsync(cancellationToken).ConfigureAwait(false));
+                result += $", {adverb}";
+            }
+            return result;
         }
 
         private string TransformVerb(string verb)

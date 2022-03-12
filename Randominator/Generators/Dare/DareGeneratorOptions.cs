@@ -2,6 +2,7 @@
 {
     public class DareGeneratorOptions
     {
+        public double AdverbChance { get; set; } = 0.48;
         public IDictionary<string, string> ArticleOverrides { get; set; } = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             { "hour", "an" },
