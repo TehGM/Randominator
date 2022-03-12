@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http;
 using TehGM.Randominator.Features.Player;
+using TehGM.Randominator.Generators.Dare;
 
 namespace TehGM.Randominator;
 
@@ -59,6 +60,7 @@ public class Program
     private static void ConfigureOptions(IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<PlayerOptions>(configuration.GetSection("Player"));
+        services.Configure<DareGeneratorOptions>(configuration.GetSection("DareGenerator"));
     }
 
     private static void ConfigureServices(IServiceCollection services, string baseAddress, IConfiguration configuration)
@@ -70,11 +72,13 @@ public class Program
         services.AddRandomizer();
         services.AddClipboard();
         services.AddGeneratorMemory();
+        services.AddEnglishWords();
 
         // generators
         services.AddMobileGameNameGenerator();
         services.AddProgrammingStandardsGenerator();
         services.AddUniqueIdGenerator();
+        services.AddDareGenerator();
 
         // features
         services.AddPlayer();

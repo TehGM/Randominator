@@ -2,7 +2,9 @@
 Disallow: /img/
 Disallow: /lib/
 Disallow: /css/
+Disallow: /data/
 Disallow: /appsettings.json
+Disallow: /appsettings.Development.json
 
 User-agent: MJ12bot
 Disallow: /
