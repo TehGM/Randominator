@@ -7,10 +7,10 @@
 <p>Generators might be updated and for this reason "saved" results might change at any time.</p>
 
 <h4>Bug?</h4>
-<p>If you found a bug, feel free to open an <a href="https://github.com/TehGM/Randominator/issues" target="_blank">Issue on GitHub</a>.</p>
+<p>If you found a bug, feel free to open an <a href="@AppInfo.IssuesURL" target="_blank">Issue on GitHub</a>.</p>
 
 <h4>Suggestion?</h4>
-<p>If you want to suggest anything, feel free to start a <a href="https://github.com/TehGM/Randominator/discussions" target="_blank">Discussion on GitHub</a>.</p>
+<p>If you want to suggest anything, feel free to start a <a href="@($"{AppInfo.DiscussionsURL}/categories/ideas")" target="_blank">Discussion on GitHub</a>.</p>
 
 <h2>Author</h2>
 <p>
@@ -60,14 +60,14 @@
 <h4>Source Code</h4>
 <p>
     As of version v@(AppInfo.Version), @AppInfo.Name is entirely open source.<br/>
-    See GitHub repository here: <a href="@_repoUrl" target="_blank">@_repoUrl</a>
+    See GitHub repository here: <a href="@AppInfo.RepositoryURL" target="_blank">@AppInfo.RepositoryURL</a>
 </p>
 
 <h4>Hosting</h4>
 <p>Since @AppInfo.Name is powered by Blazor Client-side, this website is statically hosted on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>!</p>
 <p>
     The build and publish is automated with <a href="https://github.com/features/actions" target="_blank">GitHub Actions</a>.<br/>
-    If you're silly and curious for some ridiculous reason, you can view the pipeline here: <a href="@_pipelineUrl" target="_blank">@_pipelineUrl</a>
+    If you're silly and curious for some ridiculous reason, you can view the pipeline here: <a href="@PipelineUrl" target="_blank">@PipelineUrl</a>
 </p>
 
 <h2>Changelog</h2>
@@ -121,6 +121,5 @@
 </ul>
 
 @code {
-    private const string _repoUrl = "https://github.com/TehGM/Randominator";
-    private const string _pipelineUrl = "https://github.com/TehGM/Randominator/blob/master/.github/workflows/dotnet-build.yml";
+    private string PipelineUrl => $"{AppInfo.RepositoryURL}/blob/master/.github/workflows/dotnet-build.yml";
 }

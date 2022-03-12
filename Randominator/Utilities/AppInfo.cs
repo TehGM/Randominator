@@ -12,6 +12,11 @@ namespace TehGM.Randominator
         public static string Author => "TehGM";
         public static string AuthorWebsite => "https://tehgm.net";
         public static string AuthorTwitter => "TehOriginalGM";
+
+        public static string RepositoryURL => "https://github.com/TehGM/Randominator";
+        public static string DiscussionsURL => $"{RepositoryURL}/discussions";
+        public static string IssuesURL => $"{RepositoryURL}/issues";
+
         public static string Version
         {
             get
