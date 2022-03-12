@@ -19,7 +19,7 @@
             { "east", "the" },
             { "west", "the" },
             { "north", "the" },
-            { "east", "the" },
+            { "south", "the" },
             { "space", "the" },
             { "birth", "the" },
             { "news", "the" },
