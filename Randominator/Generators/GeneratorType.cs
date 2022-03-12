@@ -5,7 +5,7 @@ namespace TehGM.Randominator.Generators
     public enum GeneratorType
     {
         [StructuredDataValue("EntertainmentApplication")]
-        Meme,
+        Funny,
         [StructuredDataValue("UtilitiesApplication")]
         Utility
     }

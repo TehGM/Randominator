@@ -40,21 +40,21 @@
 
             @* meme generators *@
             <div class="nav-item px-3">
-                <a class="nav-link" @onclick="ToggleMemeGenerators">
-                     <span class="bi bi-hypnotize" aria-hidden="true"></span> Meme Generators
+                <a class="nav-link" @onclick="ToggleFunnyGenerators">
+                     <span class="bi bi-hypnotize" aria-hidden="true"></span> Funny Generators
                 </a>
             </div>
-            <div class="nav-item px-3 @this.MemeGeneratorsClass">
+            <div class="nav-item px-3 @this.FunnyGeneratorsClass">
                 <NavLink class="nav-link" href="generators/mobile-game-name">
                      <span class="bi bi-hypnotize" aria-hidden="true"></span> Mobile Game Name
                 </NavLink>
             </div>
-            <div class="nav-item px-3 @this.MemeGeneratorsClass">
+            <div class="nav-item px-3 @this.FunnyGeneratorsClass">
                 <NavLink class="nav-link" href="generators/dare">
                      <span class="bi bi-hypnotize" aria-hidden="true"></span> Dare
                 </NavLink>
             </div>
-            <div class="nav-item px-3 @this.MemeGeneratorsClass">
+            <div class="nav-item px-3 @this.FunnyGeneratorsClass">
                 <NavLink class="nav-link" href="generators/programming-standards">
                      <span class="bi bi-hypnotize" aria-hidden="true"></span> Programming Standards
                 </NavLink>
@@ -101,13 +101,13 @@
 
 @code {
     private bool _collapseNavMenu = true;
-    private bool _collapseMemeGenerators = false;
+    private bool _collapseFunnyGenerators = false;
     private bool _collapseUtilityGenerators = false;
     private bool _collapseDebugUtils = false;
     private bool _showPlayer;
 
     private string NavMenuClass => this._collapseNavMenu ? "collapse" : string.Empty;
-    private string MemeGeneratorsClass => this._collapseMemeGenerators ? "sub-item hidden" : "sub-item";
+    private string FunnyGeneratorsClass => this._collapseFunnyGenerators ? "sub-item hidden" : "sub-item";
     private string UtilityGeneratorsClass => this._collapseUtilityGenerators ? "sub-item hidden" : "sub-item";
     private string DebugUtilsClass => this._collapseDebugUtils ? "sub-item hidden" : "sub-item";
 
@@ -121,8 +121,8 @@
     private void ToggleNavMenu()
         => this._collapseNavMenu = !this._collapseNavMenu;
         
-    private void ToggleMemeGenerators()
-        => this._collapseMemeGenerators = !this._collapseMemeGenerators;
+    private void ToggleFunnyGenerators()
+        => this._collapseFunnyGenerators = !this._collapseFunnyGenerators;
 
     private void ToggleUtilityGenerators()
         => this._collapseUtilityGenerators = !this._collapseUtilityGenerators;
