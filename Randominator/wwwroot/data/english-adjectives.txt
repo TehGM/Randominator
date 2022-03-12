@@ -1,4 +1,6 @@
-﻿abandoned
+﻿# src: https://github.com/hugsy/stuff/blob/main/random-word/english-adjectives.txt
+
+abandoned
 able
 absolute
 adorable

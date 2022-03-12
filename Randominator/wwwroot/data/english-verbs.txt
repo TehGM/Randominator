@@ -1,4 +1,7 @@
-﻿abandon
+﻿# src: https://github.com/datmt/English-Verbs/blob/master/verbsList
+# found by Keli
+
+abandon
 abase
 abate
 abbreviate

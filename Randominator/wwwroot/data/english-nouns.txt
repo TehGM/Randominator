@@ -1,4 +1,7 @@
-﻿ability
+﻿# src: https://github.com/hugsy/stuff/blob/main/random-word/english-nouns.txt
+# found by Keli
+
+ability
 abroad
 abuse
 access

@@ -73,8 +73,12 @@ namespace TehGM.Randominator.Utilities.Services
                 string line = await reader.ReadLineAsync().ConfigureAwait(false);
                 if (line == null)
                     break;
-                if (!string.IsNullOrWhiteSpace(line))
-                    words.Add(line.Trim());
+                if (string.IsNullOrWhiteSpace(line))
+                    continue;
+                line = line.Trim();
+                if (line[0] == '#')
+                    continue;
+                words.Add(line);
             }
             return words.ToArray();
         }
