@@ -11,7 +11,7 @@ namespace TehGM.Randominator.Generators.ProgrammingStandards.Services
             this._random = randomizer;
         }
 
-        public string ApplyToWord(LetterCaseStyle style, string word, bool isLeading = false)
+        public string ChangeLetterCase(LetterCaseStyle style, string word, bool isLeading = false)
         {
             char[] chars = word.ToCharArray();
             switch (style)

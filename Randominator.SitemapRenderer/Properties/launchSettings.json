@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Sitemap Renderer": {
+      "commandName": "Project",
+      "commandLineArgs": "-o ../../../../Randominator/bin/publish/wwwroot"
+    }
+  }
+}

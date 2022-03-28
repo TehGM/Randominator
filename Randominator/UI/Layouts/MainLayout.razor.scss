@@ -1,42 +1,7 @@
-.page {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    color: var(--text-color);
-}
-
-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--background-color);
-}
-
 article {
     padding-bottom: 20px;
     max-width: 1320px;
     flex: 1 0 auto;
-}
-
-.sidebar {
-    background-color: var(--menu-background-color);
-    background-image: var(--menu-background-image);
-    border-right-width: var(--menu-border-width);
-    border-right-color: var(--menu-border-color);
-    border-right-style: double;
-}
-
-@media (min-width: 641px) {
-    .page {
-        flex-direction: row;
-    }
-
-    .sidebar {
-        width: 250px;
-        height: 100vh;
-        position: sticky;
-        top: 0;
-    }
 }
 
 @media (min-width: 641px) {

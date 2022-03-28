@@ -1,0 +1,35 @@
+﻿@using System.Reflection
+
+@this.RenderStructuredData()
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+    [Parameter, EditorRequired]
+    public GeneratorType GeneratorType { get; set; }
+    [CascadingParameter]
+    public PageMeta Meta { get; set; }
+
+    private string GetApplicationCategory()
+    {
+        string typeValue = this.GeneratorType.ToString();
+        MemberInfo memberInfo = typeof(GeneratorType).GetMember(typeValue).First();
+        StructuredDataValueAttribute valueAttribute = memberInfo.GetCustomAttribute<StructuredDataValueAttribute>();
+        return valueAttribute?.Value ?? typeValue;
+    }
+
+    private MarkupString RenderStructuredData()
+    {
+        string applicationName = this.Title ?? this.Meta?.Title ?? throw new ArgumentNullException(nameof(this.Title));
+        return (MarkupString)
+$@"<script suppress-error=""BL9992"" type=""application/ld+json""> 
+{{
+    ""@context"": ""https://schema.org"",
+    ""@type"": ""WebApplication"",
+    ""name"": ""{applicationName}"",
+    ""applicationCategory"": [""BrowserApplication"", ""{this.GetApplicationCategory()}""],
+    ""operatingSystem"": ""BROWSER""
+}}
+</script>";
+    }
+}

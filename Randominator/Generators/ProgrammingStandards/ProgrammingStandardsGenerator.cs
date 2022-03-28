@@ -24,9 +24,9 @@ namespace TehGM.Randominator.Generators.ProgrammingStandards.Services
             this._log.LogInformation("Generating {Type} for language {Language}", nameof(ProgrammingStandard), languageName);
 
             // generate randomizer based on language name
-            int seed = this.GetSeed(languageName);
+            Seed seed = Seed.FromString(languageName, caseInsensitive: true);
             IRandomizer random = this._randomizerProvider.GetRandomizerWithSeed(seed);
-            this._log.LogDebug("Seed for language {Language}: {Seed}", languageName, seed);
+            this._log.LogDebug("Seed for language {Language}: {Seed}", languageName, seed.Value);
 
             // generate language prefix
             string languagePrefix = this.GetLanguagePrefix(languageName);
@@ -96,27 +96,6 @@ namespace TehGM.Randominator.Generators.ProgrammingStandards.Services
                 .Take(2)
                 .Select(w => w.Value.First())
                 .ToArray());
-        }
-
-        private int GetSeed(string languageName)
-        {
-            languageName = languageName.ToLowerInvariant();
-
-            unchecked
-            {
-                int hash1 = (5381 << 16) + 5381;
-                int hash2 = hash1;
-
-                for (int i = 0; i < languageName.Length; i += 2)
-                {
-                    hash1 = ((hash1 << 5) + hash1) ^ languageName[i];
-                    if (i == languageName.Length - 1)
-                        break;
-                    hash2 = ((hash2 << 5) + hash2) ^ languageName[i + 1];
-                }
-
-                return hash1 + (hash2 * 1566083941);
-            }
         }
 
         private BracketsStyle GenerateBracketsStyle(IRandomizer randomizer)

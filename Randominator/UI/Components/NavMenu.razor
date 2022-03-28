@@ -1,4 +1,9 @@
-﻿@inject NavigationManager Navigation
+﻿@using TehGM.Randominator.Features.Player
+@inject NavigationManager Navigation
+@inject IRandomizer Randomizer
+@inject IPlayerRefresher PlayerRefresher
+@inject IOptions<PlayerOptions> PlayerOptions
+@inject IWebAssemblyHostEnvironment Environment
 @implements IDisposable
 
 <div class="nav-menu">
@@ -18,27 +23,70 @@
                     <span class="oi oi-home" aria-hidden="true"></span> Home
                 </NavLink>
             </div>
+            @if (this._showPlayer)
+            {
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link rainbow-text" href="player" @onclick="OnPlayerClicked">
+                        <span class="bi bi-youtube" aria-hidden="true"></span> Player
+                    </NavLink>
+                </div>
+            }
             <div class="nav-item px-3">
                 <NavLink class="nav-link" href="about">
                     <span class="oi oi-info" aria-hidden="true"></span> About
                 </NavLink>
             </div>
             <hr/>
+
+            @* meme generators *@
             <div class="nav-item px-3">
-                <a class="nav-link" @onclick="ToggleFunGenerators">
-                     <span class="bi bi-hypnotize" aria-hidden="true"></span> Fun Generators
+                <a class="nav-link" @onclick="ToggleFunnyGenerators">
+                     <span class="bi bi-hypnotize" aria-hidden="true"></span> Funny Generators
                 </a>
             </div>
-            <div class="nav-item px-3 @this.FunGeneratorsClass">
+            <div class="nav-item px-3 @this.FunnyGeneratorsClass">
                 <NavLink class="nav-link" href="generators/mobile-game-name">
                      <span class="bi bi-hypnotize" aria-hidden="true"></span> Mobile Game Name
                 </NavLink>
             </div>
-            <div class="nav-item px-3 @this.FunGeneratorsClass">
+            <div class="nav-item px-3 @this.FunnyGeneratorsClass">
+                <NavLink class="nav-link" href="generators/dare">
+                     <span class="bi bi-hypnotize" aria-hidden="true"></span> Dare
+                </NavLink>
+            </div>
+            <div class="nav-item px-3 @this.FunnyGeneratorsClass">
                 <NavLink class="nav-link" href="generators/programming-standards">
                      <span class="bi bi-hypnotize" aria-hidden="true"></span> Programming Standards
                 </NavLink>
             </div>
+
+            @* utility generators *@
+            <div class="nav-item px-3">
+                <a class="nav-link" @onclick="ToggleUtilityGenerators">
+                     <span class="bi bi-tools" aria-hidden="true"></span> Utility Generators
+                </a>
+            </div>
+            <div class="nav-item px-3 @this.UtilityGeneratorsClass">
+                <NavLink class="nav-link" href="generators/unique-id">
+                     <span class="bi bi-gear-wide-connected" aria-hidden="true"></span> Unique ID
+                </NavLink>
+            </div>
+
+            @* debug utils *@
+            @if (this.Environment.IsDevelopment())
+            {
+                <hr/>
+                <div class="nav-item px-3">
+                    <a class="nav-link" @onclick="ToggleDebugUtils">
+                         <span class="bi bi-tools" aria-hidden="true"></span> Debug Utilities
+                    </a>
+                </div>
+                <div class="nav-item px-3 @this.DebugUtilsClass">
+                    <NavLink class="nav-link" href="debug/randomizer-distribution">
+                         <span class="bi bi-gear-wide-connected" aria-hidden="true"></span> Randomizer Distribution Test
+                    </NavLink>
+                </div>
+            }
         </nav>
     
     </div>
@@ -52,28 +100,42 @@
 
 
 @code {
-    private bool collapseNavMenu = true;
-    private bool collapseFunGenerators = false;
+    private bool _collapseNavMenu = true;
+    private bool _collapseFunnyGenerators = false;
+    private bool _collapseUtilityGenerators = false;
+    private bool _collapseDebugUtils = false;
+    private bool _showPlayer;
 
-    private string NavMenuClass => collapseNavMenu ? "collapse" : string.Empty;
-    // TODO: remove false to unlock collapsing
-    private string FunGeneratorsClass => collapseFunGenerators && false ? "sub-item hidden" : "sub-item";
+    private string NavMenuClass => this._collapseNavMenu ? "collapse" : string.Empty;
+    private string FunnyGeneratorsClass => this._collapseFunnyGenerators ? "sub-item hidden" : "sub-item";
+    private string UtilityGeneratorsClass => this._collapseUtilityGenerators ? "sub-item hidden" : "sub-item";
+    private string DebugUtilsClass => this._collapseDebugUtils ? "sub-item hidden" : "sub-item";
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
+        this._showPlayer = this.Randomizer.RollChance(this.PlayerOptions.Value.PlayerAppearChance);
         this.Navigation.LocationChanged += OnLocationChanged;
     }
 
     private void ToggleNavMenu()
-        => collapseNavMenu = !collapseNavMenu;
+        => this._collapseNavMenu = !this._collapseNavMenu;
+        
+    private void ToggleFunnyGenerators()
+        => this._collapseFunnyGenerators = !this._collapseFunnyGenerators;
 
-    private void ToggleFunGenerators()
-        => collapseFunGenerators = !collapseFunGenerators;
+    private void ToggleUtilityGenerators()
+        => this._collapseUtilityGenerators = !this._collapseUtilityGenerators;
+
+    private void ToggleDebugUtils()
+        => this._collapseDebugUtils = !this._collapseDebugUtils;
+
+    private void OnPlayerClicked()
+        => this.PlayerRefresher.Refresh();
 
     private void OnLocationChanged(object sender, LocationChangedEventArgs e)
     {
-        collapseNavMenu = true;
+        this._collapseNavMenu = true;
         base.StateHasChanged();
     }
 

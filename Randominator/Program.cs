@@ -12,6 +12,10 @@ using Serilog;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http;
+using TehGM.Randominator.Features.Player;
+using TehGM.Randominator.Generators.Dare;
+using TehGM.Randominator.Generators.MobileGameName;
+using TehGM.Randominator.Generators.ProgrammingStandards;
 
 namespace TehGM.Randominator;
 
@@ -21,6 +25,8 @@ public class Program
     {
         // add default logger for errors that happen before host runs
         Log.Logger = new LoggerConfiguration()
+                    .MinimumLevel.Error()
+                    .WriteTo.BrowserConsole()
                     .WriteTo.Console()
                     .CreateLogger();
         // capture unhandled exceptions
@@ -48,25 +54,38 @@ public class Program
         await builder.Configuration.AddJsonFileAsync(client, $"appsettings.{builder.HostEnvironment.Environment}.json", optional: true).ConfigureAwait(false);
 
         ConfigureLogging(builder);
-        ConfigureOptions(builder.Services, builder.Configuration);
-        ConfigureServices(builder.Services);
+        ConfigureServices(builder.Services, builder.HostEnvironment.BaseAddress, builder.Configuration);
 
         await builder.Build().RunAsync();
     }
 
     private static void ConfigureOptions(IServiceCollection services, IConfiguration configuration)
     {
+        services.Configure<PlayerOptions>(configuration.GetSection("Player"));
+        services.Configure<DareGeneratorOptions>(configuration.GetSection("Generators:Dare"));
+        services.Configure<MobileGameNameOptions>(configuration.GetSection("Generators:MobileGameName"));
+        services.Configure<ProgrammingStandardsOptions>(configuration.GetSection("Generators:ProgrammingStandards"));
     }
 
-    private static void ConfigureServices(IServiceCollection services)
+    private static void ConfigureServices(IServiceCollection services, string baseAddress, IConfiguration configuration)
     {
+        // options
+        ConfigureOptions(services, configuration);
+
         // utilities
         services.AddRandomizer();
         services.AddClipboard();
+        services.AddGeneratorMemory();
+        services.AddEnglishWords();
 
         // generators
         services.AddMobileGameNameGenerator();
         services.AddProgrammingStandardsGenerator();
+        services.AddUniqueIdGenerator();
+        services.AddDareGenerator();
+
+        // features
+        services.AddPlayer();
     }
 
     private static void ConfigureLogging(WebAssemblyHostBuilder builder)

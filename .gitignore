@@ -374,3 +374,6 @@ appsecrets.*.json
 # Minified JS
 *.min.js
 !**/lib/**/*.js
+
+# Don't remove debug pages
+!**/Pages/Debug/

@@ -1,0 +1,92 @@
+﻿@inject NavigationManager Navigation
+
+<HeadContent>
+    @* indexing *@
+    @if (this.SeoIndex)
+    {
+        <meta name="robots" content="index,follow,noimageindex" />
+    }
+    else
+    {
+        <meta name="robots" content="noindex,nofollow,none,noimageindex" />
+    }
+
+    @* standard meta *@
+    <PageTitle>@this.GetPageTitle()</PageTitle>
+    @this.RenderStandardMeta("title", this.Title)
+    @this.RenderStandardMeta("description", this.Description)
+    @this.RenderStandardMeta("application-name", AppInfo.Name)
+    @this.RenderStandardMeta("apple-mobile-web-app-title", AppInfo.Name)
+
+    @* opengraph *@
+    @if (this.RenderOpenGraph)
+    {
+        @this.RenderOpenGraphMeta("title", this.Title)
+        @this.RenderOpenGraphMeta("description", this.Description)
+        @this.RenderOpenGraphMeta("image", this.Image)
+        @this.RenderOpenGraphMeta("image:alt", this.ImageAltText)
+        @this.RenderOpenGraphMeta("type", "website")
+        @this.RenderOpenGraphMeta("site_name", @AppInfo.Name)
+        @this.RenderOpenGraphMeta("url", this.Navigation.Uri)
+    }
+
+    @* twitter cards *@
+    @if (this.RenderTwitterCards)
+    {
+        @this.RenderTwitterCardsMeta("title", this.Title)
+        @this.RenderTwitterCardsMeta("description", this.Description)
+        @this.RenderTwitterCardsMeta("image", this.Image)
+        @this.RenderTwitterCardsMeta("image:alt", this.ImageAltText)
+        @this.RenderTwitterCardsMeta("card", string.IsNullOrWhiteSpace(this.Image) ? "summary" : "summary_large_image")
+        @this.RenderTwitterCardsMeta("twitter:site", $"@{AppInfo.AuthorTwitter}")
+        @this.RenderTwitterCardsMeta("twitter:creator", $"@{AppInfo.AuthorTwitter}")
+    }
+
+    @* additional content *@
+    <CascadingValue Value=this>
+        @this.ChildContent
+    </CascadingValue>
+</HeadContent>
+
+@code {
+    // render values
+    [Parameter]
+    public string Title { get; set; }
+    [Parameter]
+    public string Description { get; set; }
+    [Parameter]
+    public string Image { get; set; }
+    [Parameter]
+    public string ImageAltText { get; set; }
+    [Parameter]
+    public bool SeoIndex { get; set; } = true;
+
+    // render selection
+    [Parameter]
+    public bool RenderOpenGraph { get; set; } = true;
+    [Parameter]
+    public bool RenderTwitterCards { get; set; } = true;
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    // conditional rendering
+    public RenderFragment RenderStandardMeta(string type, string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return null;
+        return @<meta name="@type" content="@value" />;
+    }
+
+    public RenderFragment RenderOpenGraphMeta(string type, string value)
+        => this.RenderStandardMeta($"og:{type}", value);
+
+    public RenderFragment RenderTwitterCardsMeta(string type, string value)
+        => this.RenderStandardMeta($"twitter:{type}", value);
+
+    private string GetPageTitle()
+    {
+        if (string.IsNullOrWhiteSpace(this.Title))
+            return AppInfo.Name;
+        return $"{this.Title} - {AppInfo.Name}";
+    }
+}

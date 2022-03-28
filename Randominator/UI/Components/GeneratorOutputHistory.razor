@@ -1,0 +1,74 @@
+﻿@using TehGM.Randominator.Utilities.GeneratorMemory
+@typeparam TItem
+@inject IGeneratorMemoryProvider GeneratorMemoryProvider
+
+<div class="history-box @this.CssClass @(this.Clickable ? "clickable" : string.Empty)">
+    @foreach (TItem item in this.OrderItems())
+    {
+        <div class="history-item @this.ItemCssClass @(this.Clickable ? "clickable" : string.Empty)" @onclick="() => OnItemClickedAsync(item)" >
+            @this.RenderItem(item)
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public string Key { get; set; }
+    [Parameter]
+    public int MaxItems { get; set; } = -1;
+    [Parameter]
+    public RenderFragment<TItem> ItemTemplate { get; set; }
+    [Parameter]
+    public bool Reverse { get; set; }
+    [Parameter]
+    public string CssClass { get; set; }
+    [Parameter]
+    public string ItemCssClass { get; set; }
+    [Parameter]
+    public bool Clickable { get; set; } = false;
+    [Parameter]
+    public EventCallback<TItem> OnItemClick { get; set; }
+
+    public IGeneratorMemory<TItem> Memory 
+        => this.GeneratorMemoryProvider.GetOrCreate<TItem>(this.Key);
+
+    protected override void OnParametersSet()
+    {
+        this.Memory.MaxHistoryItems = this.MaxItems;
+        base.OnParametersSet();
+    }
+
+    public void Add(TItem item)
+    {
+        this.Memory.AddItem(item);
+        base.StateHasChanged();
+    }
+
+    public void Clear()
+    {
+        this.Memory.Clear();
+        base.StateHasChanged();
+    }
+
+    private Task OnItemClickedAsync(TItem item)
+    {
+        if (!this.Clickable)
+            return Task.CompletedTask;
+        return this.OnItemClick.InvokeAsync(item);
+    }
+
+    private RenderFragment RenderItem(TItem item)
+    {
+        if (this.ItemTemplate == null)
+            return @<text>@item</text>;
+        return this.ItemTemplate(item);
+    }
+
+    private IEnumerable<TItem> OrderItems()
+    {
+        // Reverse order is actually... normal order, cause default order displays elements on top
+        if (this.Reverse)
+            return this.Memory.HistoryItems;
+        return this.Memory.HistoryItems.Reverse();
+    }
+}

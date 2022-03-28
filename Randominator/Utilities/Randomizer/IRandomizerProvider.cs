@@ -3,6 +3,6 @@
     public interface IRandomizerProvider
     {
         IRandomizer GetSharedRandomizer();
-        IRandomizer GetRandomizerWithSeed(int seed);
+        IRandomizer GetRandomizerWithSeed(Seed seed);
     }
 }

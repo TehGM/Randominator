@@ -1,0 +1,147 @@
+﻿@page "/debug/randomizer-distribution"
+@attribute [SitemapIgnore]
+@inject IRandomizerProvider RandomizerProvider
+@inject ILogger<RandomizerDistribution> Log
+@implements IDisposable
+
+<PageMeta Title="Debug Randomizer" SeoIndex="false" Description="Utility to debug randomizer's distribution." />
+<HeaderTitle>Randomizer Distribution Test</HeaderTitle>
+
+<p>This page can be used to verify that @(AppInfo.Name)'s random number generator is unbiased - it'll run its Randomizer over the sample and count how many times each of values have been picked.</p>
+<p>Assuming that nothing broke, the distribution should be uniform - that is, each of the items should be picked similar number of times. Variance will be displayed in results.</p>
+<p>This page is designed for ad-hoc tests, so please don't shout if it breaks. I don't care.</p>
+
+@if (!this._inProgress)
+{
+    <FormInputWrapper>
+        <FormInputPrepend>Seed</FormInputPrepend>
+        <FormTextInput @bind-Value="@this._seed" />
+    </FormInputWrapper>
+    <FormInputWrapper>
+        <FormInputPrepend>Sample Size</FormInputPrepend>
+        <input class="form-control" type="number" @bind="@this._sampleSize"/>
+    </FormInputWrapper>
+    <FormInputWrapper>
+        <FormInputPrepend>Iterations</FormInputPrepend>
+        <input class="form-control" type="number" @bind="@this._iterations"/>
+    </FormInputWrapper>
+    <FormInputWrapper>
+        <FormInputPrepend>UI Refresh Interval</FormInputPrepend>
+        <input class="form-control" type="number" @bind="@this._uiRefreshInterval"/>
+    </FormInputWrapper>
+    <button @onclick="RunAsync" class="btn btn-secondary w-100 mt-1">Run</button>
+}
+else
+{
+    <h3>Running...</h3>
+    if (!string.IsNullOrWhiteSpace(this._seed))
+    {
+        <p>Seed: <span class="text-special click-select">@this._seed</span></p>
+    }
+    else
+    {
+        <p>No seed - using shared Randomizer instance.</p>
+    }
+    <p>Sample size: <span class="text-special">@this._sampleSize</span></p>
+    <p>Progress: <span class="text-special">@this._currentProgress / @this._iterations</span></p>
+    <p>UI Refresh Interval: <span class="text-special">@this._uiRefreshInterval</span></p>
+    <p>
+        Blazor WASM unfortunately is single-threaded due to Browser / JavaScript limitations. The browser may have hiccups during the run.<br/>
+        Lower Refresh Interval reduces browser lag, but reduces the run's performance.
+    </p>
+    <button @onclick="Stop" class="btn btn-secondary w-100 mt-1">Stop</button>
+}
+
+@if (this._sampleResults != null)
+{
+    KeyValuePair<int, int> minHitsPair = this._sampleResults.MinBy(pair => pair.Value);
+    KeyValuePair<int, int> maxHitsPair = this._sampleResults.MaxBy(pair => pair.Value);
+    <h4>Results</h4>
+    <p>Min hits: @minHitsPair.Key (<span class="text-special">@minHitsPair.Value</span>)</p>
+    <p>Max hits: @maxHitsPair.Key (<span class="text-special">@maxHitsPair.Value</span>)</p>
+    <p>Variance: <span class="text-special">@(maxHitsPair.Value - minHitsPair.Value)</span></p>
+
+    <h4>Samples</h4>
+    foreach (KeyValuePair<int, int> result in this._sampleResults.OrderBy(pair => pair.Key))
+    {
+        <p>@result.Key: <span class="text-special">@result.Value</span></p>
+    }
+}
+
+@code {
+    private const int _defaultSampleSize = 10;
+    private const int _defaultIterations = 3000000;
+    private const int _defaultUiRefreshInterval = 10000;
+
+    private string _seed;
+    private int _sampleSize = _defaultSampleSize;
+    private int _iterations = _defaultIterations;
+    private int _uiRefreshInterval = _defaultUiRefreshInterval;
+    private bool _inProgress = false;
+    private int _currentProgress = 0;
+    private CancellationTokenSource _cts;
+
+    private IDictionary<int, int> _sampleResults;
+
+    private async Task RunAsync()
+    {
+        if (this._sampleSize <= 0)
+            this._sampleSize = _defaultSampleSize;
+        if (this._iterations <= 0)
+            this._iterations = _defaultIterations;
+        if (this._uiRefreshInterval <= 0)
+            this._uiRefreshInterval = _defaultUiRefreshInterval;
+
+        this._inProgress = true;
+        this._cts = new CancellationTokenSource();
+        this._currentProgress = 0;
+        this._sampleResults = new Dictionary<int, int>(this._sampleSize);
+        for (int i = 1; i <= this._sampleSize; i++)
+            this._sampleResults.Add(i, 0);
+        CancellationToken cancellationToken = this._cts.Token;
+        IRandomizer randomizer = string.IsNullOrEmpty(this._seed)
+            ? this.RandomizerProvider.GetSharedRandomizer()
+            : this.RandomizerProvider.GetRandomizerWithSeed(this._seed);
+
+        try
+        {
+            for (; this._currentProgress < this._iterations; this._currentProgress++)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                int value = randomizer.GetRandomNumber(1, this._sampleSize, true);
+                this._sampleResults[value]++;
+
+                // update every X iterations
+                if (this._currentProgress % this._uiRefreshInterval == 0)
+                {
+                    await Task.Delay(1, cancellationToken).ConfigureAwait(false);
+                    base.StateHasChanged();
+                }
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            this.Log.LogWarning("Randomizer distribution debug run cancelled");
+        }
+        catch (Exception ex)
+        {
+            this.Log.LogError(ex, "Error during Randomizer distribution debug run");
+        }
+        finally
+        {
+            this._inProgress = false;
+            this._cts?.Dispose();
+        }
+    }
+
+    private void Stop()
+    {
+        this._cts?.Cancel();
+    }
+
+    void IDisposable.Dispose()
+    {
+        try { this._cts?.Cancel(); } catch { }
+        try { this._cts?.Dispose(); } catch { }
+    }
+}

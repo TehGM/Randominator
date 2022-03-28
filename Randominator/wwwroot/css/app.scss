@@ -55,24 +55,6 @@ code {
     }
 }
 
-.form-control {
-    color: var(--input-color);
-    border-color: var(--input-border-color);
-    border-width: var(--input-border-width);
-    background-color: var(--input-background-color);
-
-    &::placeholder {
-        color: var(--input-placeholder-color);
-    }
-
-    &:focus {
-        color: var(--input-color);
-        background-color: var(--input-focus-background-color);
-        border-color: var(--input-border-color);
-        border-width: var(--input-border-width);
-    }
-}
-
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;
@@ -102,16 +84,55 @@ code {
         content: "An error has occurred."
     }
 
+
+/* Form Controls */
+.form-control {
+    color: var(--input-color);
+    border-color: var(--input-border-color);
+    border-width: var(--input-border-width);
+    background-color: var(--input-background-color);
+
+    &::placeholder {
+        color: var(--input-placeholder-color);
+    }
+
+    &:focus {
+        color: var(--input-color);
+        background-color: var(--input-focus-background-color);
+        border-color: var(--input-border-color);
+        border-width: var(--input-border-width);
+    }
+}
+
+
+/* text */
 .rainbow-text {
     -webkit-animation: rainbow 5s infinite;
     -ms-animation: rainbow 5s infinite;
     animation: rainbow 5s infinite;
+}
 
-    &.funky {
-        font-family: 'Comic Sans', cursive;
-        text-shadow: 2px 2px 4px #000000;
-        font-size: 40px;
-    }
+.funky {
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.large-text {
+    font-size: 40px;
+}
+
+.click-select {
+    $select-mode: all;
+    -moz-user-select: $select-mode;
+    -ms-user-select: $select-mode;
+    -webkit-user-select: $select-mode;
+    user-select: $select-mode;
+    cursor: pointer;
+    text-decoration: underline dotted gray;
+}
+
+.no-underline {
+    text-decoration: none !important;
 }
 
 

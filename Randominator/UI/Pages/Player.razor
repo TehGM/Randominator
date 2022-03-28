@@ -1,0 +1,72 @@
+﻿@page "/player"
+@using TehGM.Randominator.Features.Player
+@layout FullscreenLayout
+@implements IDisposable
+@attribute [SitemapIgnore]
+@inject IRandomizer Randomizer
+@inject IWebAssemblyHostEnvironment Environment
+@inject IPlayerVideoProvider VideoPlayer
+@inject NavigationManager Navigation
+@inject IOptions<PlayerOptions> Options
+@inject ILogger<Player> Log
+
+@* 
+    Randominator is open source so there's no way to fully hide this. Looking for easter eggs in code. Cheaters, damn.
+*@
+
+<PageMeta Title="Player" SeoIndex="false"
+    Description="Watch a top-quality insanely epic video obviously picked extremely carefully by the most sophisticated AI algorithms in the world!" />
+<HeaderTitle>
+    <span role="button" @onclick="this.PlayRandomVideo">
+        The Ultimate Random Video Player 
+        <span class="rainbow-text oi oi-reload px-3" style="font-size: 80%;"></span>
+    </span>
+</HeaderTitle>
+
+<iframe disablePictureInPicture
+    width="560" 
+    height="315" 
+    src="@this._videoURL" 
+    title="Randominator Player - Powered by YouTube" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; encrypted-media; gyroscope">
+</iframe>
+
+@code {
+    // requesting video by ID is a debug feature and thus will only be enabled in dev env
+    [Parameter, SupplyParameterFromQuery(Name = "id")]
+    public string QueryVideoID { get; set; }
+
+    private string _videoURL;
+
+    protected override void OnInitialized()
+    {
+        if (this._videoURL == null)
+            this.PlayRandomVideo();
+        this.VideoPlayer.RefreshRequested += OnRefreshRequested;
+        base.OnInitialized();
+    }
+
+    private void OnRefreshRequested(object sender, EventArgs e)
+    {
+        this.Log.LogDebug("Player refresh requested");
+        this.PlayRandomVideo();
+        base.StateHasChanged();
+    }
+
+    private void PlayRandomVideo()
+    {
+        if (this.Options.Value.AllowVideosByID && !string.IsNullOrWhiteSpace(this.QueryVideoID))
+        {
+            this._videoURL = this.VideoPlayer.BuildYoutubeURL(this.QueryVideoID.Trim());
+            return;
+        }
+
+        this._videoURL = this.VideoPlayer.GetRandomVideoURL();
+    }
+
+    void IDisposable.Dispose()
+    {
+        try { this.VideoPlayer.RefreshRequested -= OnRefreshRequested; } catch { }
+    }
+}

@@ -1,0 +1,15 @@
+﻿@if (this.ValidationResults?.Any() == true)
+{
+    foreach (ValidationResult validationResult in this.ValidationResults)
+    {
+        <div class="validation-message @(validationResult.IsError ? "error" : "success") form-group">
+            <span class="oi oi-@(validationResult.IsError ? "x" : "check")"></span>
+            @validationResult.Text
+        </div>
+    }
+}
+
+@code {
+    [Parameter]
+    public IEnumerable<ValidationResult> ValidationResults { get; set; }
+}

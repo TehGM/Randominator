@@ -26,7 +26,7 @@
         {
             <text> Just don't be a baddie and use properties, damn it.</text>
         }
-        <text> Unless being baddie is your way of life then, </text>
+        <text> Unless being baddie is your way of life. Then... you </text>
     }
     else 
     {
@@ -35,19 +35,19 @@
     
     @if (Standard.AllowPublicFields != AllowMode.Forbid)
     {
-        <text>should name them according to <span class="naming-convention-name">@Standard.PublicFieldNamingStyle.LetterCaseStyleName</span> naming convention. At least have this little of dignity.</text>
+        <text>should name them according to <span class="naming-convention-name">@Standard.PublicFieldNamingStyle.LetterCaseStyleName</span> naming convention. Have at least this little of dignity.</text>
         @if (Standard.PublicFieldNamingStyle.HasHungarianParts)
         {
-            <text>Also, apply following hungarian notation: @Standard.PublicFieldNamingStyle.ListHungarianAffixRules().</text>
+            <text> Also, apply following hungarian notation: @Standard.PublicFieldNamingStyle.ListHungarianAffixRules().</text>
         }
         @if (Standard.PublicFieldNamingStyle.HasNormalPrefixOrSuffix)
         {
-            <text>And don't forget that they should be @Standard.PublicFieldNamingStyle.ListNormalAffixRules(this.NamingFormatter)!</text>
+            <text> And don't forget that they should be @Standard.PublicFieldNamingStyle.ListNormalAffixRules(this.NamingFormatter)!</text>
         }
 
         <CodeSample ID="@this.CodeSampleID">
-            @($"public int {this.NamingFormatter.Apply(Standard.PublicFieldNamingStyle, new string[] { "First", "Member" }, HungarianPart.Integer)};")<br/>
-            @($"public string {this.NamingFormatter.Apply(Standard.PublicFieldNamingStyle, new string[] { "Second", "Member" }, HungarianPart.String)};")
+            @($"public int {this.NamingFormatter.ApplyStyle(Standard.PublicFieldNamingStyle, new string[] { "First", "Member" }, HungarianPart.Integer)};")<br/>
+            @($"public string {this.NamingFormatter.ApplyStyle(Standard.PublicFieldNamingStyle, new string[] { "Second", "Member" }, HungarianPart.String)};")
         </CodeSample>
     }
 </div>

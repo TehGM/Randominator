@@ -1,6 +1,7 @@
 ﻿@page "/"
+@attribute [Sitemap(SitemapChangeFrequency.Monthly, Priority = 0.8f, LastModified = "2022-03-12")]
 
-<AppPageTitle Value="Home" HeaderOverride="" />
+<HeaderTitle />
 
 <h1>Welcome to @AppInfo.Name v@(AppInfo.Version)</h1>
 <p><span class="text-special bold">@AppInfo.Name</span> is a client-side website featuring a "random" set of random (or not) generators that I programmed.</p>
@@ -11,9 +12,12 @@
     <span class="menu-location-text top">on top after pressing <span class="oi oi-menu"></span> button </span>
     for a list of currently available generators!
 </p>
+
 <h3>Beta version</h3>
 <p>@AppInfo.Name is still considered to be beta/preview version. As such, UI and page design might be imperfect and every feature is subject to change.</p>
 <p>On the other hand, that means more generators are relatively likely to come, too!</p>
+<p>Changelog as well as links to support the project, report a bug or submit a suggestion are all available on <NavLink href="about">About page</NavLink>.</p>
+
 <h2>Author</h2>
 <p>
     <span class="text-special">@AppInfo.Name</span> is a small fun side project created by <a href="@AppInfo.AuthorWebsite" target="_blank">@AppInfo.Author</a>.<br/>
@@ -21,14 +25,3 @@
 </p>
 
 <Doofen FileName="creator-rage"/>
-
-@code {
-    [CascadingParameter]
-    public MainLayout Layout { get; set; }
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        this.Layout.OverwriteFooterItems(null);
-    }
-}

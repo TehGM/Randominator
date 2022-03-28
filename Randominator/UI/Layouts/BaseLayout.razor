@@ -1,0 +1,32 @@
+﻿@inherits LayoutComponentBase
+
+<CascadingValue Value=this IsFixed=true>
+    <PageMeta Title="@AppInfo.Name"
+        Description="A browser-based random generators application. Generate countless values, data sets, memes, jokes and more!" />
+
+    <div class="page" theme="@this.ThemeCSS">
+        <div class="sidebar">
+            <NavMenu />
+        </div>
+    
+        <main>
+            <PageHeader @ref="this.Header"></PageHeader>
+            @Body
+        </main>
+    </div>
+</CascadingValue>
+
+@code {
+    public PageHeader Header { get; private set; }
+
+    private string _themeCss = "sunset";
+    public string ThemeCSS
+    {
+        get => this._themeCss;
+        set
+        {
+            this._themeCss = value;
+            base.StateHasChanged();
+        }
+    }
+}

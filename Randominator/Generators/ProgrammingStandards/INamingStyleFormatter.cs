@@ -2,7 +2,7 @@
 {
     public interface INamingStyleFormatter
     {
-        string ApplyToWord(LetterCaseStyle style, string word, bool isLeading = false);
+        string ChangeLetterCase(LetterCaseStyle style, string word, bool isLeading = false);
         string MergeWords(LetterCaseStyle style, IEnumerable<string> words);
     }
 }

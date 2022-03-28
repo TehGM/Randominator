@@ -16,8 +16,6 @@
         public string Generate()
         {
             MobileGameNameOptions options = this._options.CurrentValue;
-            this._log.LogDebug("Generating random game name. Total wrapper words in sets: {WrapperWordCount}", options.SharedWordSet.Count() + options.LeadingWordSet.Count() + options.TrailingWordSet.Count());
-
             ICollection<string> segments = new List<string>(5);
             if (this._random.RollChance(options.PrefixChance))
                 this.BuildSegment("Leading Prefix", options.PrefixWordSet, true, ref segments);

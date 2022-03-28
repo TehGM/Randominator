@@ -1,0 +1,13 @@
+﻿<div class="form-group input-group @(this.HighlightError ? "invalid" : "valid") @this.CssClass">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public bool HighlightError { get; set; }
+    [Parameter]
+    public string CssClass { get; set; }
+
+    [Parameter, EditorRequired]
+    public RenderFragment ChildContent { get; set; }
+}

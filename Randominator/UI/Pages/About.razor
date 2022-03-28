@@ -1,16 +1,16 @@
 ﻿@page "/about"
+@attribute [Sitemap(SitemapChangeFrequency.Weekly, Priority = 0.2f, LastModified = "2022-03-12")]
 
-<AppPageTitle Value="About" HeaderOverride="" />
+<HeaderTitle>About @AppInfo.Name</HeaderTitle>
 
-<h1>About @AppInfo.Name</h1>
 <p>Currently all of @AppInfo.Name generators are created purely for fun. How you use them is up to you - but I do not take any responsibility if you take them <i><span class="text-special bold">too</span></i> seriously. Have fun, damn it!</p>
 <p>Generators might be updated and for this reason "saved" results might change at any time.</p>
 
 <h4>Bug?</h4>
-<p>If you found a bug, feel free to open an <a href="https://github.com/TehGM/Randominator/issues" target="_blank">Issue on GitHub</a>.</p>
+<p>If you found a bug, feel free to open an <a href="@AppInfo.IssuesURL" target="_blank">Issue on GitHub</a>.</p>
 
 <h4>Suggestion?</h4>
-<p>If you want to suggest anything, feel free to start a <a href="https://github.com/TehGM/Randominator/discussions" target="_blank">Discussion on GitHub</a>.</p>
+<p>If you want to suggest anything, feel free to start a <a href="@($"{AppInfo.DiscussionsURL}/categories/ideas")" target="_blank">Discussion on GitHub</a>.</p>
 
 <h2>Author</h2>
 <p>
@@ -21,9 +21,9 @@
 <h3>Support the Project</h3>
 <p>If you want to support me, this project, or all other projects I work on, you can consider donating:</p>
 <ul>
-    <li><a href="https://github.com/sponsors/TehGM">@AppInfo.Author @@ GitHub Sponsors</a></li>
-    <li><a href="https://www.patreon.com/tehgmdev">@AppInfo.Author @@ Patreon</a></li>
-    <li><a href="https://www.buymeacoffee.com/TehGM">@AppInfo.Author @@ Buy Me a Coffee</a></li>
+    <li><a href="https://github.com/sponsors/TehGM" target="_blank">@AppInfo.Author @@ GitHub Sponsors</a></li>
+    <li><a href="https://www.patreon.com/tehgmdev" target="_blank">@AppInfo.Author @@ Patreon</a></li>
+    <li><a href="https://www.buymeacoffee.com/TehGM" target="_blank">@AppInfo.Author @@ Buy Me a Coffee</a></li>
 </ul>
 <p>If you prefer, I also don't mind cryptocurrency donations:</p>
 <ul>
@@ -55,32 +55,58 @@
 
 <h4>Client-side</h4>
 <p>@AppInfo.Name runs entirely in your browser. No data is stored or processed by any of my servers. Your browser might store some @AppInfo.Name data, but it's only accessible by you.</p>
+<p>Of course, running entirely client-side leads to some limitations, such as limited SEO or embedding capabilities, among others. For this reason - this might change in future. But for now I'm trying to simply work it all around. You can say it's a challenge - pushing Blazor WASM to its limits!</p>
 
 <h4>Source Code</h4>
 <p>
     As of version v@(AppInfo.Version), @AppInfo.Name is entirely open source.<br/>
-    See GitHub repository here: <a href="@_repoUrl" target="_blank">@_repoUrl</a>
+    See GitHub repository here: <a href="@AppInfo.RepositoryURL" target="_blank">@AppInfo.RepositoryURL</a>
 </p>
 
 <h4>Hosting</h4>
 <p>Since @AppInfo.Name is powered by Blazor Client-side, this website is statically hosted on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>!</p>
 <p>
     The build and publish is automated with <a href="https://github.com/features/actions" target="_blank">GitHub Actions</a>.<br/>
-    If you're silly and curious for some ridiculous reason, you can view the pipeline here: <a href="@_pipelineUrl" target="_blank">@_pipelineUrl</a>
+    If you're silly and curious for some ridiculous reason, you can view the pipeline here: <a href="@PipelineUrl" target="_blank">@PipelineUrl</a>
 </p>
 
-<h2>Changelog</h2>
+<h2 id="changelog">Changelog</h2>
+<h4>v0.3.0</h4>
+<ul>
+    <li>Added <NavLink href="generators/dare">Dare Generator</NavLink> (suggested in <a href="@AppInfo.GetDiscussionURL(9)" target="_blank">#9</a>).</li>
+    <li>Added a simple <NavLink href="generators/unique-id">Unique ID Generator</NavLink> for all ya IT freaks.</li>
+    <li>Added Easter Egg feature number 1. It has a small chance of appearing in the menu. Please do not cheat!</li>
+    <li>You can now collapse generator categories by clicking on them in the menu.</li>
+    <li>Renamed "Meme Generators" menu category to "Funny Generators" - this name fits much better.</li>
+    <li>Added "Utility Generators" menu category - <NavLink href="generators/unique-id">Unique ID Generator</NavLink> resides there.</li>
+    <li>Added a history box to <NavLink href="generators/mobile-game-name">Mobile Game Name Generator</NavLink>. The new <NavLink href="generators/dare">Dare Generator</NavLink> and <NavLink href="generators/unique-id">Unique ID Generator</NavLink> also use this addition.</li>
+    <li>Implemented some Search Engine Optimization through meta tags + pre-rendering.<br/>
+        Randominator should now properly embed short descriptions whenever you share a link somewhere!<br/>
+        <i>(Thanks to <a href="https://github.com/jsakamoto/BlazorWasmPreRendering.Build" target="_blank">jsakamoto</a> for his amazing library).</i></li>
+    <li>Fixed <NavLink href="generators/programming-standards">Programming Standards Generator</NavLink> running twice on each change.</li>
+    <li>Fixed some broken grammar and word duplication in <NavLink href="generators/programming-standards">Programming Standards Generator</NavLink>.</li>
+    <li>Fixed <NavLink href="generators/programming-standards">Programming Standards Generator</NavLink> rendering <code>camelCase</code> incorrectly when paired with leading <code>_</code>.</li>
+    <li>Fixed <NavLink href="generators/programming-standards">Programming Standards Generator</NavLink> not respecting code style when rendering multi-word affixes in descriptions.</li>
+    <li>Fixed donation links on <NavLink href="about">About</NavLink> page still opening in the same tab.</li>
+    <li>Added prepend to text inputs.</li>
+    <li>Text "route not found" on 404 page has been removed.</li>
+    <li>Removed menu's right border on mobile resolutions.</li>
+    <li>Added additional funky text font fallback to cover more devices.</li>
+    <li>Added sitemap.xml, and generator code so it can be automatically generated with each deployment.</li>
+    <li>Added <NavLink href="debug/randomizer-distribution">Randomizer Distribution Test</NavLink> debug feature, so anyone with doubts can verify that @AppInfo.Name is truly random. <i>Debug features are hidden by default.</i></li>
+    <li>Fixed startup errors not getting logged to browser's console.</li>
+</ul>
 <h4>v0.2.3</h4>
 <ul>
     <li>Fixed a regression bug where <NavLink href="generators/programming-standards">Programming Standards Generator</NavLink> would not render for language links.</li>
 </ul>
 <h4>v0.2.2</h4>
 <ul>
-    <li>Links on <NavLink href="about">About</NavLink> page will now open in a new tab.</li>
+    <li>Links on <NavLink href="about">About</NavLink> page will now open in a new tab. <i>This applies only to external links, not to @AppInfo.Name's pages.</i></li>
     <li>Language name in <NavLink href="generators/programming-standards">Programming Standards Generator</NavLink> is now limited to 100 characters.</li>
     <li>Language name in <NavLink href="generators/programming-standards">Programming Standards Generator</NavLink> will now automatically be trimmed off leading and trailing whitespaces.</li>
     <li>Fixed long words overflowing horizontally.</li>
-    <li>A tiny grammar fix on<NavLink href="about">About</NavLink> page.</li> 
+    <li>A tiny grammar fix on <NavLink href="about">About</NavLink> page.</li> 
 </ul>
 <h4>v0.2.1</h4>
 <ul>
@@ -120,15 +146,5 @@
 </ul>
 
 @code {
-    private const string _repoUrl = "https://github.com/TehGM/Randominator";
-    private const string _pipelineUrl = "https://github.com/TehGM/Randominator/blob/master/.github/workflows/dotnet-build.yml";
-
-    [CascadingParameter]
-    public MainLayout Layout { get; set; }
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        this.Layout.OverwriteFooterItems(null);
-    }
+    private string PipelineUrl => $"{AppInfo.RepositoryURL}/blob/master/.github/workflows/dotnet-build.yml";
 }

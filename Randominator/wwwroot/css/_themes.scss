@@ -41,6 +41,9 @@
     --accordion-background: white;
     --accordion-header-background: #e7f1ff;
     --accordion-header-color: #0c63e4;
+    // prepend
+    --prepend-background-color: var(--accordion-header-background);
+    --prepend-border-color: var(--accordion-background);
     // code
     --code-color: #d63384;
 

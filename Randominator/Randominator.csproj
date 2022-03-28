@@ -7,7 +7,7 @@
     <RootNamespace>TehGM.Randominator</RootNamespace>
 	<PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
 	<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-	<Version>0.2.3</Version>
+	<Version>0.3.0</Version>
 	<Authors>TehGM</Authors>
 	<Description>A Blazor website containing a random collection of generators (generating random or non-random stuff).</Description>
 	<Company>TehGM</Company>
@@ -20,6 +20,8 @@
 
   <ItemGroup>
     <None Remove="UI\Pages\About.razor.scss" />
+    <None Remove="UI\Pages\Generators\MobileGameName - Copy.razor.scss" />
+    <None Remove="UI\Pages\Generators\MobileGameName.razor.scss" />
     <None Remove="UI\Pages\Generators\ProgrammingStandards.razor.scss" />
     <None Remove="UI\Pages\Index.razor.scss" />
   </ItemGroup>
@@ -31,6 +33,9 @@
   	<Content Include="Dockerfile" Condition="Exists('Dockerfile')">
   	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
   	</Content>
+  	<Content Include="UI\Pages\Generators\Dare.razor.scss" />
+  	<Content Include="UI\Pages\Generators\UniqueID.razor.scss" />
+  	<Content Include="UI\Pages\Generators\MobileGameName.razor.scss" />
   	<Content Include="UI\Pages\Generators\ProgrammingStandards.razor.scss" />
   	<Content Include="UI\Pages\About.razor.scss" />
   	<Content Include="UI\Pages\Index.razor.scss" />
@@ -47,7 +52,13 @@
   	<Exec Command="webcompiler -r UI -c webcompiler.json" StandardOutputImportance="high" />
   </Target>
 
+  <!-- PRERENDERING -->
+  <PropertyGroup>
+	<BlazorWasmPrerenderingUrlPathToExplicitFetch>/player;/debug/randomizer-distribution</BlazorWasmPrerenderingUrlPathToExplicitFetch>
+  </PropertyGroup>
+
   <ItemGroup>
+    <PackageReference Include="BlazorWasmPreRendering.Build" Version="1.0.0-preview.22.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
@@ -59,6 +70,6 @@
     <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>
