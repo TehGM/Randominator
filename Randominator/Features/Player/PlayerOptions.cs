@@ -14,7 +14,6 @@
             "_S7WEVLbQ-Y",  // shreksophone 1h. Yes double is intentional
             "_S7WEVLbQ-Y",  // shreksophone 1h. Yes triple is intentional as well
             "aNLJ04DtgTA",  // fligu gigu 10h
-            "aNLJ04DtgTA",  // fligu gigu 10h. Yeah, another one with higher chance
             "dQw4w9WgXcQ",  // never gonna give you up
             "V7HdWeYbV3Q",  // walking polar bear 10h
             "6iFbuIpe68k",  // epic sax guy 10h
@@ -62,7 +61,9 @@
             "sCNrK-n68CM",  // trolololo 10h
             "Hy8kmNEo1i8",  // scatman
             "HQoRXhS7vlU",  // the x files
-            "BCGIPf5bgmQ",  // dance monkey (leo's cover)
+            "DKo9ok2829M",  // what is love (leo's cover)
+            "NL86PuqH8y0",  // genie in a bottle (leo's cover)
+            "3vnVzoEz_Zs",  // barbie girl (leo's cover)
             "i1H0leZhXcY",  // careless bork
             "uB2IVlsByrw",  // du hast (animal cover)
             "6MLeME9PieI",  // chop suey (animal cover)
@@ -217,7 +218,7 @@
             "UYKLGX9-_4Y",  // stalker campfire song pixel animation
             "VEj762Govhs",  // ozzy, are you sober now?
             "I6uzKSuz-p4",  // shrek krumps 10h
-            "Tx5nF3Gay0A",  // habibi arab cat
+            "Tx5nF3Gay0A",  // habibi arabian cat
             "8dVQ0813KVM",  // beeping cat
             "Z3oyT9BiGC4",  // shrek baby dancing to ~~minecraft music~~ snoop dogg
             "o1gRV9zjAYQ",  // shrek and waldo twerk
@@ -262,8 +263,91 @@
             "p0rXznBDfJM",  // monkey driving golf cart, GTASA music, 10h
             "isYt-BWrQfk",  // apple cat running 1h
             "oe6b5tMMw1k",  // cat with headphones 10h
-            "XaO_3GcQyiE",  // evil troll 1h
+            "bhsgn1v79as",  // phonk trollge 1h
+            "XaO_3GcQyiE",  // plague doctor dance
             "DrxdjxXXZug",  // burning memory but depressing 1h
+            "rmHDhAohJlQ",  // the prodigy - breathe
+            "a4eav7dFvc8",  // the prodigy - out of space
+            "lsV500W4BHU",  // powerman 5000 - when worlds collide
+            "yi-KQ3CKOQU",  // doggos dancin 1h
+            "NATSpYWERIE",  // nokia espionage 10h
+            "sXxbkjlHvf4",  // oreo
+            "o8hYrNsRoTs",  // karen metal
+            "rCSkWIdTONA",  // karen metal 2
+            "tnLLrnZVwFI",  // karen metal 4
+            "E5nsRs1e_q0",  // our table it's broken
+            "c7BVtGnlxT8",  // why do I hear boss music original
+            "V58fBGcbaCs",  // meet my son hecker jr
+            "jYO503VGd6k",  // 5 inches deep in your mum
+            "ebw6G6sIeHw",  // tf2 slap my...
+            "CS9OO0S5w2k",  // YMCA
+            "BQ4c54rCJ_k",  // reebok or nike
+            "kYV4heJ5Y7k",  // hello my name is mary
+            "67j3nQdsoSw",  // my name is giovanni giorgio (spider human)
+            "hl6ibkLDvLk",  // my name is giovanni giorgio (reaper)
+            "9iOpVqXz7dk",  // gary sings twist
+            "m_6gfvXja9M",  // gary sings *naughty rap, whatever it's called*
+            "KhvqED3Ud48",  // gary sings nigga nigga
+            "lFbPi8o0OEU",  // gary + spongebob + squidward - meow
+            "07kcMqltz3Q",  // gary - xmas songs
+            "BZoUuZue81o",  // gary poetry
+            "NlcWBPDl5WA",  // duck dancing to hey ya
+            "0QDKLglEP5Y",  // men without hands - safety dance
+            "Y414Q7vVgYU",  // safety dance, adam jensen version
+            "kEPfM3jSoBw",  // titanic with a cat
+            "1mf06IwdpVM",  // lotr with a cat
+            "W85oD8FEF78",  // jurassic park with a cat
+            "nf7GsKFepDg",  // godzilla vs cat
+            "2kppIwA9Bsg",  // home alone with a cat
+            "Nhuf-wS1CbI",  // witcher with a cat
+            "MIkxDXyNgAU",  // shining with a cat
+            "ra2MPDpdKnU",  // friends with a cat
+            "F2QAOS6llpw",  // friends intro poland
+            "EShUeudtaFg",  // am I pregnant questions
+            "X3XVlnFoYDQ",  // some mother that I used to do (gotye parody)
+            "aTfaRC0XfB4",  // oh no I mist
+            "0jzFjmIbX8c",  // games are bad they make you mad (postal 2)
+            "u5w1Q5wFkHQ",  // dad interrupts ball tricks
+            "SChnJDfmrSU",  // portal radio 10h
+            "Y6ljFaKRTrI",  // portal still alive
+            "Rsips1I0vew",  // spooky scary skeletons in 1 voice
+            "EqpfI_LcU50",  // asmr sounds of stepdad
+            "sPg0rpIN53Q",  // jettan coke
+            "PIc8NVyUrrw",  // jettan russherica 1
+            "nIGZSXUD1GM",  // everything you touch turns into skittles
+            "hBmpMMkXz6Y",  // ankha dance but cat shark
+            "oc4dGO9AuBA",  // dw is sus
+            "46MALEk-7cE",  // megadeth - duke nukem
+            "LzdO_itzYSU",  // duke nukem roasts franklin
+            "l6nQAKMxRXU",  // duke nukem bedtime story
+            "l6nQAKMxRXU",  // duke nukem unexpected quotes
+            "m1TnzCiUSI0",  // The Italian Man Who went to Malta
+            "-XccUMOQ978",  // Schfifty Five
+            "0ogJtX-Z7Xs",  // songs in real life
+            "9bZkp7q19f0",  // gangnam style
+            "wWLhrHVySgA",  // chinese food
+            "M3iOROuTuMA",  // salad fingers 1
+            "cuCw5k-Lph0",  // salad fingers 2
+            "ojoICRzSCOo",  // salad fingers 3
+            "M5V_IXMewl4",  // stick bug
+            "989-7xsRLR4",  // vitas 7th element
+            "v1K4EAXe2oo",  // eeeaaaooo (cat)
+            "AjdVZyO5q18",  // green orxnge (trollge) 1h
+            "SNxYodddgvc",  // he was a good stalker (doomerwave) (stalker)
+            "tFbVZCbLhOk",  // campfire song with distortions (doomerwave) -- russian title (stalker)
+            //"aTHhYf2rx3w",  // firelake - dirge for the planet (stalker)
+            "SeHYcxohxCk",  // Xue hua piao piao bei feng xiao xiao (shrek)
+            "f9XiD_2K7-Q",  // paradise lost - small town boy
+            "WtO3AHMBePY",  // triangle pumped up kicks
+            "-DVmNrX8dZU",  // birb is laugh then destroy
+            "MFmr_TZLpS0",  // banana dance
+            "142d500n_9g",  // whoever threw that paper your moms a hoe
+            "ZYepB5ppEWM",  // dirge for the planet but surrounded by Monolith
+            "XtAhISkoJZc",  // chop suey but everything is a table
+            "puI9sy9vjyI",  // psycho vladolf putler crazy
+            "tmY-G6sngk8",  // rickroll spanish inquisition
+            "pifBpLAun6U",  // my name is chicky
+            "myhMnljOC10",  // boohbah skipping rope
         };
     }
 }

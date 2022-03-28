@@ -64,7 +64,9 @@ namespace TehGM.Randominator.Features.Player.Services
             }
             catch (InvalidOperationException) { }
 
-            return $"https://www.youtube-nocookie.com/embed/{videoID}?{BuildQuery(query)}";
+            string result = $"https://www.youtube-nocookie.com/embed/{videoID}?{BuildQuery(query)}";
+            this._log.LogDebug("Video URL {VideoURL}", result);
+            return result;
         }
 
         private string BuildQuery(IDictionary<string, object> values)
