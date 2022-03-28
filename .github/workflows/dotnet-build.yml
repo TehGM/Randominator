@@ -58,4 +58,8 @@ jobs:
         publish_dir: bin/publish/wwwroot
         cname: randominator.tehgm.net
         force_orphan: true
+    - name: Ping Google
+      run: 'curl https://www.google.com/ping?sitemap=https://randominator.tehgm.net/sitemap.xml'
+    - name: Ping Bing
+      run: 'curl https://www.bing.com/ping?sitemap=https://randominator.tehgm.net/sitemap.xml'
      
