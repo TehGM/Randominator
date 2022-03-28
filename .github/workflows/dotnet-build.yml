@@ -59,7 +59,9 @@ jobs:
         cname: randominator.tehgm.net
         force_orphan: true
     - name: Ping Google
+      if: (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event.inputs.releasePage == 'Y'
       run: 'curl https://www.google.com/ping?sitemap=https://randominator.tehgm.net/sitemap.xml'
     - name: Ping Bing
+      if: (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event.inputs.releasePage == 'Y'
       run: 'curl https://www.bing.com/ping?sitemap=https://randominator.tehgm.net/sitemap.xml'
      
