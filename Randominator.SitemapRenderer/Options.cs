@@ -4,7 +4,7 @@ namespace Randominator.SitemapRenderer
 {
     internal class Options
     {
-        [Option('o', "output", Default = "../bin/publish/wwwroot")]
+        [Option('o', "output", Default = "bin/publish/wwwroot")]
         public string OutputDirectory { get; }
         [Option('f', "filename", Default = "sitemap.xml")]
         public string OutputFile { get; }

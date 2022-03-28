@@ -8,7 +8,7 @@ Run this after Randominator has been published - `dotnet run` command is recomme
 CI/CD pipeline should be set to publish Randominator project only, not entire solution.
 
 Supported options. Examples indicate default values:
-- `-o` - controls output directory, for example `-o ../bin/publish/wwwroot`.
+- `-o` - controls output directory, for example `-o bin/publish/wwwroot`.
 - `-f` - controls file name, for example `-f sitemap.xml`.
 - `-d` - allows changing domain, for example `-d randominator.tehgm.net`.
 - `-p` - specifies procotol/scheme, for example `-p https`.
