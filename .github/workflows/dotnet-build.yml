@@ -45,7 +45,7 @@ jobs:
         find: '(?i)%%VERSION%%'
         replace: ${{ github.run_id }}
         regex: true
-        include: 'bin/publish/wwwroot/index.html'
+        include: 'bin/publish/wwwroot/**.html'
     - name: Create 404.html
       run: 'cp -p -n bin/publish/wwwroot/index.html bin/publish/wwwroot/404.html'
     - name: Generate robots.txt
