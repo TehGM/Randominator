@@ -36,7 +36,7 @@ jobs:
     - name: 'Compile Static Files: /UI'
       run: webcompiler -r Randominator/UI -c Randominator/webcompiler.json
     - name: Publish solution
-      run: dotnet publish --no-restore --nologo -c Release -o bin/publish
+      run: dotnet publish Randominator --no-restore --nologo -c Release -o bin/publish
     - name: Run tests
       run: dotnet test --no-restore --nologo --verbosity normal
     - name: Version static files
@@ -48,6 +48,8 @@ jobs:
         include: 'bin/publish/wwwroot/index.html'
     - name: Create 404.html
       run: 'cp -p -n bin/publish/wwwroot/index.html bin/publish/wwwroot/404.html'
+    - name: Generate robots.txt
+      run: 'dotnet run --project Randominator.SitemapRenderer'
     - name: Release to GitHub Pages
       if: (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event.inputs.releasePage == 'Y'
       uses: peaceiris/actions-gh-pages@v3
