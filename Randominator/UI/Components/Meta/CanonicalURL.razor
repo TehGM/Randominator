@@ -1,0 +1,37 @@
+﻿@inject NavigationManager Navigation
+@inject IWebAssemblyHostEnvironment Environment
+@implements IDisposable
+
+<link rel="canonical" href="@this._url"/>
+
+@code {
+    private string _url;
+
+    protected override void OnInitialized()
+    {
+        this.Navigation.LocationChanged += OnLocationChanged;
+        this.UpdateURL(this.Navigation.Uri);
+        base.OnInitialized();
+    }
+
+    private void OnLocationChanged(object sender, LocationChangedEventArgs e)
+    {
+        if (e.IsNavigationIntercepted)
+        {
+            this.UpdateURL(e.Location);
+            base.StateHasChanged();
+        }
+    }
+
+    private void UpdateURL(string location)
+    {
+        this._url = location;
+        if (!this.Environment.IsDevelopment() && !this._url.EndsWith('/'))
+            this._url += '/';
+    }
+
+    void IDisposable.Dispose()
+    {
+        this.Navigation.LocationChanged -= OnLocationChanged;
+    }
+}
