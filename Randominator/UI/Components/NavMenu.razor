@@ -19,20 +19,20 @@
     <div class="nav-menu-items @this.NavMenuClass">
         <nav class="flex-column">
             <div class="nav-item px-3" @onclick="ToggleNavMenu">
-                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">
                     <span class="oi oi-home" aria-hidden="true"></span> Home
                 </NavLink>
             </div>
             @if (this._showPlayer)
             {
                 <div class="nav-item px-3">
-                    <NavLink class="nav-link rainbow-text" href="player" @onclick="OnPlayerClicked">
+                    <NavLink class="nav-link rainbow-text" href="player/" @onclick="OnPlayerClicked">
                         <span class="bi bi-youtube" aria-hidden="true"></span> Player
                     </NavLink>
                 </div>
             }
             <div class="nav-item px-3">
-                <NavLink class="nav-link" href="about">
+                <NavLink class="nav-link" href="about/">
                     <span class="oi oi-info" aria-hidden="true"></span> About
                 </NavLink>
             </div>
@@ -45,17 +45,17 @@
                 </a>
             </div>
             <div class="nav-item px-3 @this.FunnyGeneratorsClass">
-                <NavLink class="nav-link" href="generators/mobile-game-name">
+                <NavLink class="nav-link" href="generators/mobile-game-name/">
                      <span class="bi bi-hypnotize" aria-hidden="true"></span> Mobile Game Name
                 </NavLink>
             </div>
             <div class="nav-item px-3 @this.FunnyGeneratorsClass">
-                <NavLink class="nav-link" href="generators/dare">
+                <NavLink class="nav-link" href="generators/dare/">
                      <span class="bi bi-hypnotize" aria-hidden="true"></span> Dare
                 </NavLink>
             </div>
             <div class="nav-item px-3 @this.FunnyGeneratorsClass">
-                <NavLink class="nav-link" href="generators/programming-standards">
+                <NavLink class="nav-link" href="generators/programming-standards/">
                      <span class="bi bi-hypnotize" aria-hidden="true"></span> Programming Standards
                 </NavLink>
             </div>
@@ -67,7 +67,7 @@
                 </a>
             </div>
             <div class="nav-item px-3 @this.UtilityGeneratorsClass">
-                <NavLink class="nav-link" href="generators/unique-id">
+                <NavLink class="nav-link" href="generators/unique-id/">
                      <span class="bi bi-gear-wide-connected" aria-hidden="true"></span> Unique ID
                 </NavLink>
             </div>
@@ -82,7 +82,7 @@
                     </a>
                 </div>
                 <div class="nav-item px-3 @this.DebugUtilsClass">
-                    <NavLink class="nav-link" href="debug/randomizer-distribution">
+                    <NavLink class="nav-link" href="debug/randomizer-distribution/">
                          <span class="bi bi-gear-wide-connected" aria-hidden="true"></span> Randomizer Distribution Test
                     </NavLink>
                 </div>
