@@ -7,7 +7,7 @@
         public bool AllowVideosByID { get; set; } = false;
 
         public double PlayerAppearChance { get; set; } = 0.05;
-        public bool EnableControls { get; set; } = false;
+        public bool EnableControls { get; set; } = true;
         public IEnumerable<string> VideoIDs { get; set; } = new string[]
         {
             "_S7WEVLbQ-Y",  // shreksophone 1h
