@@ -71,6 +71,15 @@
 </p>
 
 <h2 id="changelog">Changelog</h2>
+<h4>v0.3.1</h4>
+<ul>
+    <li>Removed unused dependencies and enabled Brotli compression support. This should result in about 70% reduced initial download size.<br/>
+        <i>Please note that loading of the application is still primarily CPU-bound - so it'll take a while if your CPU is not too fast!</i></li>
+    <li>Fix: Added canonical URL to pages to reduce SEO confusion.</li>
+    <li>Fix: remove duplicate title tag due to prerendering.</li>
+    <li>Add trailing slash to internal navigations to reduce redirects caused by prerendered GH Pages hosting.</li>
+    <li>Easter Egg Feature number 1 expanded a bit.</li>
+</ul>
 <h4>v0.3.0</h4>
 <ul>
     <li>Added <NavLink href="generators/dare/">Dare Generator</NavLink> (suggested in <a href="@AppInfo.GetDiscussionURL(9)" target="_blank">#9</a>).</li>
