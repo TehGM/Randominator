@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using TehGM.Randominator.UI.Pages;
 
-namespace Randominator.SitemapRenderer
+namespace TehGM.Randominator.SitemapRenderer
 {
     internal class SitemapBuilder
     {

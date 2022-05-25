@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace Randominator.SitemapRenderer
+namespace TehGM.Randominator.SitemapRenderer
 {
     internal class Options
     {
