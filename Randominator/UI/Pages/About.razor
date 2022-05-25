@@ -71,42 +71,51 @@
 </p>
 
 <h2 id="changelog">Changelog</h2>
+<h4>v0.3.1</h4>
+<ul>
+    <li>Removed unused dependencies and enabled Brotli compression support. This should result in about 70% reduced initial download size.<br/>
+        <i>Please note that loading of the application is still primarily CPU-bound - so it'll take a while if your CPU is not too fast!</i></li>
+    <li>Fix: Added canonical URL to pages to reduce SEO confusion.</li>
+    <li>Fix: remove duplicate title tag due to prerendering.</li>
+    <li>Add trailing slash to internal navigations to reduce redirects caused by prerendered GH Pages hosting.</li>
+    <li>Easter Egg Feature number 1 expanded a bit.</li>
+</ul>
 <h4>v0.3.0</h4>
 <ul>
-    <li>Added <NavLink href="generators/dare">Dare Generator</NavLink> (suggested in <a href="@AppInfo.GetDiscussionURL(9)" target="_blank">#9</a>).</li>
-    <li>Added a simple <NavLink href="generators/unique-id">Unique ID Generator</NavLink> for all ya IT freaks.</li>
+    <li>Added <NavLink href="generators/dare/">Dare Generator</NavLink> (suggested in <a href="@AppInfo.GetDiscussionURL(9)" target="_blank">#9</a>).</li>
+    <li>Added a simple <NavLink href="generators/unique-id/">Unique ID Generator</NavLink> for all ya IT freaks.</li>
     <li>Added Easter Egg feature number 1. It has a small chance of appearing in the menu. Please do not cheat!</li>
     <li>You can now collapse generator categories by clicking on them in the menu.</li>
     <li>Renamed "Meme Generators" menu category to "Funny Generators" - this name fits much better.</li>
-    <li>Added "Utility Generators" menu category - <NavLink href="generators/unique-id">Unique ID Generator</NavLink> resides there.</li>
-    <li>Added a history box to <NavLink href="generators/mobile-game-name">Mobile Game Name Generator</NavLink>. The new <NavLink href="generators/dare">Dare Generator</NavLink> and <NavLink href="generators/unique-id">Unique ID Generator</NavLink> also use this addition.</li>
+    <li>Added "Utility Generators" menu category - <NavLink href="generators/unique-id/">Unique ID Generator</NavLink> resides there.</li>
+    <li>Added a history box to <NavLink href="generators/mobile-game-name">Mobile Game Name Generator</NavLink>. The new <NavLink href="generators/dare/">Dare Generator</NavLink> and <NavLink href="generators/unique-id/">Unique ID Generator</NavLink> also use this addition.</li>
     <li>Implemented some Search Engine Optimization through meta tags + pre-rendering.<br/>
         Randominator should now properly embed short descriptions whenever you share a link somewhere!<br/>
         <i>(Thanks to <a href="https://github.com/jsakamoto/BlazorWasmPreRendering.Build" target="_blank">jsakamoto</a> for his amazing library).</i></li>
-    <li>Fixed <NavLink href="generators/programming-standards">Programming Standards Generator</NavLink> running twice on each change.</li>
-    <li>Fixed some broken grammar and word duplication in <NavLink href="generators/programming-standards">Programming Standards Generator</NavLink>.</li>
-    <li>Fixed <NavLink href="generators/programming-standards">Programming Standards Generator</NavLink> rendering <code>camelCase</code> incorrectly when paired with leading <code>_</code>.</li>
-    <li>Fixed <NavLink href="generators/programming-standards">Programming Standards Generator</NavLink> not respecting code style when rendering multi-word affixes in descriptions.</li>
-    <li>Fixed donation links on <NavLink href="about">About</NavLink> page still opening in the same tab.</li>
+    <li>Fixed <NavLink href="generators/programming-standards/">Programming Standards Generator</NavLink> running twice on each change.</li>
+    <li>Fixed some broken grammar and word duplication in <NavLink href="generators/programming-standards/">Programming Standards Generator</NavLink>.</li>
+    <li>Fixed <NavLink href="generators/programming-standards/">Programming Standards Generator</NavLink> rendering <code>camelCase</code> incorrectly when paired with leading <code>_</code>.</li>
+    <li>Fixed <NavLink href="generators/programming-standards/">Programming Standards Generator</NavLink> not respecting code style when rendering multi-word affixes in descriptions.</li>
+    <li>Fixed donation links on <NavLink href="about/">About</NavLink> page still opening in the same tab.</li>
     <li>Added prepend to text inputs.</li>
     <li>Text "route not found" on 404 page has been removed.</li>
     <li>Removed menu's right border on mobile resolutions.</li>
     <li>Added additional funky text font fallback to cover more devices.</li>
     <li>Added sitemap.xml, and generator code so it can be automatically generated with each deployment.</li>
-    <li>Added <NavLink href="debug/randomizer-distribution">Randomizer Distribution Test</NavLink> debug feature, so anyone with doubts can verify that @AppInfo.Name is truly random. <i>Debug features are hidden by default.</i></li>
+    <li>Added <NavLink href="debug/randomizer-distribution/">Randomizer Distribution Test</NavLink> debug feature, so anyone with doubts can verify that @AppInfo.Name is truly random. <i>Debug features are hidden by default.</i></li>
     <li>Fixed startup errors not getting logged to browser's console.</li>
 </ul>
 <h4>v0.2.3</h4>
 <ul>
-    <li>Fixed a regression bug where <NavLink href="generators/programming-standards">Programming Standards Generator</NavLink> would not render for language links.</li>
+    <li>Fixed a regression bug where <NavLink href="generators/programming-standards/">Programming Standards Generator</NavLink> would not render for language links.</li>
 </ul>
 <h4>v0.2.2</h4>
 <ul>
-    <li>Links on <NavLink href="about">About</NavLink> page will now open in a new tab. <i>This applies only to external links, not to @AppInfo.Name's pages.</i></li>
-    <li>Language name in <NavLink href="generators/programming-standards">Programming Standards Generator</NavLink> is now limited to 100 characters.</li>
-    <li>Language name in <NavLink href="generators/programming-standards">Programming Standards Generator</NavLink> will now automatically be trimmed off leading and trailing whitespaces.</li>
+    <li>Links on <NavLink href="about/">About</NavLink> page will now open in a new tab. <i>This applies only to external links, not to @AppInfo.Name's pages.</i></li>
+    <li>Language name in <NavLink href="generators/programming-standards/">Programming Standards Generator</NavLink> is now limited to 100 characters.</li>
+    <li>Language name in <NavLink href="generators/programming-standards/">Programming Standards Generator</NavLink> will now automatically be trimmed off leading and trailing whitespaces.</li>
     <li>Fixed long words overflowing horizontally.</li>
-    <li>A tiny grammar fix on <NavLink href="about">About</NavLink> page.</li> 
+    <li>A tiny grammar fix on <NavLink href="about/">About</NavLink> page.</li> 
 </ul>
 <h4>v0.2.1</h4>
 <ul>
@@ -114,14 +123,14 @@
     <li>Nav menu will now automatically close on mobile devices whenever a page navigation occurs.</li>
     <li>Header text is now centered on small screens to improve the looks of longer titles.</li>
     <li>Versioned CSS to force re-download.</li>
-    <li>Grammar error of double "you" in <NavLink href="generators/mobile-game-name">Mobile Game Name Generator</NavLink> has been fixed.</li>
+    <li>Grammar error of double "you" in <NavLink href="generators/mobile-game-name/">Mobile Game Name Generator</NavLink> has been fixed.</li>
 </ul>
 <h4>v0.2.0</h4>
 <ul>
-    <li>A powerful <NavLink href="generators/programming-standards">Programming Standards Generator</NavLink> has been added.</li>
-    <li><NavLink href="generators/mobile-game-name">Mobile Game Name Generator</NavLink> has been improved - support for 7 prefixes for both leading and trailing words, 2 additional middle sections, 10 more words. This results in over 2 million possibilities!</li>
-    <li><NavLink href="generators/mobile-game-name">Mobile Game Name Generator</NavLink> now also displays calculated number of possibilities on the page. Yes, this number is real.</li>
-    <li><NavLink href="generators/mobile-game-name">Mobile Game Name Generator</NavLink> now uses Comic Sans font for rainbow text on all devices. Previously mobile devices used Pacifico font.</li>
+    <li>A powerful <NavLink href="generators/programming-standards/">Programming Standards Generator</NavLink> has been added.</li>
+    <li><NavLink href="generators/mobile-game-name/">Mobile Game Name Generator</NavLink> has been improved - support for 7 prefixes for both leading and trailing words, 2 additional middle sections, 10 more words. This results in over 2 million possibilities!</li>
+    <li><NavLink href="generators/mobile-game-name/">Mobile Game Name Generator</NavLink> now also displays calculated number of possibilities on the page. Yes, this number is real.</li>
+    <li><NavLink href="generators/mobile-game-name/">Mobile Game Name Generator</NavLink> now uses Comic Sans font for rainbow text on all devices. Previously mobile devices used Pacifico font.</li>
     <li>Theme rework to get rid of Blazor's default style.</li>
     <li>Buttons now look nicer.</li>
     <li>Page contents now will not be more than 1320px wide, which makes them look nicer on big screens.</li>
@@ -129,7 +138,7 @@
     <li>Navigation menu now supports sections - currently collapsing them is disabled, but will be enabled once more sections and generators are added.</li>
     <li>"Not found" page will now show a randomized image.</li>
     <li>The loading page now is much nicer, and fitting the default style.</li>
-    <li>Added <NavLink href="about">About</NavLink> page.</li>
+    <li>Added <NavLink href="about/">About</NavLink> page.</li>
     <li>Home page contents have been slightly updated.</li>
     <li>Added copyright to navigation menu or page footer (depending on resolution).</li>
     <li>Numerous under-the-hood and future-proofing changes.</li>
@@ -137,12 +146,12 @@
 <h4>v0.1.1</h4>
 <ul>
     <li>Fix issue where @AppInfo.Name would not load if not loaded from index.</li>
-    <li>Added 10 more words to <NavLink href="generators/mobile-game-name">Mobile Game Name Generator</NavLink>.</li>
+    <li>Added 10 more words to <NavLink href="generators/mobile-game-name/">Mobile Game Name Generator</NavLink>.</li>
 </ul>
 <h4>v0.1.0</h4>
 <ul>
     <li>Initial release, put quickly together in one evening.</li>
-    <li>Includes initial <NavLink href="generators/mobile-game-name">Mobile Game Name Generator</NavLink>.</li>
+    <li>Includes initial <NavLink href="generators/mobile-game-name/">Mobile Game Name Generator</NavLink>.</li>
 </ul>
 
 @code {

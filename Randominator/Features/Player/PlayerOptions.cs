@@ -7,7 +7,7 @@
         public bool AllowVideosByID { get; set; } = false;
 
         public double PlayerAppearChance { get; set; } = 0.05;
-        public bool EnableControls { get; set; } = false;
+        public bool EnableControls { get; set; } = true;
         public IEnumerable<string> VideoIDs { get; set; } = new string[]
         {
             "_S7WEVLbQ-Y",  // shreksophone 1h
@@ -124,7 +124,6 @@
             "5CEiwddPKyE",  // shrek electric zoo
             "iPrnduGtgmc",  // ding dong song
             "i0xOSxgs6w8",  // moskau
-            "cZzK32Cfcq8",  // rasputin (putin version)
             "QiFBgtgUtfw",  // tri poloski
             "UcRtFYAz2Yo",  // dance till you're dead 10h
             "b8HO6hba9ZE",  // we like to party
@@ -132,7 +131,6 @@
             "kNH_EjHvm3I",  // keyboard cat 10h
             "WqmGFfNco0g",  // puddi puddi
             "sVYlkLauPlY",  // peanut butter jelly time 10h
-            "YnopHCL1Jk8",  // dragostea din tei
             "k85mRPqvMbE",  // crazy frog
             "kGGoeDrjL5g",  // crazy frog (neo kids version)
             "MlW7T0SUH0E",  // chacarron
@@ -335,7 +333,6 @@
             "AjdVZyO5q18",  // green orxnge (trollge) 1h
             "SNxYodddgvc",  // he was a good stalker (doomerwave) (stalker)
             "tFbVZCbLhOk",  // campfire song with distortions (doomerwave) -- russian title (stalker)
-            //"aTHhYf2rx3w",  // firelake - dirge for the planet (stalker)
             "SeHYcxohxCk",  // Xue hua piao piao bei feng xiao xiao (shrek)
             "f9XiD_2K7-Q",  // paradise lost - small town boy
             "WtO3AHMBePY",  // triangle pumped up kicks
@@ -348,6 +345,94 @@
             "tmY-G6sngk8",  // rickroll spanish inquisition
             "pifBpLAun6U",  // my name is chicky
             "myhMnljOC10",  // boohbah skipping rope
+            "jhExvE5fvJw",  // eminem - crab god
+            "QfOLwSyq0Wg",  // arab cat original song
+            "xMSGnGL8JU0",  // gopnik dance cheeki breeki style
+            "bVoouSAhytw",  // rating countries by slavness
+            "8sNekrl9x9g",  // will smith slaps the rock
+            "C8nsz6TK5bI",  // will smith doesn't slap chris rock
+            "H7S7CwkttV0",  // friends ross has no friends
+            "Uu1JONP5fD4",  // bandit dance
+            "gAYL5H46QnQ",  // threw it on the ground
+            "vmd1qMN5Yo0",  // the shooting aka dear sister
+            "5WTkJHHF4B4",  // horror movie daycare
+            "uukvEcd25oQ",  // std song
+            "tz1aZq3axgg",  // hakke en zage
+            "U0Og4LaB1Zc",  // wrecking ball nicolas cage
+            "G_miGclPFGs",  // one pound fish (music video)
+            "fpGIZstcXzU",  // one pound fish (original)
+            "3YvGFsc0SYw",  // I sit - cat (sugar soad)
+            "Q8i2WPxXxS4",  // wilfred warrior
+            "w0AOGeqOnFY",  // the coconut song
+            "U9t-slLl30E",  // bad lip reading - seagulls
+            "LACbVhgtx9I",  // muffin song
+            "8zIpaDa0UQw",  // oblivion NPC cat
+            "wAu_fYHZKLs",  // time traveller (sfm)
+            "jvRX5ixyiaQ",  // meth song
+            "Tq55upxAlyA",  // queen pretends she's a normal person
+            "wdWuQP6862U",  // the jizzle
+            "oxzEdm29JLw",  // tutel
+            "1AIVA1bmxFw",  // krawczyk - parostatkiem (+ coolio, dre, snoop dogg, ice cube)
+            "lXj2Oj1H0mM",  // will smith goes metal
+            "DoqPEhVHdBM",  // bad grandpa pageant
+            "soh1U9tdrs0",  // medieval real slim shady
+            "Hl5dRW4E9hc",  // pizza song
+            "A3ytTKZf344",  // reggae shark
+            "cjUPVKEN9tI",  // super hexagon - hexagonest
+            "Libic29tjbs",  // heavy's pizza song
+            "6jJkdRaa04g",  // yello - oh yeah
+            "q6EoRBvdVPQ",  // yee
+            "ujQBKpjYqfE",  // serbia strong
+            "sVjk5nrb_lI",  // spooky scary skeletons
+            "ZyhrYis509A",  // aqua - barbie girl
+            "dv13gl0a-FA",  // initial d - deja vu
+            "LBjUh4bYF8w",  // hamsterdance 2
+            "FzG4uDgje3M",  // dame tu cosita
+            "3oIbztWsY8g",  // ludacris - move bitch
+            "6-8E4Nirh9s",  // caramelldansen
+            "YVkUvmDQ3HY",  // eminem - without me
+            "KmtzQCSh6xk",  // numa numa (dud singing dragostea din tei)
+            "IiDQwQQsrL8",  // bouldevard of broken dreams in paint
+            "fbGkxcY7YFU",  // what what in the butt
+            "EwTZ2xpQwpA",  // chocolate rain
+            "feA64wXhbjo",  // bag raiders - shooting stars
+            "hMtZfW2z9dw",  // bed intruder song (hide yo kids)
+            "Ppm5_AGtbTo",  // chicken yodeling
+            "YkuSmJtRY8E",  // nugget in a biscuit 10h
+            "fWNaR-rxAic",  // carly rae jepsen - call me maybe
+            "hLljd8pfiFg",  // the globglogabgalab
+            "Kppx4bzfAaE",  // rappin for jesus
+            "8vJiSSAMNWw",  // harlem shake
+            "6vYnas6q3Sg",  // ot genasis - coco
+            "Mz3Mi_OZYno",  // all the single furries
+            "dlFA0Zq1k2A",  // kana-boon - silhouette
+            "g-sgw9bPV4A",  // kazoo kid trap remix
+            "vfc42Pb5RA8",  // pokemon go song
+            "dgha9S39Y6M",  // mine diamonds
+            "Ct6BUPvE2sM",  // ppap (apple pen)
+            "iB3fZGTm6a8",  // cbid (cyka blyat ppap parody)
+            "yx2piPUudlE",  // yung gravy - mr clean
+            "rzc3_b_KnHc",  // dat stick
+            "OLpeX4RRo28",  // ping guy - stfu
+            "CMA2iF6RuXk",  // fergie US anthem
+            "ls3rD8VfiSY",  // tenacious d - rize of the fenix
+            "N0hFf-twPlY",  // tenacious d - you never give me your money
+            "cwhctFi0Em8",  // if soad made take on me
+            "MrN8K2nDcUM",  // my name is giovanni giorgo child
+            "_x14hNEf_tI",  // it's prom
+            "_IJdRRBEsUs",  // discord cats - hecker gets mad
+            "ixYKcytJKbo",  // discord cats - kars rickrolls hecker
+            "0J_a9Uae1Jk",  // discord cats - beluga gets rickrolled
+            "zbIzyhomrUI",  // discord cats - if beluga owned a discord server
+            "dGrMJHsWe0U",  // discord cats - hecker fixes beluga's computer
+            "i-M3K4miJMw",  // discord cats - pablo as discord server owner
+            "xjip93wTvJo",  // discord cats - hecker meets scemer
+            "0ZJ5dSlVFNI",  // discord cats - hecker vs evil musk
+            "LxQv3ajw9nY",  // discord cats - hecker hacks FBI
+            "RVPmEXEmKWs",  // discord cats - hecker deletes beluga
+            "69Hitt9Dw4Y",  // discord cats - hecker finds beluga's password
+            "OhvCJGRBX1A",  // discord cats - pablo vs flat earther
+            "TovdjYooStg",  // discord cats - beluga gets unmodded
         };
     }
 }

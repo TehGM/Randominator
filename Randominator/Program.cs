@@ -27,7 +27,6 @@ public class Program
         Log.Logger = new LoggerConfiguration()
                     .MinimumLevel.Error()
                     .WriteTo.BrowserConsole()
-                    .WriteTo.Console()
                     .CreateLogger();
         // capture unhandled exceptions
         AppDomain.CurrentDomain.UnhandledException += (sender, e) =>

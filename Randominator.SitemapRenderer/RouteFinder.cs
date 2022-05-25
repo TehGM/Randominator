@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using TehGM.Randominator.UI.Pages;
 
-namespace Randominator.SitemapRenderer
+namespace TehGM.Randominator.SitemapRenderer
 {
     internal static class RouteFinder
     {

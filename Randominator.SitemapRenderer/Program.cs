@@ -6,7 +6,7 @@ using System.Text;
 using CommandLine;
 using Serilog;
 
-namespace Randominator.SitemapRenderer
+namespace TehGM.Randominator.SitemapRenderer
 {
     internal class Program
     {
