@@ -30,8 +30,7 @@ namespace TehGM.Randominator.Utilities.GeneratorMemory.Services
 
         public void AddItem(TItem item)
         {
-            if (this._historyItems == null)
-                this._historyItems = new Queue<TItem>(this.MaxHistoryItems);
+            this._historyItems ??= new Queue<TItem>(this.MaxHistoryItems);
             this._historyItems.Enqueue(item);
             this.TrimCollection();
         }
