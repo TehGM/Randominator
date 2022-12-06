@@ -49,7 +49,7 @@ namespace TehGM.Randominator.Features.Player.Services
                 { "autoplay", true },
                 { "loop", true },
                 { "modestbranding", true },
-                { "disablekb", this._options.EnableControls },
+                { "disablekb", !this._options.EnableControls },
                 { "playsinline", true },
                 { "rel", false },
                 { "fs", false },            // fullscreen
