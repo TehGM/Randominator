@@ -72,6 +72,7 @@ public class Program
         ConfigureOptions(services, configuration);
 
         // utilities
+        services.AddUserSettings();
         services.AddRandomizer();
         services.AddClipboard();
         services.AddGeneratorMemory();
