@@ -1,0 +1,46 @@
+﻿<div class="form-group input-group @this.CssClass">
+    @if (!string.IsNullOrEmpty(this.Label))
+    {
+        <FormInputPrepend CssClass="@this.LabelCssClass">@this.Label</FormInputPrepend>
+    }
+
+    <input id="@this.ID" type="checkbox" class="btn-check" autocomplete="off" value="@this.Value" checked="@this.Value" @onchange="this.OnClickAsync" disabled="@this.Disabled" />
+    <label class="btn @this.ToggleCssClass @this.CurrentToggleCssClass" for="@this.ID">@this.CurrentToggleText</label>
+</div>
+
+@code {
+    [Parameter]
+    public Guid ID { get; set; } = Guid.NewGuid();
+    [Parameter]
+    public bool Disabled { get; set; }
+    [Parameter]
+    public string CssClass { get; set; }
+    [Parameter]
+    public string LabelCssClass { get; set; }
+    [Parameter]
+    public string ToggleCssClass { get; set; }
+    [Parameter]
+    public string Label { get; set; }
+    [Parameter]
+    public string OnText { get; set; } = "On";
+    [Parameter]
+    public string OffText { get; set; } = "Off";
+    [Parameter]
+    public string OnCssClass { get; set; } = "btn-success";
+    [Parameter]
+    public string OffCssClass { get; set; } = "btn-danger";
+
+    private string CurrentToggleText => this.Value ? this.OnText : this.OffText;
+    private string CurrentToggleCssClass => this.Value ? this.OnCssClass : this.OffCssClass;
+
+    [Parameter]
+    public bool Value { get; set; }
+    [Parameter]
+    public EventCallback<bool> ValueChanged { get; set; }
+
+    private Task OnClickAsync()
+    {
+        this.Value = !this.Value;
+        return ValueChanged.InvokeAsync(this.Value);
+    }
+}
