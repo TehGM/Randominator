@@ -1,0 +1,66 @@
+﻿@page "/generators/Book-Title"
+@using TehGM.Randominator.Generators.BookTitle
+@implements IDisposable
+@inject IBookTitleGenerator _generator
+@inject IOptionsSnapshot<BookTitleOptions> _options
+@attribute [Sitemap(SitemapChangeFrequency.Always)]
+
+<PageMeta Title="Book Title Generator" Description="Ever noticed how many great books follow the same naming pattern? Here's a generator that'll help you pick an epic title for your new book.">
+    <GeneratorStructuredData GeneratorType="GeneratorType.Funny" />
+</PageMeta>
+<HeaderTitle>Book Title Generator</HeaderTitle>
+
+<p>Ever noticed how many great books follow the same naming pattern? Here's a generator that'll help you pick an epic title for your new book!</p>
+<p>This generator can currently provide <span class="text-special">@this._comboCount</span> <i>(yes, really)</i> book titles for you. Neat, eh?!</p>
+<p>
+    Behold...
+    <h4 class="rainbow-text funky large-text">@this._generatedTitle</h4>
+</p>
+
+<button @onclick="GenerateNew" class="btn btn-secondary col-12 col-sm-11 col-lg-9 col-xl-8 col-xxl-7">Generate new!</button>
+
+<div class="history col-12 col-sm-11 col-lg-9 col-xl-8 col-xxl-7">
+    <h4 class="text-center">Last 10 Titles</h4>
+    <GeneratorOutputHistory Key="book-title" TItem="string" MaxItems="10" @ref="this._history" ItemCssClass="funky" />
+</div>
+
+<p><i>Note: if you spot any grammar error, feel free to post it in the <a href="@AppInfo.GetDiscussionURL(9)" target="_blank">GitHub Discussion</a> - it's not possible for me to catch them all by myself!</i></p>
+
+@code {
+    private string _generatedTitle = null;
+    private string _comboCount = null;
+
+    private GeneratorOutputHistory<string> _history;
+
+    protected override void OnParametersSet()
+    {        
+        int aWordCount = this._options.Value.AWordSet.Count;
+        int anWordCount = this._options.Value.AnWordSet.Count;
+        int secondThirdWordCount = this._options.Value.SecondThirdWordSet.Count;
+
+        // Since second and third words both use the SecondThirdWordSet
+        int comboCount = (aWordCount + anWordCount) * secondThirdWordCount * secondThirdWordCount;
+        this._comboCount = comboCount.ToString("N0");
+
+        // generate a new title on load
+        this.GenerateNew();
+    }
+
+    public void GenerateNew()
+    {
+        this.AddToHistory();
+        this._generatedTitle = this._generator.Generate();
+        base.StateHasChanged();
+    }
+
+    private void AddToHistory()
+    {
+        if (this._generatedTitle != null)
+            this._history.Add(this._generatedTitle);
+    }
+
+    void IDisposable.Dispose()
+    {
+        this.AddToHistory();
+    }
+}
