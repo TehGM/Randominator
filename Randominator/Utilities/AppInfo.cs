@@ -22,8 +22,14 @@ namespace TehGM.Randominator
             get
             {
                 if (string.IsNullOrWhiteSpace(_version))
-                    _version = Assembly.GetExecutingAssembly()
+                {
+                    string version = Assembly.GetExecutingAssembly()
                         .GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
+                    int hashIndex = version.IndexOf('+');
+                    if (hashIndex > 0)
+                        version = version.Substring(0, hashIndex);
+                    _version = version;
+                }
                 return _version;
             }
         }
