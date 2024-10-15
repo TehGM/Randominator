@@ -1,4 +1,4 @@
-﻿@page "/generators/Book-Title"
+﻿@page "/generators/book-title"
 @using TehGM.Randominator.Generators.BookTitle
 @implements IDisposable
 @inject IBookTitleGenerator _generator
@@ -24,7 +24,6 @@
     <GeneratorOutputHistory Key="book-title" TItem="string" MaxItems="10" @ref="this._history" ItemCssClass="funky" />
 </div>
 
-<p><i>Note: if you spot any grammar error, feel free to post it in the <a href="@AppInfo.GetDiscussionURL(9)" target="_blank">GitHub Discussion</a> - it's not possible for me to catch them all by myself!</i></p>
 
 @code {
     private string _generatedTitle = null;
