@@ -30,5 +30,7 @@ namespace TehGM.Randominator
 
         public static string GetDiscussionURL(uint discussionID)
             => $"{DiscussionsURL}/{discussionID}";
+        public static string GetPullRequestURL(uint prID)
+            => $"{RepositoryURL}/pull/{prID}";
     }
 }
