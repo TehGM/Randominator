@@ -47,7 +47,7 @@ jobs:
         regex: true
         include: '/home/runner/work/output/wwwroot/**.html'
     - name: Create 404.html
-      run: 'cp -p -n /home/runner/work/output/publish/wwwroot/index.html /home/runner/work/output/publish/wwwroot/404.html'
+      run: 'cp -p -n /home/runner/work/output/wwwroot/index.html /home/runner/work/output/wwwroot/404.html'
     - name: Generate robots.txt
       run: 'dotnet run --project Randominator.SitemapRenderer -- -o /home/runner/work/output/wwwroot'
     - name: Release to GitHub Pages
