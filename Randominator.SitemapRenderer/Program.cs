@@ -23,8 +23,6 @@ namespace TehGM.Randominator.SitemapRenderer
             string output = builder.Build();
             string filepath = Path.GetFullPath(Path.Combine(options.OutputDirectory, options.OutputFile));
             Log.Information("Writing to {FilePath}", filepath);
-            if (!Directory.Exists(options.OutputDirectory))
-                Directory.CreateDirectory(options.OutputDirectory);
             using FileStream file = File.Create(filepath);
             using StreamWriter writer = new StreamWriter(file, Encoding.UTF8);
             writer.Write(output);
