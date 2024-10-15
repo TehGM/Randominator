@@ -36,7 +36,7 @@ jobs:
     - name: 'Compile Static Files: /UI'
       run: webcompiler -r Randominator/UI -c Randominator/webcompiler.json
     - name: Publish solution
-      run: dotnet publish Randominator --no-restore --nologo -c Release -o bin/publish
+      run: dotnet publish Randominator --no-restore --nologo -c Release -o /home/runner/work/output
     - name: Run tests
       run: dotnet test --no-restore --nologo --verbosity normal
     - name: Version static files
@@ -45,17 +45,17 @@ jobs:
         find: '(?i)%%VERSION%%'
         replace: ${{ github.run_id }}
         regex: true
-        include: 'bin/publish/wwwroot/**.html'
+        include: '/home/runner/work/output/wwwroot/**.html'
     - name: Create 404.html
-      run: 'cp -p -n bin/publish/wwwroot/index.html bin/publish/wwwroot/404.html'
+      run: 'cp -p -n /home/runner/work/output/publish/wwwroot/index.html /home/runner/work/output/publish/wwwroot/404.html'
     - name: Generate robots.txt
-      run: 'dotnet run --project Randominator.SitemapRenderer'
+      run: 'dotnet run --project Randominator.SitemapRenderer -- -o /home/runner/work/output/wwwroot'
     - name: Release to GitHub Pages
       if: (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event.inputs.releasePage == 'Y'
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: bin/publish/wwwroot
+        publish_dir: /home/runner/work/output/publish/wwwroot
         cname: randominator.tehgm.net
         force_orphan: true
     - name: Ping Google
