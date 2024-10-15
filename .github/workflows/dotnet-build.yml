@@ -55,7 +55,7 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: /home/runner/work/output/publish/wwwroot
+        publish_dir: /home/runner/work/output/wwwroot
         cname: randominator.tehgm.net
         force_orphan: true
     - name: Ping Google
