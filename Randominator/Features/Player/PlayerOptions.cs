@@ -177,7 +177,6 @@
             "fCxrkkFv1qw",  // r33mix rainbow
             "FJITHvAmS_Y",  // BPM level 5
             "LXIWRan3XGY",  // type o negative - I don't wanna be me
-            "gi1CASWEkt4",  // drg leave no dwarf behind
             "WBuDIqpBB7A",  // the final catdown
             "NUYvbT6vTPs",  // Cat Vibing To Ievan Polkka
             "TUxYTdlcUMw",  // cat vibing to aaaaahhhh
@@ -261,7 +260,6 @@
             "p0rXznBDfJM",  // monkey driving golf cart, GTASA music, 10h
             "isYt-BWrQfk",  // apple cat running 1h
             "oe6b5tMMw1k",  // cat with headphones 10h
-            "bhsgn1v79as",  // phonk trollge 1h
             "XaO_3GcQyiE",  // plague doctor dance
             "DrxdjxXXZug",  // burning memory but depressing 1h
             "rmHDhAohJlQ",  // the prodigy - breathe
@@ -273,7 +271,6 @@
             "o8hYrNsRoTs",  // karen metal
             "rCSkWIdTONA",  // karen metal 2
             "tnLLrnZVwFI",  // karen metal 4
-            "E5nsRs1e_q0",  // our table it's broken
             "c7BVtGnlxT8",  // why do I hear boss music original
             "V58fBGcbaCs",  // meet my son hecker jr
             "jYO503VGd6k",  // 5 inches deep in your mum
@@ -433,6 +430,27 @@
             "69Hitt9Dw4Y",  // discord cats - hecker finds beluga's password
             "OhvCJGRBX1A",  // discord cats - pablo vs flat earther
             "TovdjYooStg",  // discord cats - beluga gets unmodded
+            "etK-4BzIGQc",  // cat vibing to lobotomy corp
+            "1a6igLUYYCI",  // welcome to eft
+            "w376YBdKAGE",  // camau - teaching girlfriend to camp
+            "QhmR7hPbNnY",  // camau - disguising as a scav
+            "wCRftfx62uY",  // boi what - neon tide
+            "KinnMF7uwQs",  // alex terrible - livin la vida loca
+            "eDQ4dUQegqw",  // big enough trombone champ
+            "U1yN3imHxKI",  // don't shoot i'm eating chipotle
+
+            // replacements - see old ones below
+            "JvgcVg1NaXk",  // phonk trollge 10h
+            "0rAdDjlH3u4",  // drg leave no dwarf behind
+
+            /***
+             * Expired videos
+             * They are no longer embeddable for whatever reason.
+             * Keeping them here just for future reference. Maybe they'll come back or something.
+             ***/
+            //"bhsgn1v79as",  // phonk trollge 1h
+            //"gi1CASWEkt4",  // drg leave no dwarf behind
+            //"E5nsRs1e_q0",  // our table it's broken
         };
     }
 }
