@@ -1,0 +1,57 @@
+﻿@page "/settings"
+@attribute [SitemapIgnore]
+@inject IUserSettingsProvider SettingsProvider
+@implements IDisposable
+
+<PageMeta Title="Randomizer Settings" SeoIndex="false" Description="Personalize Randomizer to your liking." />
+<HeaderTitle>Randomizer Settings</HeaderTitle>
+
+<p>
+    <span class="text-special bold">Note:</span> any changes you make need to be saved in your browser - so by making any change, you consent to use yum yum cookies.<br/>
+    <i>(Well, it's actually local storage, but that doesn't sound tasty enough).</i>
+</p>
+
+@if (this._settings == null)
+{
+    return;
+}
+<hr/>
+
+<div class="menu-settings">
+    <h2>Menu Settings</h2>
+    <p>If you think any of the generators just clutters your side menu, feel free to hide it here.</p>
+
+    <h4>Funny Generators</h4>
+    <OnOffToggle Label="Mobile Game Name" OnText="Show" OffText="Hide" @bind-Value="this._settings.Menu.ShowMobileGameNameGenerator" @bind-Value:after="this.SaveAsync" ToggleCssClass="menu-item-toggle" LabelCssClass="menu-item-toggle-label" />
+    <OnOffToggle Label="Dare" OnText="Show" OffText="Hide" @bind-Value="this._settings.Menu.ShowDareGenerator" @bind-Value:after="this.SaveAsync" ToggleCssClass="menu-item-toggle" LabelCssClass="menu-item-toggle-label" />
+    <OnOffToggle Label="Book Title" OnText="Show" OffText="Hide" @bind-Value="this._settings.Menu.ShowBookTitleGenerator" @bind-Value:after="this.SaveAsync" ToggleCssClass="menu-item-toggle" LabelCssClass="menu-item-toggle-label" />
+    <OnOffToggle Label="Programming Standards" OnText="Show" OffText="Hide" @bind-Value="this._settings.Menu.ShowProgrammingStandardsGenerator" @bind-Value:after="this.SaveAsync" ToggleCssClass="menu-item-toggle" LabelCssClass="menu-item-toggle-label" />
+
+    <h4>Utility Generators</h4>
+    <OnOffToggle Label="Unique ID" OnText="Show" OffText="Hide" @bind-Value="this._settings.Menu.ShowUniqueIdGenerator" @bind-Value:after="this.SaveAsync" ToggleCssClass="menu-item-toggle" LabelCssClass="menu-item-toggle-label" />
+</div>
+
+@code {
+    private UserSettings _settings;
+
+    protected override async Task OnInitializedAsync()
+    {
+        this.OnUserSettingsChanged(await this.SettingsProvider.GetAsync());
+        this.SettingsProvider.Changed += OnUserSettingsChanged;
+        await base.OnInitializedAsync();
+    }
+
+    private Task SaveAsync()
+        => this.SettingsProvider.SaveAsync(this._settings);
+
+    private void OnUserSettingsChanged(UserSettings settings)
+    {
+        this._settings = settings;
+        this.StateHasChanged();
+    }
+
+    void IDisposable.Dispose()
+    {
+        this.SettingsProvider.Changed -= OnUserSettingsChanged;
+    }
+}
