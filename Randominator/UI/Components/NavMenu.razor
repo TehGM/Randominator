@@ -72,11 +72,14 @@
                         </NavLink>
                     </div>
                 }
-                <div class="nav-item px-3 @this.FunnyGeneratorsClass">
-                    <NavLink class="nav-link" href="generators/book-title/">
-                        <span class="bi bi-book" aria-hidden="true"></span> Book Title
-                    </NavLink>
-                </div>
+                if (this._settings.Menu.ShowBookTitleGenerator)
+                {
+                    <div class="nav-item px-3 @this.FunnyGeneratorsClass">
+                        <NavLink class="nav-link" href="generators/book-title/">
+                            <span class="bi bi-book" aria-hidden="true"></span> Book Title
+                        </NavLink>
+                    </div>
+                }
                 if (this._settings.Menu.ShowProgrammingStandardsGenerator)
                 {
                     <div class="nav-item px-3 @this.FunnyGeneratorsClass">
@@ -183,7 +186,10 @@
     }
 
     private bool ShouldShowFunnyGenerators()
-        => this._settings.Menu.ShowMobileGameNameGenerator || this._settings.Menu.ShowDareGenerator || this._settings.Menu.ShowProgrammingStandardsGenerator;
+        => this._settings.Menu.ShowMobileGameNameGenerator 
+        || this._settings.Menu.ShowDareGenerator 
+        || this._settings.Menu.ShowProgrammingStandardsGenerator
+        || this._settings.Menu.ShowBookTitleGenerator;
 
     private bool ShouldShowUtilityGenerators()
         => this._settings.Menu.ShowUniqueIdGenerator;

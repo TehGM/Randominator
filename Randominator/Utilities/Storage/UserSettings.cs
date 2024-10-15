@@ -10,6 +10,7 @@
             public bool ShowMobileGameNameGenerator { get; set; } = true;
             public bool ShowDareGenerator { get; set; } = true;
             public bool ShowProgrammingStandardsGenerator { get; set; } = true; 
+            public bool ShowBookTitleGenerator { get; set; } = true; 
             // utility generators
             public bool ShowUniqueIdGenerator { get; set; } = true;
         }
