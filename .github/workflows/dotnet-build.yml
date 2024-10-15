@@ -28,7 +28,7 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Install Excubo.WebCompiler
-      run: dotnet tool install Excubo.WebCompiler --global --version 2.7.14
+      run: dotnet tool install Excubo.WebCompiler --global
     - name: Install dependencies
       run: dotnet restore
     - name: 'Compile Static Files: /wwwroot/css'
