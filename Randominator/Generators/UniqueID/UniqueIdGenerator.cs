@@ -15,7 +15,7 @@
             Guid value = Guid.NewGuid();
             UniqueIdValue result = new UniqueIdValue(value);
             this._log.LogDebug("Generated Unique ID: {ID}", value);
-            return new UniqueIdValue(value);
+            return result;
         }
     }
 }

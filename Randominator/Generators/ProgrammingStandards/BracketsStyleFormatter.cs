@@ -24,7 +24,7 @@ namespace TehGM.Randominator.Generators.ProgrammingStandards.Services
             else if (style == BracketsStyle.Clean || style == BracketsStyle.JavaScript)
             {
                 builder.AppendLine();
-                builder.Append("}");
+                builder.Append('}');
             }
             
             return builder.ToString();
