@@ -1,0 +1,86 @@
+.page {
+    // general
+    --background-color: white;
+    --text-color: rgb(33, 37, 41);
+    --link-color: #0071c1;
+    --special-text-color: black;
+    --error-text-color: red;
+    --error-outline-color: rgba(255, 0, 0, .53);
+    // inputs
+    --input-color: #212529;
+    --input-placeholder-color: #6c757d;
+    --input-background-color: white;
+    --input-border-color: #ced4da;
+    --input-border-width: 1px;
+    --input-focus-background-color: white;
+    // button
+    --button-primary-color: #fff;
+    --button-primary-background-color: #1b6ec2;
+    --button-primary-border-color: #1861ac;
+    // menu
+    --menu-background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    --menu-background-color: #fff;
+    --menu-toggler-background-color: rgba(255, 255, 255, 0.1);
+    --menu-header-background-color: rgba(0,0,0,0.4);
+    --menu-item-color: #d7d7d7;
+    --menu-item-active-background-color: rgba(255,255,255,0.25);
+    --menu-item-active-color: white;
+    --menu-item-hover-background-color: rgba(255,255,255,0.1);
+    --menu-item-hover-color: white;
+    --menu-copyright-color: var(--menu-item-color);
+    --menu-border-color: unset;
+    --menu-border-width: 0;
+    --menu-separator-color: black;
+    // header
+    --header-color: var(--text-color);
+    --header-background-color: #f7f7f7;
+    --header-border-color: #d6d5d5;
+    // footer
+    --footer-color: #6e6e6e;
+    // accordion
+    --accordion-background: white;
+    --accordion-header-background: #e7f1ff;
+    --accordion-header-color: #0c63e4;
+    // prepend
+    --prepend-background-color: var(--accordion-header-background);
+    --prepend-border-color: var(--accordion-background);
+    // code
+    --code-color: #d63384;
+
+    &[theme=sunset] {
+        // general
+        --background-color: #212F45;
+        --text-color: #faf0ca;
+        --link-color: #55a2d9;
+        --special-text-color: white;
+        // inputs
+        --input-color: white;
+        --input-background-color: #5C677D;
+        --input-border-color: #7D8597;
+        --input-border-width: 1px;
+        --input-placeholder-color: #d9d9d9;
+        --input-focus-background-color: #7D8597;
+        // menu
+        --menu-background-image: none;
+        --menu-background-image: linear-gradient(0deg, #001233 0%, #000814 70%);
+        --menu-border-color: #CA6702;
+        --menu-border-width: 4px;
+        --menu-item-color: #EE9B00;
+        --menu-item-active-color: #FFD60A;
+        --menu-item-hover-color: white;
+        --menu-copyright-color: white;
+        --menu-separator-color: var(--menu-border-color);
+        // header
+        --header-color: #fcca46;
+        --header-background-color: #000814;
+        --header-border-color: var(--menu-border-color);
+        // footer
+        --footer-color: #a1a1a1;
+        // accordion
+        --accordion-background: #001233;
+        --accordion-header-background: #012a4a;
+        --accordion-header-color: white;
+        // code
+        --code-color: #ffc300;
+    }
+}
