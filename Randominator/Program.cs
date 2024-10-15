@@ -16,6 +16,7 @@ using TehGM.Randominator.Features.Player;
 using TehGM.Randominator.Generators.Dare;
 using TehGM.Randominator.Generators.MobileGameName;
 using TehGM.Randominator.Generators.ProgrammingStandards;
+using TehGM.Randominator.Generators.BookTitle;
 
 namespace TehGM.Randominator;
 
@@ -64,6 +65,7 @@ public class Program
         services.Configure<DareGeneratorOptions>(configuration.GetSection("Generators:Dare"));
         services.Configure<MobileGameNameOptions>(configuration.GetSection("Generators:MobileGameName"));
         services.Configure<ProgrammingStandardsOptions>(configuration.GetSection("Generators:ProgrammingStandards"));
+        services.Configure<BookTitleOptions>(configuration.GetSection("Generators:BookTitle"));
     }
 
     private static void ConfigureServices(IServiceCollection services, string baseAddress, IConfiguration configuration)
@@ -83,7 +85,7 @@ public class Program
         services.AddProgrammingStandardsGenerator();
         services.AddUniqueIdGenerator();
         services.AddDareGenerator();
-
+        services.AddBookTitleGenerator();
         // features
         services.AddPlayer();
     }
