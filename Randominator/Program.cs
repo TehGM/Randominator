@@ -17,6 +17,7 @@ using TehGM.Randominator.Generators.Dare;
 using TehGM.Randominator.Generators.MobileGameName;
 using TehGM.Randominator.Generators.ProgrammingStandards;
 using TehGM.Randominator.Generators.BookTitle;
+using Serilog.Settings.Configuration;
 
 namespace TehGM.Randominator;
 
@@ -95,7 +96,7 @@ public class Program
         Serilog.Debugging.SelfLog.Enable(m => Console.Error.WriteLine(m));
 
         Log.Logger = new LoggerConfiguration()
-            .ReadFrom.Configuration(builder.Configuration, "Logging")
+            .ReadFrom.Configuration(builder.Configuration, new ConfigurationReaderOptions() { SectionName = "Logging" })
             .CreateLogger();
 
         builder.Logging.ClearProviders();
