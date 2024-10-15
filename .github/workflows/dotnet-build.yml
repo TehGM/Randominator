@@ -26,9 +26,9 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 8.0.x
     - name: Install Excubo.WebCompiler
-      run: dotnet tool install Excubo.WebCompiler --global
+      run: dotnet tool install Excubo.WebCompiler --global --version 2.7.14
     - name: Install dependencies
       run: dotnet restore
     - name: 'Compile Static Files: /wwwroot/css'
